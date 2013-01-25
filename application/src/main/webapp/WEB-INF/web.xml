@@ -1,0 +1,33 @@
+<!-- Web application description
+    Useful link : http://wiki.metawerx.net/wiki/Web.xml -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+
+    <display-name>Employee Application</display-name>
+    <description>Basic Employee MVC Application</description>
+
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+
+    <!-- Define index.jsp to be a welcome page -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    
+    <!-- Instantiation of Spring servlet -->
+    <servlet>
+        <servlet-name>spring-employee</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- Pattern match all files ending in .html to call Spring -->
+    <servlet-mapping>
+        <servlet-name>spring-employee</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+</web-app>

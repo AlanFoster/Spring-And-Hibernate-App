@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <!-- The base definition which other definitions should extend from -->
+    <definition name="base.definition" template="/WEB-INF/jsp/layout.jsp">
+        <!-- Core Website Attributes -->
+        <put-attribute name="website.title" value="Employee Application" />
+        <put-attribute name="website.version" value="1.0" />
+
+        <put-attribute name="page.title" value="" />
+
+        <put-attribute name="body" value="" />
+
+        <put-attribute name="copyright" value="/WEB-INF/jsp/copyright.jsp" />
+    </definition>
+
+    <definition name="employee" extends="base.definition">
+        <put-attribute name="page.title" value="Employee" />
+        <put-attribute name="body" value="/WEB-INF/jsp/employee.jsp" />
+    </definition>
+</tiles-definitions>
