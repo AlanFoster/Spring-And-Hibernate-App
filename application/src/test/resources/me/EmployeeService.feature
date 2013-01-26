@@ -10,5 +10,5 @@ Feature: Employee Data Access
       | Alan      | Foster     | Being Awesome | 1      |
     Then there will be '1' employee in the employee service
     And the employee with id '1' will have the following details
-      | firstName | secondName | jobTitle      | deskId |
-      | Alan      | Foster     | Being Awesome | 1      |
+      | id | firstName | secondName | jobTitle      | deskId |
+      | 1  | Alan      | Foster     | Being Awesome | 1      |

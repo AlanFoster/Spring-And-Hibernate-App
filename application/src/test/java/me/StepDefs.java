@@ -38,8 +38,8 @@ public class StepDefs {
 
     @When("^I add the following Employee$")
     public void I_add_the_following_Employee(List<Employee> employees) throws Throwable {
-       Employee employee = employees.get(0);
-       Integer employeeId = employeeService.create(employee);
+        IEmployee employee = employees.get(0);
+        Integer employeeId = employeeService.create(employee);
     }
 
     @Then("^there will be '(\\d+)' employee in the employee service$")
@@ -48,11 +48,12 @@ public class StepDefs {
     }
 
     @Then("^the employee with id '(\\d+)' will have the following details$")
-    public void the_employee_with_id_will_have_the_following_details(int employeeId, List<Employee> employees) throws Throwable {
-        Employee expectedEmployee = employees.get(0);
+    public void the_employee_with_id_will_have_the_following_details(int employeeId, List<IEmployee> employees) throws Throwable {
+        IEmployee expectedEmployee = employees.get(0);
         IEmployee actualEmployee = employeeService.get(employeeId);
 
         assertNotNull("The retrieved employee should not be null", actualEmployee);
+        assertEquals("The employee id should be as expected", expectedEmployee.getId(), actualEmployee.getId());
         assertEquals("The first name should be as expected", expectedEmployee.getFirstName(), actualEmployee.getFirstName());
         assertEquals("The second name should be as expected", expectedEmployee.getSecondName(), actualEmployee.getSecondName());
         assertEquals("The job title should be as expected", expectedEmployee.getJobTitle(), actualEmployee.getJobTitle());
