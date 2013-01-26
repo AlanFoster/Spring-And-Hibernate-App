@@ -16,4 +16,13 @@
     <!-- Wire up our application's beans -->
     <import resource="classpath:/spring-employee-servlet.xml"/>
 
+    <!-- Selenium Releated Beans -->
+    <bean id="firefoxWebDriver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="quit" />
+   
+ <!-- Selenium Helper -->
+    <bean id="seleniumHelper" class="me.SeleniumHelper">
+        <constructor-arg index="0" ref="firefoxWebDriver" />
+        <constructor-arg index="1" value="test" />
+    </bean>
+
 </beans>
