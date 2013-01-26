@@ -20,8 +20,8 @@ public class EmployeeService implements IEmployeeService {
 
     @Transactional
     @Override
-    public void create(IEmployee employee) {
-        employeeDAO.create(employee);
+    public Integer create(IEmployee employee) {
+        return employeeDAO.create(employee);
     }
 
     @Transactional

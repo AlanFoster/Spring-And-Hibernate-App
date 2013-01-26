@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface ICRUDDao<T, K extends Serializable> {
     /* Create Operations */
-    public void create(T object);
+    public K create(T object);
 
     /* Read Operations */
     public T get(K key);

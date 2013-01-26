@@ -2,6 +2,7 @@ package me.alanfoster.application.dao.impl;
 
 import me.alanfoster.application.dao.IEmployeeDAO;
 import me.alanfoster.application.model.IEmployee;
+import me.alanfoster.application.model.impl.Employee;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,13 +19,13 @@ public class HibernateEmployeeDAO implements IEmployeeDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public void create(IEmployee employee) {
-        sessionFactory.getCurrentSession().save(employee);
+    public Integer create(IEmployee employee) {
+        return (Integer) sessionFactory.getCurrentSession().save(employee);
     }
 
     @Override
     public IEmployee get(Integer key) {
-        return null;
+        return (IEmployee) sessionFactory.getCurrentSession().get(Employee.class, key);
     }
 
     @Override
