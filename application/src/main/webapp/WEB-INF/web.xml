@@ -13,11 +13,6 @@
         <session-timeout>120</session-timeout>
     </session-config>
 
-    <!-- Define index.jsp to be a welcome page -->
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-    
     <!-- Instantiation of Spring servlet -->
     <servlet>
         <servlet-name>spring-employee</servlet-name>
@@ -25,9 +20,10 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <!-- Pattern match all files ending in .html to call Spring -->
+    <!-- Pattern match all files to call Spring -->
     <servlet-mapping>
         <servlet-name>spring-employee</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 </web-app>

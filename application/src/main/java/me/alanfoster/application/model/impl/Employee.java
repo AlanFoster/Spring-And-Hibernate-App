@@ -22,6 +22,8 @@ public class Employee implements IEmployee {
     @Column(name = "secondName")
     private String secondName;
     @Column(name = "jobTitle")
+   // @OneToOne(fetch = FetchType.EAGER)
+   // @JoinColumn(name = "jobId")
     private String jobTitle;
     @Column(name="deskId")
     private Integer deskId;

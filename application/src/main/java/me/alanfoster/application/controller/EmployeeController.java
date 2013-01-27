@@ -1,15 +1,13 @@
 package me.alanfoster.application.controller;
 
 import me.alanfoster.application.config.Config;
+import me.alanfoster.application.model.IEmployee;
 import me.alanfoster.application.model.impl.Employee;
 import me.alanfoster.application.services.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +39,20 @@ public class EmployeeController {
         employeeService.create(employee);
         return "redirect:employees.html";
     }
+
+    @RequestMapping(value = "/edit/{employeeId}")
+    public String addContact(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
+        logger.info("Received Request for /edit/{}", new Object[] { employeeId });
+        IEmployee employee = employeeService.get(employeeId);
+        // Log this and let our presentation layer deal with this scenario
+        if(employee == null) {
+            logger.debug("Employee Object for employee id {} was null", new Object[] { employeeId });
+        }
+
+        map.put("employee", employee);
+        return "employeeDetail";
+    }
+
 
     @RequestMapping("/employees")
     public String showEmployees(Map<String, Object> map) {

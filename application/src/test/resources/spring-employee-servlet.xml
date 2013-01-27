@@ -28,14 +28,6 @@
         </property>
     </bean>
 
-    <!-- Create the datasource (With properties derived from the config property placeholder bean) -->
-<!--    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driverClassName}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-    </bean>-->
-
     <!-- Hibernate Session Factory Configuration -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />

@@ -16,8 +16,26 @@
         <put-attribute name="copyright" value="/WEB-INF/views/core/copyright.jsp" />
     </definition>
 
+    <!-- The Core employee Detail view which should be extended by other views as appropiate -->
+    <definition name="employeeDetail" extends="base.definition">
+        <put-attribute name="page.title" value="Employee Detail" />
+        <put-attribute name="body" value="/WEB-INF/views/employee/employeeDetail.jsp" />
+        <!-- Detail Type one of 'Edit', 'View' (Read Only) -->
+        <put-attribute name="detailType" value="" />
+    </definition>
+
+
+    <!-- TODO Add Employee View -->
     <definition name="employee" extends="base.definition">
         <put-attribute name="page.title" value="Employee" />
         <put-attribute name="body" value="/WEB-INF/views/employee/employee.jsp" />
     </definition>
+
+    <!-- Edit Employee View -->
+    <definition name="editEmployee" extends="employeeDetail">
+        <put-attribute name="page.title" value="Edit Employee" />
+        <put-attribute name="body" value="/WEB-INF/views/employee/employeeDetail.jsp" />
+        <put-attribute name="detailType" value="edit" />
+    </definition>
+
 </tiles-definitions>

@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <title><tiles:getAsString name="website.title"/> <tiles:getAsString name="website.version"/></title>
-    <link rel="stylesheet" href="resources/css/main.css" />
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css"  />
-    <script src="resources/js/vendor/jquery-1.9.0.min.js"></script>
-    <script src="resources/js/vendor/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/resources/css/main.css" />
+    <link rel="stylesheet" href="/resources/css/bootstrap.min.css"  />
+    <script src="/resources/js/vendor/jquery-1.9.0.min.js"></script>
+    <script src="/resources/js/vendor/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container-fluid wrapper">

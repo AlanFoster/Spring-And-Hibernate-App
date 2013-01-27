@@ -38,7 +38,6 @@
     </div>
 </form:form>
 
-
 <h1>Existing Employees</h1>
 
 <c:choose>
@@ -54,6 +53,7 @@
                 <th>Second Name</th>
                 <th>Job Title</th>
                 <th>Desk ID</th>
+                <th></th>
             </tr>
             </thead>
             <c:forEach items="${employees}" var="employee">
@@ -63,6 +63,7 @@
                     <td>${employee.secondName}</td>
                     <td>${employee.jobTitle}</td>
                     <td>${employee.deskId}</td>
+                    <td><a href="/edit/${employee.id}" title="Edit this employee">Edit</a></td>
                 </tr>
             </c:forEach>
         </table>
