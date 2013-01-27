@@ -35,6 +35,7 @@ public class EmployeeController {
      * @param result
      * @return The redirect to follow - employees.html
      */
+    // TODO Use Validation annotations
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("employee") Employee employee, BindingResult result) {
         employeeService.create(employee);

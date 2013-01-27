@@ -1,27 +1,12 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%--
-<html>
-<head>
-    <title><tiles:getAsString name="page.title"/></title>
-</head>
-<body>
-
-<div><tiles:getAsString name="website.title"/> <em><tiles:getAsString name="website.version"/></em></div>
-<h1>Welcome!!!!</h1>
-<div style="border: 1px solid red">
-    <tiles:insertAttribute name="body" />
-</div>
-<div style="align:center"></div>
-</body>
-</html>--%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?= title ?></title>
-    <link rel='stylesheet' href='resources/css/style.css' />
-    <link href="resources//css/bootstrap.min.css" rel="stylesheet" />
+    <title><tiles:getAsString name="website.title"/> <tiles:getAsString name="website.version"/></title>
+    <link rel="stylesheet" href="resources/css/main.css" />
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css"  />
     <script src="resources/js/vendor/jquery-1.9.0.min.js"></script>
-    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="resources/js/vendor/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container-fluid wrapper">
@@ -32,18 +17,9 @@
         </div>
     </div>
 
-    <div class="navbar">
-        <div class="navbar-inner">
-            <ul class="nav">
-                <li class="<?= title === 'Home' ? 'active' : '' ?>"><a href="/">a</a></li>
-                <li class="<?= title === 'Products' ? 'active' : '' ?>"><a href="/viewAllProducts">b</a></li>
-            </ul>
-        </div>
-    </div>
-
     <div class="row-fluid">
         <div class="span2 row">
-            <div class="well ">
+            <div class="well">
                 User details
             </div>
         </div>

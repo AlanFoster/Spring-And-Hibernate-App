@@ -4,7 +4,7 @@
         "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
     <!-- The base definition which other definitions should extend from -->
-    <definition name="base.definition" template="/WEB-INF/jsp/layout.jsp">
+    <definition name="base.definition" template="/WEB-INF/views/core/layout.jsp">
         <!-- Core Website Attributes -->
         <put-attribute name="website.title" value="Employee Application" />
         <put-attribute name="website.version" value="1.0" />
@@ -13,11 +13,11 @@
 
         <put-attribute name="body" value="" />
 
-        <put-attribute name="copyright" value="/WEB-INF/jsp/copyright.jsp" />
+        <put-attribute name="copyright" value="/WEB-INF/views/core/copyright.jsp" />
     </definition>
 
     <definition name="employee" extends="base.definition">
         <put-attribute name="page.title" value="Employee" />
-        <put-attribute name="body" value="/WEB-INF/jsp/employee.jsp" />
+        <put-attribute name="body" value="/WEB-INF/views/employee/employee.jsp" />
     </definition>
 </tiles-definitions>
