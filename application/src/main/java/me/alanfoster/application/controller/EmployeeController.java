@@ -47,7 +47,10 @@ public class EmployeeController {
 
         map.put("employee", new Employee());
         map.put("employees", employeeService.getAll());
+        map.put("jobTitles", employeeService.getJobTitles());
+        // map.put("deskIds", employeeService.getUniqueDeskIds());
 
         return "employee";
     }
+
 }
