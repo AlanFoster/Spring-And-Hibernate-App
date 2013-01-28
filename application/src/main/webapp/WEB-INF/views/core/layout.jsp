@@ -10,17 +10,13 @@
 </head>
 <body>
 <div class="container-fluid wrapper">
-    <div class="row">
-        <div class="span5">
-            <h1><?= app.locals.websiteName ?></h1>
-            <p class="muted"><?= app.locals.motto ?></p>
-        </div>
-    </div>
 
     <div class="row-fluid">
         <div class="span2 row">
             <div class="well">
-                User details
+                <div><a href="/employees/add">Add Employee</a></div>
+                <div><a href="/employees/search">Search Employee</a></div>
+                <div><a href="/employees/reports">Reports</a></div>
             </div>
         </div>
         <div class="row span10">

@@ -24,7 +24,7 @@
         Sorry. That employee does not exist in the system.
     </c:when>
     <c:otherwise>
-        <form:form modelAttribute="employee" method="post" action="/edit/${employee.id}" cssClass="form-horizontal">
+        <form:form modelAttribute="employee" method="post" action="/employees/edit/${employee.id}" cssClass="form-horizontal">
             <div class="control-group">
                 <form:label path="id" cssClass="control-label">Employee Id</form:label>
                 <div class="controls">
@@ -64,7 +64,7 @@
                     <%-- Note :: This button activates some javascript which is bound to
                         automatically through the id 'confirmDelete'
                          - this is so users without javascript still make use of the system --%>
-                    <a href="/delete/${employee.id}" class="btn btn-danger" id="confirmDelete">Delete</a>
+                    <a href="/employees/delete/${employee.id}" class="btn btn-danger" id="confirmDelete">Delete</a>
                 </div>
             </div>
         </form:form>

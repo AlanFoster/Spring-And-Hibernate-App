@@ -1,6 +1,5 @@
 package me.alanfoster.application.controller;
 
-import me.alanfoster.application.config.Config;
 import me.alanfoster.application.model.IEmployee;
 import me.alanfoster.application.model.impl.Employee;
 import me.alanfoster.application.services.IEmployeeService;
@@ -27,6 +26,13 @@ public class EmployeeController {
     @Autowired
     private IEmployeeService employeeService;
 
+    @RequestMapping("/")
+    public String index(Map<String, Object> map) {
+        logger.info("Received Request for /");
+
+        return EmployeeModelConfig.EmployeeModel.Index.getModel();
+    }
+
     /**
      * Handle adding an employee
      *
@@ -35,13 +41,24 @@ public class EmployeeController {
      * @return The redirect to follow - employees.html
      */
     // TODO Use Validation annotations
-    @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result) {
+    @RequestMapping(value = "/employees/add", method = RequestMethod.POST)
+    public String addEmployeePost(@ModelAttribute("employee") Employee employee, BindingResult result) {
         employeeService.create(employee);
-        return "redirect:employees";
+        return "redirect:/employees/search";
     }
 
-    @RequestMapping(value = "/edit/{employeeId}")
+    @RequestMapping("/employees/add")
+    public String addEmployee(Map<String, Object> map) {
+        logger.info("Received Request for /employees");
+
+        map.put("employee", new Employee());
+        map.put("employees", employeeService.getAll());
+        map.put("jobTitles", employeeService.getJobTitles());
+
+        return EmployeeModelConfig.EmployeeModel.Add.getModel();
+    }
+
+    @RequestMapping(value = "/employees/edit/{employeeId}")
     public String editEmployee(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
         logger.info("Received Request for /edit/{}", new Object[]{employeeId});
         IEmployee employee = employeeService.get(employeeId);
@@ -52,10 +69,17 @@ public class EmployeeController {
 
         map.put("employee", employee);
         map.put("jobTitles", employeeService.getJobTitles());
-        return "employeeDetail";
+        return EmployeeModelConfig.EmployeeModel.Edit.getModel();
     }
 
-    @RequestMapping(value = "/edit/{employeeId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/employees/search")
+    public String searchEmployee(Map<String, Object> map) {
+        logger.info("Received Request for /search");
+        map.put("employees", employeeService.getAll());
+        return EmployeeModelConfig.EmployeeModel.Search.getModel();
+    }
+
+    @RequestMapping(value = "/employees/edit/{employeeId}", method = RequestMethod.POST)
     public String editEmployeePost(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId,
                                    @ModelAttribute("employee") Employee employee, BindingResult result,
                                    final RedirectAttributes redirectAttributes) {
@@ -63,24 +87,13 @@ public class EmployeeController {
         employeeService.update(employee);
         // Add a flash attribute to let the redirected page know of our success
         redirectAttributes.addFlashAttribute("formResult", "success");
-        return "redirect:/edit/" + employeeId;
+        return "redirect:/employees/edit/" + employeeId;
     }
 
-    @RequestMapping(value = "/delete/{employeeId}")
-    public String deleteEmployee(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
+    @RequestMapping(value = "/employees/delete/{employeeId}")
+    public String deleteEmployeePost(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
         logger.info("Received Request for /delete/{}", new Object[]{employeeId});
         employeeService.delete(employeeId);
-        return "redirect:/employees";
-    }
-
-    @RequestMapping("/employees")
-    public String showEmployees(Map<String, Object> map) {
-        logger.info("Received Request for /employees");
-
-        map.put("employee", new Employee());
-        map.put("employees", employeeService.getAll());
-        map.put("jobTitles", employeeService.getJobTitles());
-
-        return "employee";
+        return "redirect:/employees/search";
     }
 }

@@ -62,8 +62,10 @@ public class EmployeeService implements IEmployeeService {
         Map<Integer, String> jobTitles = new LinkedHashMap<Integer, String>();
         jobTitles.put(1, "HR");
         jobTitles.put(2, "Operations");
-        jobTitles.put(3, "Developer");
-        jobTitles.put(4, "Tester");
+        jobTitles.put(3, "Engineer");
+        jobTitles.put(4, "Senior Engineer");
+        jobTitles.put(5, "Executive Engineer");
+        jobTitles.put(6, "Tester");
 
         return jobTitles;
     }

@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <h1>Add Employee</h1>
 
-<form:form modelAttribute="employee" method="post" action="addEmployee.html" cssClass="form-horizontal">
+<form:form modelAttribute="employee" method="post" action="/employees/add" cssClass="form-horizontal">
     <div class="control-group">
         <form:label path="firstName" cssClass="control-label">First Name</form:label>
         <div class="controls">
@@ -37,35 +37,3 @@
         </div>
     </div>
 </form:form>
-
-<h1>Existing Employees</h1>
-
-<c:choose>
-    <c:when test="${empty employees}">
-        Sorry. There are currently no employees in the system
-    </c:when>
-    <c:otherwise>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Second Name</th>
-                <th>Job Title</th>
-                <th>Desk ID</th>
-                <th></th>
-            </tr>
-            </thead>
-            <c:forEach items="${employees}" var="employee">
-                <tr>
-                    <td>${employee.id}</td>
-                    <td>${employee.firstName}</td>
-                    <td>${employee.secondName}</td>
-                    <td>${employee.jobTitle}</td>
-                    <td>${employee.deskId}</td>
-                    <td><a href="/edit/${employee.id}" title="Edit this employee">Edit</a></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </c:otherwise>
-</c:choose>

@@ -1,6 +1,5 @@
-package me.alanfoster.application.config;
+package me.alanfoster.application.controller;
 
-import java.lang.Override;
 import java.lang.String;
 
 /**
@@ -9,8 +8,8 @@ import java.lang.String;
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public final class Config {
-    private Config() {}
+public final class EmployeeModelConfig {
+    private EmployeeModelConfig() {}
 
     /**
      * Stores all of the pages that are used in this application.
@@ -19,16 +18,22 @@ public final class Config {
      * @author Alan Foster
      * @version 1.0.0-SNAPSHOT
      */
-    public enum Pages {
-        Employees("/employees");
+    public enum EmployeeModel implements ModelConfig {
+        Index("employee.index"),
+        Add("employee.add"),
+        Edit("employee.edit"),
+        Search("employee.search");
 
         private String value;
-        Pages(String value) {
+        EmployeeModel(String value) {
             this.value = value;
         }
 
-        public String getValue() {
+        @Override
+        public String getModel() {
             return this.value;
         }
     }
+
+    // TODO Add the Employee restful pages
 }
