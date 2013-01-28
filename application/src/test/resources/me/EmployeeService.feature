@@ -6,9 +6,9 @@ Feature: Employee Data Access
   Scenario: Adding an employee and validating the data is saved correctly
     Given there is an employee service
     When I add the following Employee
-      | firstName | secondName | jobId | jobTitle  | deskId |
-      | Alan      | Foster     | 3     | Developer | 1      |
+      | firstName | secondName | jobTitle      | deskId |
+      | Alan      | Foster     | Being Awesome | 1      |
     Then there will be '1' employee in the employee service
     And the employee with id '1' will have the following details
-      | id | firstName | secondName | jobId | jobTitle  | deskId |
-      | 1  | Alan      | Foster     | 3     | Developer | 1      |
+      | id | firstName | secondName | jobTitle      | deskId |
+      | 1  | Alan      | Foster     | Being Awesome | 1      |

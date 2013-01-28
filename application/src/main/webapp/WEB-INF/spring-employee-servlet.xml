@@ -25,7 +25,7 @@
     <mvc:resources mapping="/resources/**" location="/resources/"/>
     <mvc:annotation-driven />
     <!-- Forward requests to "/" to be the main view -->
-    <mvc:view-controller path="/" view-name="employees" />
+    <mvc:view-controller path="/" view-name="/employees" />
 
     <!-- Let Apache Tiles be our view resolver -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">

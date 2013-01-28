@@ -10,9 +10,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.junit.Cucumber;
 import me.alanfoster.application.model.IEmployee;
-import me.alanfoster.application.model.IJob;
 import me.alanfoster.application.model.impl.Employee;
-import me.alanfoster.application.model.impl.Job;
 import me.alanfoster.application.services.IEmployeeService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import static junit.framework.Assert.*;
-import static junit.framework.Assert.assertEquals;
 
 import java.util.List;
 
@@ -47,8 +44,8 @@ public class StepDefs {
     }
 
     @When("^I add the following Employee$")
-    public void I_add_the_following_Employee(List<EmployeeDataTable> employeeDataTables) throws Throwable {
-        IEmployee employee = getEmployeeDataTableAsIEmployee(employeeDataTables.get(0));
+    public void I_add_the_following_Employee(List<Employee> employees) throws Throwable {
+        IEmployee employee = employees.get(0);
         Integer employeeId = employeeService.create(employee);
     }
 
@@ -58,118 +55,18 @@ public class StepDefs {
     }
 
     @Then("^the employee with id '(\\d+)' will have the following details$")
-    public void the_employee_with_id_will_have_the_following_details(int employeeId, List<EmployeeDataTable> employeeDataTables) throws Throwable {
-        IEmployee expectedEmployee = getEmployeeDataTableAsIEmployee(employeeDataTables.get(0));
+    public void the_employee_with_id_will_have_the_following_details(int employeeId, List<Employee> employees) throws Throwable {
+        IEmployee expectedEmployee = employees.get(0);
         IEmployee actualEmployee = employeeService.get(employeeId);
 
-        assertNotNull("The retrieved employee should not be null", actualEmployee);
-        assertEqual(expectedEmployee, actualEmployee);
-    }
-
-    /**
-     * Converts the flat structure of a cucumber style employee datatable to an actual implementation of IEmployee.
-     * @see EmployeeDataTable
-     * @param employeeDataTable The datatable to convert into an IEmployee object
-     */
-    public static IEmployee getEmployeeDataTableAsIEmployee(EmployeeDataTable employeeDataTable) {
-        IEmployee employee = new Employee();
-        employee.setId(employeeDataTable.getId());
-        employee.setFirstName(employeeDataTable.getFirstName());
-        employee.setSecondName(employeeDataTable.getSecondName());
-        employee.setDeskId(employeeDataTable.getDeskId());
-
-        IJob job = new Job();
-        job.setJobId(employeeDataTable.getJobId());
-        job.setJobTitle(employeeDataTable.getJobTitle());
-        employee.setJob(job);
-
-        return employee;
-    }
-
-    public static void assertEqual(IEmployee expectedEmployee, IEmployee actualEmployee) {
-        assertEqualEmployee(expectedEmployee, actualEmployee);
-        assertEqualJob(expectedEmployee, actualEmployee);
-    }
-
-    public static void assertEqualEmployee(IEmployee expectedEmployee, IEmployee actualEmployee) {
         assertNotNull("The retrieved employee should not be null", actualEmployee);
         assertEquals("The employee id should be as expected", expectedEmployee.getId(), actualEmployee.getId());
         assertEquals("The first name should be as expected", expectedEmployee.getFirstName(), actualEmployee.getFirstName());
         assertEquals("The second name should be as expected", expectedEmployee.getSecondName(), actualEmployee.getSecondName());
+        assertEquals("The job title should be as expected", expectedEmployee.getJobTitle(), actualEmployee.getJobTitle());
         assertEquals("The desk id should be as expected", expectedEmployee.getDeskId(), actualEmployee.getDeskId());
     }
 
-    public static void assertEqualJob(IEmployee expectedEmployee, IEmployee actualEmployee) {
-        IJob expectedJob = expectedEmployee.getJob();
-        IJob actualJob = actualEmployee.getJob();
-        assertEquals("The job id should be as expected", expectedJob.getJobId(), actualJob.getJobId());
-        assertEquals("The job title should be as expected", expectedJob.getJobTitle(), actualJob.getJobTitle());
-    }
-
-    /**
-     * Represents a basic model for the representing an Employee during cucumber tests
-     * Note, this is a <em>flat</em> representation of an employee and not the actual 'IEmployee' object
-     * This object is useful as it provides a 1 to 1 mapping of cucumber's datatables
-     */
-    public class EmployeeDataTable {
-        // Main Details
-        private Integer id;
-        private String firstName;
-        private String secondName;
-        private Integer deskId;
-
-        // Job details
-        private Integer jobId;
-        private String jobTitle;
-
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public String getSecondName() {
-            return secondName;
-        }
-
-        public void setSecondName(String secondName) {
-            this.secondName = secondName;
-        }
-
-        public String getJobTitle() {
-            return jobTitle;
-        }
-
-        public void setJobTitle(String jobTitle) {
-            this.jobTitle = jobTitle;
-        }
-
-        public Integer getDeskId() {
-            return deskId;
-        }
-
-        public void setDeskId(Integer deskId) {
-            this.deskId = deskId;
-        }
-
-        public Integer getJobId() {
-            return jobId;
-        }
-
-        public void setJobId(Integer jobId) {
-            this.jobId = jobId;
-        }
-    }
 
     ///
     /// Website Application tests
@@ -178,8 +75,8 @@ public class StepDefs {
     @Value("${core.baseUrl}")
     private String siteBase;
 
-    /*@Autowired
-    private WebDriver webDriver;
+    @Autowired
+   private WebDriver webDriver;
 
     @Autowired
     private SeleniumHelper seleniumHelper;
@@ -193,22 +90,18 @@ public class StepDefs {
     public void saveScreenshot(Scenario scenario) {
         scenario.embed(seleniumHelper.takeScreenshot(), "image/png");
     }
-
     @When("^I visit the employees page$")
     public void I_visit_the_employees_page() throws Throwable {
         webDriver.get(siteBase + "/employees.html");
     }
-
     @Given("^I am on the employee page$")
     public void I_am_on_the_employee_page() throws Throwable {
         webDriver.get(siteBase + "/employees.html");
     }
-
-    @Then("^the browser title should be 'Employee'$")
-    public void the_browser_title_should_be_Employee() throws Throwable {
-        assertEquals("The Browser title should be as expected", "Employee", webDriver.getTitle());
+    @Then("^the browser title should be '(.*)'$")
+    public void the_browser_title_should_be_Employee(String expectedTitle) throws Throwable {
+        assertEquals("The Browser title should be as expected", expectedTitle, webDriver.getTitle());
     }
-
     @Then("^I should redirected to the employees page$")
     public void I_should_redirected_to_the_employees_page() throws Throwable {
         assertEquals("The Browser title should be as expected", "Employee", webDriver.getTitle());
@@ -229,7 +122,7 @@ public class StepDefs {
     public void I_press_Add_Employee() throws Throwable {
         WebElement submitButton = webDriver.findElement(By.cssSelector("input[type='submit'][value = 'Add Employee']"));
         submitButton.submit();
-    }*/
+    }
 
     /**
      * Represents the basic model for the form that users need to fill in when creating a new employee
