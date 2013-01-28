@@ -11,8 +11,9 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @Cucumber.Options(
         tags="~@Ignore",
-        glue = { "me" }
-        //format = {"pretty", "html:target/cucumber"}
+        glue = { "me" },
+        monochrome = true,
+        format = {"pretty", "html:target/cucumber"}
 )
 public class CucumberTests {
 }

@@ -14,8 +14,8 @@ public interface IEmployee {
     String getSecondName();
     void setSecondName(String secondName);
 
-    String getJobTitle();
-    void setJobTitle(String jobTitle);
+    IJob getJob();
+    void setJob(IJob job);
 
     Integer getDeskId();
     void setDeskId(Integer deskId);

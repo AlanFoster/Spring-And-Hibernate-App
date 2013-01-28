@@ -3,6 +3,7 @@ package me.alanfoster.application.controller;
 import me.alanfoster.application.config.Config;
 import me.alanfoster.application.model.IEmployee;
 import me.alanfoster.application.model.impl.Employee;
+import me.alanfoster.application.model.impl.Job;
 import me.alanfoster.application.services.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,10 @@ public class EmployeeController {
     public String showEmployees(Map<String, Object> map) {
         logger.info("Received Request for /employees");
 
-        map.put("employee", new Employee());
+        // We need to instantiate a new Employee object for the presentation layer to make use of
+        Employee employee = new Employee();
+        employee.setJob(new Job());
+        map.put("employee", employee);
         map.put("employees", employeeService.getAll());
         map.put("jobTitles", employeeService.getJobTitles());
         // map.put("deskIds", employeeService.getUniqueDeskIds());

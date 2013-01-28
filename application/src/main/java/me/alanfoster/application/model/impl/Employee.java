@@ -1,6 +1,7 @@
 package me.alanfoster.application.model.impl;
 
 import me.alanfoster.application.model.IEmployee;
+import me.alanfoster.application.model.IJob;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
  * @version 1.0.0-SNAPSHOT
  */
 @Entity
-@Table(name = "Employees")
+@Table(name = "employees")
 public class Employee implements IEmployee {
     @Id
     @Column(name = "id")
@@ -21,10 +22,9 @@ public class Employee implements IEmployee {
     private String firstName;
     @Column(name = "secondName")
     private String secondName;
-    @Column(name = "jobTitle")
-   // @OneToOne(fetch = FetchType.EAGER)
-   // @JoinColumn(name = "jobId")
-    private String jobTitle;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "jobId")
+    private Job job;
     @Column(name="deskId")
     private Integer deskId;
 
@@ -61,13 +61,14 @@ public class Employee implements IEmployee {
     }
 
     @Override
-    public String getJobTitle() {
-        return jobTitle;
+    public IJob getJob() {
+        return job;
     }
 
     @Override
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setJob(IJob job) {
+        // TODO
+        this.job = (Job) job;
     }
 
     @Override
@@ -80,22 +81,13 @@ public class Employee implements IEmployee {
         this.deskId = deskId;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
 
+    @Override
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
-                ", deskId=" + deskId +
-        '}';
     }
 }
