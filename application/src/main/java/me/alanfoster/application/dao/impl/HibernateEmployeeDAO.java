@@ -3,7 +3,9 @@ package me.alanfoster.application.dao.impl;
 import me.alanfoster.application.dao.IEmployeeDAO;
 import me.alanfoster.application.model.IEmployee;
 import me.alanfoster.application.model.impl.Employee;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,15 +36,17 @@ public class HibernateEmployeeDAO implements IEmployeeDAO {
     }
 
     @Override
-    public IEmployee update(IEmployee employee) {
-        return null;
+    public void update(IEmployee employee) {
+        sessionFactory.getCurrentSession().update(employee);
     }
 
     @Override
-    public void delete(IEmployee object) {
+    public void delete(IEmployee employee) {
+        sessionFactory.getCurrentSession().delete(employee);
     }
 
     @Override
     public void delete(Integer key) {
+       delete(get(key));
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
 
@@ -35,24 +36,42 @@ public class EmployeeController {
      */
     // TODO Use Validation annotations
     @RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
-    public String addContact(@ModelAttribute("employee") Employee employee, BindingResult result) {
+    public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result) {
         employeeService.create(employee);
-        return "redirect:employees.html";
+        return "redirect:employees";
     }
 
     @RequestMapping(value = "/edit/{employeeId}")
-    public String addContact(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
-        logger.info("Received Request for /edit/{}", new Object[] { employeeId });
+    public String editEmployee(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
+        logger.info("Received Request for /edit/{}", new Object[]{employeeId});
         IEmployee employee = employeeService.get(employeeId);
         // Log this and let our presentation layer deal with this scenario
-        if(employee == null) {
-            logger.debug("Employee Object for employee id {} was null", new Object[] { employeeId });
+        if (employee == null) {
+            logger.debug("Employee Object for employee id {} was null", new Object[]{employeeId});
         }
 
         map.put("employee", employee);
+        map.put("jobTitles", employeeService.getJobTitles());
         return "employeeDetail";
     }
 
+    @RequestMapping(value = "/edit/{employeeId}", method = RequestMethod.POST)
+    public String editEmployeePost(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId,
+                                   @ModelAttribute("employee") Employee employee, BindingResult result,
+                                   final RedirectAttributes redirectAttributes) {
+        logger.info("Received Request for /edit/{}", new Object[]{employeeId});
+        employeeService.update(employee);
+        // Add a flash attribute to let the redirected page know of our success
+        redirectAttributes.addFlashAttribute("formResult", "success");
+        return "redirect:/edit/" + employeeId;
+    }
+
+    @RequestMapping(value = "/delete/{employeeId}")
+    public String deleteEmployee(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
+        logger.info("Received Request for /delete/{}", new Object[]{employeeId});
+        employeeService.delete(employeeId);
+        return "redirect:/employees";
+    }
 
     @RequestMapping("/employees")
     public String showEmployees(Map<String, Object> map) {
@@ -61,9 +80,7 @@ public class EmployeeController {
         map.put("employee", new Employee());
         map.put("employees", employeeService.getAll());
         map.put("jobTitles", employeeService.getJobTitles());
-        // map.put("deskIds", employeeService.getUniqueDeskIds());
 
         return "employee";
     }
-
 }

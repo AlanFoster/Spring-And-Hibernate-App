@@ -18,7 +18,7 @@ public interface ICRUDDao<T, K extends Serializable> {
     public List<T> getAll();
 
     /* Update Operations */
-    public T update(T object);
+    public void update(T object);
 
     /* Delete Operations */
     public void delete(T object);

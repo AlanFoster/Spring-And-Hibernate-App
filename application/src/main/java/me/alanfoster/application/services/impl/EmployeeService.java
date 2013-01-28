@@ -40,8 +40,8 @@ public class EmployeeService implements IEmployeeService {
 
     @Transactional
     @Override
-    public IEmployee update(IEmployee employee) {
-        return employeeDAO.update(employee);
+    public void update(IEmployee employee) {
+        employeeDAO.update(employee);
     }
 
     @Transactional

@@ -7,7 +7,8 @@ Feature: Employee Application
   Scenario: Visiting in the employee page
     When I visit the employees page
     Then the browser title should be 'Employee Application 1.0'
-  @Ignore
+
+  @ignore
   Scenario: Adding an employee
     Given I am on the employee page
     When I put in the following information
