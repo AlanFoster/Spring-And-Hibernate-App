@@ -17,6 +17,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.AbstractSingleSpringContextTests;
+
+import javax.sql.DataSource;
 
 import static junit.framework.Assert.*;
 
@@ -34,13 +39,35 @@ public class StepDefs {
     @Autowired
     private IEmployeeService employeeService;
 
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    /**
+     * Tear down the in-memory database after tests have run to make sure no other tests are affected by previous tests
+     * <strong>This has been done this way because spring's @DirtiesContext annotation doesn't work with cucumber jvm</strong>
+     */
+    @After
+    public void tearDown() {
+       JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+       jdbcTemplate.update("truncate table Employees");
+    }
+
     @Given("^there is an employee service$")
     public void there_is_an_employee_service() throws Throwable {
         // Autowired
         assertNotNull("Employee service should not be null", employeeService);
     }
 
-    @When("^I add the following Employee$")
+   /* @Given("^an employee with the following details$")
+    public void an_employee_with_the_following_details(List<Employee> employees) throws Throwable {
+        I_add_the_following_Employee(employees);
+    }*/
+
+    @Given("^an employee with the following details$")
+    @When("^the create employee service is called with the following data$")
     public void I_add_the_following_Employee(List<Employee> employees) throws Throwable {
         IEmployee employee = employees.get(0);
         Integer employeeId = employeeService.create(employee);
@@ -64,6 +91,16 @@ public class StepDefs {
         assertEquals("The desk id should be as expected", expectedEmployee.getDeskId(), actualEmployee.getDeskId());
     }
 
+    @When("^the update employee service is called with the following data$")
+    public void the_update_employee_service_is_called_with_the_following_data(List<Employee> employees) throws Throwable {
+        IEmployee employee = employees.get(0);
+        employeeService.update(employee);
+    }
+
+    @When("^the delete employee service is called with the employee id '(\\d+)'$")
+    public void the_delete_employee_service_is_called_with_the_employee_id_(int employeeId) throws Throwable {
+        employeeService.delete(employeeId);
+    }
 
     ///
     /// Website Application tests
