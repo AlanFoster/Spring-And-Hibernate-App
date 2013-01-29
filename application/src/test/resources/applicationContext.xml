@@ -10,7 +10,7 @@
 
     <!-- Create an in memory database used for testing -->
     <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="classpath:sql/db-schema.sql"/>
+        <jdbc:script location="classpath:src/main/resources/sql/db-schema.sql"/>
     </jdbc:embedded-database>
 
     <!-- Wire up our application's beans -->

@@ -2,9 +2,9 @@ package me.alanfoster.application.controllers.employee;
 
 import me.alanfoster.application.controllers.employee.config.EmployeeModelConfig;
 import me.alanfoster.application.controllers.employee.config.EmployeeRequestMappingConfig;
-import me.alanfoster.application.models.IEmployee;
-import me.alanfoster.application.models.impl.Employee;
-import me.alanfoster.application.services.IEmployeeService;
+import me.alanfoster.services.employee.models.IEmployee;
+import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

@@ -1,15 +1,18 @@
-package me.alanfoster.application.dao;
+package me.alanfoster.services.me.alanfoster.services.core.service;
+
+/**
+ * @author Alan Foster
+ * @version 1.0.0-SNAPSHOT
+ */
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * The base interface which all IDAOs should extend
- *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public interface ICRUDDao<T, K extends Serializable> {
+public interface IGenericService<T, K extends Serializable> {
     /* Create Operations */
     public K create(T object);
 
@@ -24,5 +27,3 @@ public interface ICRUDDao<T, K extends Serializable> {
     public void delete(T object);
     public void delete(K key);
 }
-
-

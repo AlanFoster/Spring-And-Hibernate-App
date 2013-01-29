@@ -25,6 +25,8 @@
 
     <modules>
         <module>application</module>
+		<module>employeeService</module>
+		<module>webservice</module>
     </modules>
 
     <!-- Include some of the specific repositories used to host our maven dependencies -->

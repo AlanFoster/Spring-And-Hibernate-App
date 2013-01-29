@@ -38,6 +38,14 @@
     </properties>
 
     <dependencies>
+        <!-- This module is dependant on the service layer of the Employee Application
+              Which is the same version as this pom file -->
+        <dependency>
+            <groupId>me.alanfoster.employee</groupId>
+            <artifactId>service</artifactId>
+            <version>${version}</version>
+        </dependency>
+
         <!-- Core Spring dependencies -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -63,6 +71,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springmodules</groupId>
+            <artifactId>spring-modules-validation</artifactId>
+            <version>0.8</version>
         </dependency>
 
         <!-- Apache Tiles Dependencies -->
@@ -108,6 +121,8 @@
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
+
+        <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -218,11 +233,7 @@
             <artifactId>xercesImpl</artifactId>
             <version>${xerces.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springmodules</groupId>
-            <artifactId>spring-modules-validation</artifactId>
-            <version>0.8</version>
-        </dependency>
+
     </dependencies>
 
 

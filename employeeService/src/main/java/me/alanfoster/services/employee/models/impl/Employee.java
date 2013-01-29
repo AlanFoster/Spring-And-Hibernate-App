@@ -1,6 +1,6 @@
-package me.alanfoster.application.models.impl;
+package me.alanfoster.services.employee.models.impl;
 
-import me.alanfoster.application.models.IEmployee;
+import me.alanfoster.services.employee.models.IEmployee;
 
 import javax.persistence.*;
 

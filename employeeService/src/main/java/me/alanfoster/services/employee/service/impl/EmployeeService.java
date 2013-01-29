@@ -1,8 +1,8 @@
-package me.alanfoster.application.services.impl;
+package me.alanfoster.services.employee.service.impl;
 
-import me.alanfoster.application.dao.IEmployeeDAO;
-import me.alanfoster.application.models.IEmployee;
-import me.alanfoster.application.services.IEmployeeService;
+import me.alanfoster.services.employee.dao.IEmployeeDAO;
+import me.alanfoster.services.employee.models.IEmployee;
+import me.alanfoster.services.employee.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,6 +56,7 @@ public class EmployeeService implements IEmployeeService {
         employeeDAO.delete(key);
     }
 
+    @Transactional
     @Override
     public Map<Integer, String> getJobTitles() {
         // TODO This should be database driven of course
