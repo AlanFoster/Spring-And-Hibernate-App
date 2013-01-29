@@ -1,4 +1,4 @@
-package me.alanfoster.application.model;
+package me.alanfoster.application.models;
 
 /**
  * @author Alan Foster

@@ -17,8 +17,8 @@
     <!-- Handle @Transaction annotations -->
     <tx:annotation-driven />
 
-    <!-- Allow spring to load all components from our controller package -->
-    <context:component-scan base-package="me.alanfoster.application"/>
+    <!-- Allow spring to load all components from our controllers package -->
+    <context:component-scan base-package="me.alanfoster.application" />
 
     <!-- MVC Configuration -->
     <!-- Handle static serving of resources -->

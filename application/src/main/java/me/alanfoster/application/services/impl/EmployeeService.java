@@ -1,7 +1,7 @@
 package me.alanfoster.application.services.impl;
 
 import me.alanfoster.application.dao.IEmployeeDAO;
-import me.alanfoster.application.model.IEmployee;
+import me.alanfoster.application.models.IEmployee;
 import me.alanfoster.application.services.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

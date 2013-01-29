@@ -1,21 +1,18 @@
 package me;
 
 
-import com.thoughtworks.selenium.Selenium;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.junit.Cucumber;
-import me.alanfoster.application.model.IEmployee;
-import me.alanfoster.application.model.impl.Employee;
+import me.alanfoster.application.models.IEmployee;
+import me.alanfoster.application.models.impl.Employee;
 import me.alanfoster.application.services.IEmployeeService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.internal.FindsByXPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,8 +122,8 @@ public class StepDefs {
     }
 
     /**
-     * Represents the basic model for the form that users need to fill in when creating a new employee
-     * IE, it represents the raw form model itself, and not an explicit Employee POJO - even though it may share similar properties
+     * Represents the basic models for the form that users need to fill in when creating a new employee
+     * IE, it represents the raw form models itself, and not an explicit Employee POJO - even though it may share similar properties
      * Also note, all of the data types are strings to represent the fact that all of the input fields will contain text
      */
     public class EmployeeFormDetail {

@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 
-<h1>Existing Employees</h1>
+<h1>Search Employees</h1>
 
 <c:choose>
     <c:when test="${empty employees}">
@@ -15,7 +15,6 @@
                 <th>#</th>
                 <th>First Name</th>
                 <th>Second Name</th>
-                <th>Job Title</th>
                 <th>Desk ID</th>
                 <th></th>
             </tr>
@@ -25,7 +24,6 @@
                     <td>${employee.id}</td>
                     <td>${employee.firstName}</td>
                     <td>${employee.secondName}</td>
-                    <td>${employee.jobTitle}</td>
                     <td>${employee.deskId}</td>
                     <td><a href="/employees/edit/${employee.id}" title="Edit this employee">Edit</a></td>
                 </tr>

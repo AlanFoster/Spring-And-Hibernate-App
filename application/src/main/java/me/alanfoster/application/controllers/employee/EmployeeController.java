@@ -1,7 +1,9 @@
-package me.alanfoster.application.controller;
+package me.alanfoster.application.controllers.employee;
 
-import me.alanfoster.application.model.IEmployee;
-import me.alanfoster.application.model.impl.Employee;
+import me.alanfoster.application.controllers.employee.config.EmployeeModelConfig;
+import me.alanfoster.application.controllers.employee.config.EmployeeRequestMappingConfig;
+import me.alanfoster.application.models.IEmployee;
+import me.alanfoster.application.models.impl.Employee;
 import me.alanfoster.application.services.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +31,7 @@ public class EmployeeController {
     @RequestMapping("/")
     public String index(Map<String, Object> map) {
         logger.info("Received Request for /");
-
-        return EmployeeModelConfig.EmployeeModel.Index.getModel();
+        return EmployeeModelConfig.Index.getModel();
     }
 
     /**
@@ -44,7 +45,7 @@ public class EmployeeController {
     @RequestMapping(value = "/employees/add", method = RequestMethod.POST)
     public String addEmployeePost(@ModelAttribute("employee") Employee employee, BindingResult result) {
         employeeService.create(employee);
-        return "redirect:/employees/search";
+        return EmployeeRequestMappingConfig.Search.getRedirectRequestMapping();
     }
 
     @RequestMapping("/employees/add")
@@ -55,7 +56,7 @@ public class EmployeeController {
         map.put("employees", employeeService.getAll());
         map.put("jobTitles", employeeService.getJobTitles());
 
-        return EmployeeModelConfig.EmployeeModel.Add.getModel();
+        return EmployeeModelConfig.Add.getModel();
     }
 
     @RequestMapping(value = "/employees/edit/{employeeId}")
@@ -69,14 +70,14 @@ public class EmployeeController {
 
         map.put("employee", employee);
         map.put("jobTitles", employeeService.getJobTitles());
-        return EmployeeModelConfig.EmployeeModel.Edit.getModel();
+        return EmployeeModelConfig.Edit.getModel();
     }
 
     @RequestMapping(value = "/employees/search")
     public String searchEmployee(Map<String, Object> map) {
         logger.info("Received Request for /search");
         map.put("employees", employeeService.getAll());
-        return EmployeeModelConfig.EmployeeModel.Search.getModel();
+        return EmployeeModelConfig.Search.getModel();
     }
 
     @RequestMapping(value = "/employees/edit/{employeeId}", method = RequestMethod.POST)
@@ -87,13 +88,15 @@ public class EmployeeController {
         employeeService.update(employee);
         // Add a flash attribute to let the redirected page know of our success
         redirectAttributes.addFlashAttribute("formResult", "success");
-        return "redirect:/employees/edit/" + employeeId;
+
+        // TODO Change this to rely on the apparently automatic variable string formatting
+        return EmployeeRequestMappingConfig.Edit.getRedirectRequestMapping();
     }
 
     @RequestMapping(value = "/employees/delete/{employeeId}")
     public String deleteEmployeePost(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
         logger.info("Received Request for /delete/{}", new Object[]{employeeId});
         employeeService.delete(employeeId);
-        return "redirect:/employees/search";
+        return EmployeeRequestMappingConfig.Search.getRedirectRequestMapping();
     }
 }

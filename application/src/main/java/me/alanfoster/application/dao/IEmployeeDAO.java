@@ -1,8 +1,6 @@
 package me.alanfoster.application.dao;
 
-import me.alanfoster.application.model.IEmployee;
-
-import java.util.List;
+import me.alanfoster.application.models.IEmployee;
 
 /**
  * @author Alan Foster

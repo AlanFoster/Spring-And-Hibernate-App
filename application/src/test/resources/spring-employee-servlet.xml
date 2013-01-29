@@ -15,7 +15,7 @@
     <!-- Handle @Transaction annotations -->
     <tx:annotation-driven />
 
-    <!-- Allow spring to load all components from our controller package -->
+    <!-- Allow spring to load all components from our controllers package -->
     <context:component-scan base-package="me.alanfoster.application"/>
 
     <!-- Application Config property placeholder -->

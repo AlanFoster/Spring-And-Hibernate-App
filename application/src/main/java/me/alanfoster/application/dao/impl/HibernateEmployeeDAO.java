@@ -1,11 +1,9 @@
 package me.alanfoster.application.dao.impl;
 
 import me.alanfoster.application.dao.IEmployeeDAO;
-import me.alanfoster.application.model.IEmployee;
-import me.alanfoster.application.model.impl.Employee;
-import org.hibernate.Query;
+import me.alanfoster.application.models.IEmployee;
+import me.alanfoster.application.models.impl.Employee;
 import org.hibernate.SessionFactory;
-import org.hibernate.classic.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package me.alanfoster.application.controller;
+package me.alanfoster.application.controllers.core.config;
 
 /**
  * @author Alan Foster
