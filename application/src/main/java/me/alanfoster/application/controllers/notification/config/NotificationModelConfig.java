@@ -1,4 +1,4 @@
-package me.alanfoster.application.controllers.employee.config;
+package me.alanfoster.application.controllers.notification.config;
 
 import me.alanfoster.application.controllers.core.config.ModelConfig;
 
@@ -9,15 +9,12 @@ import me.alanfoster.application.controllers.core.config.ModelConfig;
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public enum EmployeeModelConfig implements ModelConfig {
-    Index("employee.index"),
-    Add("employee.add"),
-    Edit("employee.edit"),
-    Search("employee.search");
+public enum NotificationModelConfig implements ModelConfig {
+    Notification("notification");
 
     private String value;
 
-    EmployeeModelConfig(String value) {
+    NotificationModelConfig(String value) {
         this.value = value;
     }
 

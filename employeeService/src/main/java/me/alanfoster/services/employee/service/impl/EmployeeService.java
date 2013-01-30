@@ -58,15 +58,15 @@ public class EmployeeService implements IEmployeeService {
 
     @Transactional
     @Override
-    public Map<Integer, String> getJobTitles() {
+    public Map<String, String> getJobTitles() {
         // TODO This should be database driven of course
-        Map<Integer, String> jobTitles = new LinkedHashMap<Integer, String>();
-        jobTitles.put(1, "HR");
-        jobTitles.put(2, "Operations");
-        jobTitles.put(3, "Engineer");
-        jobTitles.put(4, "Senior Engineer");
-        jobTitles.put(5, "Executive Engineer");
-        jobTitles.put(6, "Tester");
+        Map<String, String> jobTitles = new LinkedHashMap<String, String>();
+        jobTitles.put("HR", "HR");
+        jobTitles.put("Operations", "Operations");
+        jobTitles.put("Engineer", "Engineer");
+        jobTitles.put("Senior Engineer", "Senior Engineer");
+        jobTitles.put("Executive Engineer", "Executive Engineer");
+        jobTitles.put("Tester", "Tester");
 
         return jobTitles;
     }

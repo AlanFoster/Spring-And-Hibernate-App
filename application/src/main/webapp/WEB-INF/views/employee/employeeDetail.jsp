@@ -2,23 +2,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 
-
-<%-- Output a success message if we have just saved the form --%>
-<c:if test="${!empty formResult}">
-    <c:choose>
-        <c:when test="${formResult == 'success'}">
-            <div class="alert alert-success">
-                This employee has been updated successfully.
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div class="alert alert-error">
-                Unable to complete this action succesfully.
-            </div>
-        </c:otherwise>
-    </c:choose>
-</c:if>
-
 <c:choose>
     <c:when test="${empty employee}">
         Sorry. That employee does not exist in the system.

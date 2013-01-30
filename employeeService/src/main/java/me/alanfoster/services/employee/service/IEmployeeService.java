@@ -9,5 +9,5 @@ import java.util.Map;
  * @version 1.0.0-SNAPSHOT
  */
 public interface IEmployeeService extends IGenericService<IEmployee, Integer> {
-    Map<Integer, String> getJobTitles();
+    Map<String, String> getJobTitles();
 }

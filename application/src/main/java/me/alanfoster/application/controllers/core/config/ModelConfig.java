@@ -5,5 +5,5 @@ package me.alanfoster.application.controllers.core.config;
  * @version 1.0.0-SNAPSHOT
  */
 public interface ModelConfig {
-    public String getModel();
+    public String getModelName();
 }
