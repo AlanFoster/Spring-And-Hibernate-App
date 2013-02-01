@@ -38,7 +38,7 @@
         <cucumber.version>1.1.1</cucumber.version>
         <selenium.version>2.28.0</selenium.version>
         <xerces.version>2.9.1</xerces.version>
-        <cxf.version>2.7.0</cxf.version>
+        <cxf.version>2.7.1</cxf.version>
     </properties>
 
     <dependencies>
@@ -84,11 +84,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springmodules</groupId>
-            <artifactId>spring-modules-validation</artifactId>
-            <version>0.8</version>
         </dependency>
 
         <!-- Core CXF dependencies used for hosting/consuming webservices -->
