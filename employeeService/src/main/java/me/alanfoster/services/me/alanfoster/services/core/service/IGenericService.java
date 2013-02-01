@@ -14,16 +14,16 @@ import java.util.List;
  */
 public interface IGenericService<T, K extends Serializable> {
     /* Create Operations */
-    public K create(T object);
+    K create(T object);
 
     /* Read Operations */
-    public T get(K key);
-    public List<T> getAll();
+    T get(K key);
+    List<T> getAll();
 
     /* Update Operations */
-    public void update(T object);
+    void update(T object);
 
     /* Delete Operations */
-    public void delete(T object);
-    public void delete(K key);
+    void delete(T object);
+    void delete(K key);
 }
