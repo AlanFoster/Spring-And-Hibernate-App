@@ -39,6 +39,7 @@ public class EmployeeController {
     @RequestMapping("/")
     public String index(Map<String, Object> map) {
         logger.info("Received Request for /");
+        System.out.println("Interacting with employee web service :: " + employeeWebservice.getAllEmployees());
         return EmployeeModelConfig.Index.getModelName();
     }
 

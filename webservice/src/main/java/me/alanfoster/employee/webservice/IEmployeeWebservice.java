@@ -39,7 +39,7 @@ public interface IEmployeeWebservice {
      * @param employeeId The employeeId key that is assigned to each saved Employee object
      * @return The required Employee Object
      */
-    Employee get(@WebParam(name = "employeeId") Integer employeeId);
+    Employee getEmployee(@WebParam(name = "employeeId") Integer employeeId);
 
     /**
      * Get all of the available Employees that have been persisted

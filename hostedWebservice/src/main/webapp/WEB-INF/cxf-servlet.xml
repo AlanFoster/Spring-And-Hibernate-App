@@ -11,6 +11,8 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
+   <import resource="classpath:webservice-context.xml" />
+
     <!-- Instantiate the jax-webservice endpoint -->
     <jaxws:endpoint id="employeeWebservice" implementor="me.alanfoster.employee.webservice.EmployeeWebservice" address="/EmployeeWebservice"/>
 </beans>

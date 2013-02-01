@@ -2,6 +2,8 @@ package me.alanfoster.employee.webservice;
 
 import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.service.IEmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -16,37 +18,36 @@ import java.util.List;
         serviceName = "EmployeeWebService",
         portName = "EmployeeWebservicePort")
 public class EmployeeWebservice implements IEmployeeWebservice {
-    // @AutoWired
-    //  private IEmployeeService employeeService;
+    @Autowired
+    private IEmployeeService employeeService;
 
     @Override
     public final Integer createEmployee(@WebParam(name = "employee") final Employee employee) {
-        //employeeService.create(employee);
-        return 0;
+        return employeeService.create(employee);
     }
 
     @Override
-    public final Employee get(@WebParam(name = "employeeId") final Integer employeeId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public final Employee getEmployee(@WebParam(name = "employeeId") final Integer employeeId) {
+        return (Employee) employeeService.get(employeeId);
     }
 
     @Override
     public final List<Employee> getAllEmployees() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return (List) employeeService.getAll();
     }
 
     @Override
     public final void updateEmployee(@WebParam(name = "object") final Employee employee) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        employeeService.update(employee);
     }
 
     @Override
     public final void deleteEmployee(@WebParam(name = "employee") final Employee employee) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        employeeService.delete(employee);
     }
 
     @Override
-    public void deleteEmployeeByEmployeeId(@WebParam(name = "employeeId") final Integer employeeId) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public final void deleteEmployeeByEmployeeId(@WebParam(name = "employeeId") final Integer employeeId) {
+        employeeService.delete(employeeId);
     }
 }
