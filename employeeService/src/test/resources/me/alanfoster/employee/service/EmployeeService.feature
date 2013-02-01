@@ -25,8 +25,6 @@ Feature: Employee Data Access
       | id | firstName | secondName | jobTitle      | deskId |
       | 1  | Alan      | Foster     | Senior Engineer | 2      |
 
-  # Ignored because of stateful tests and @DirtiesContext not working
-  @Ignore
   Scenario: Removing an employee by id
     Given there is an employee service
     And an employee with the following details

@@ -1,6 +1,5 @@
 package me.alanfoster.employee.webservice;
 
-import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
 import me.alanfoster.services.employee.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
