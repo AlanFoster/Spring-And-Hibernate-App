@@ -1,10 +1,12 @@
 package me.alanfoster.services.employee.models;
 
+import java.io.Serializable;
+
 /**
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public interface IEmployee {
+public interface IEmployee extends Serializable {
     Integer getId();
     void setId(Integer id);
 

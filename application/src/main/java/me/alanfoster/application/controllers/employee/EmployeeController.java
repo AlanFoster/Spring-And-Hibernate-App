@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import me.alanfoster.employee.webservice.IEmployeeWebservice;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Map;
+
 
 /**
  * @author Alan Foster
@@ -29,6 +31,10 @@ public class EmployeeController {
 
     @Autowired
     private IEmployeeService employeeService;
+
+    @Autowired
+    private IEmployeeWebservice employeeWebservice;
+
 
     @RequestMapping("/")
     public String index(Map<String, Object> map) {
