@@ -1,9 +1,10 @@
 package me.alanfoster.application.controllers.employee.forms;
 
 import me.alanfoster.services.employee.models.impl.Job;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.beans.PropertyEditorSupport;
-import java.util.List;
 
 /**
  * This class is used to allow for Spring to understand how to deal with
@@ -22,8 +23,16 @@ import java.util.List;
  * @see {@link http://static.springsource.org/spring/docs/3.0.x/spring-framework-reference/html/validation.html#core-convert}
  */
 public class JobEditor extends PropertyEditorSupport {
+    /**
+     * Basic SLF4J logger
+     * @See {@link http://www.slf4j.org/}
+     */
+    private static final Logger logger = LoggerFactory.getLogger(JobEditor.class);
+
     @Override
     public void setAsText(String jobId) throws IllegalArgumentException {
+        logger.info("Setting as text for jobId {}", new Object[]{jobId});
+
         Job job = new Job();
         job.setJobId(Integer.valueOf(jobId));
         super.setValue(job);

@@ -32,12 +32,6 @@ import java.util.Map;
 @Controller
 @SessionAttributes
 public class EmployeeController {
-
-    @ModelAttribute("jobs")
-    public List<Job> populateJobs() {
-        return (List) employeeService.getJobs();
-    }
-
     /**
      * Basic SLF4J logger
      * @See {@link http://www.slf4j.org/}
@@ -65,8 +59,13 @@ public class EmployeeController {
     @RequestMapping("/")
     public String index(Map<String, Object> map) {
         logger.info("Received Request for /");
-        //System.out.println("Interacting with employee web service :: " + employeeWebservice.getAllEmployees());
+        //logger.info("Interacting with employee web service :: " + employeeWebservice.getAllEmployees());
         return EmployeeModelConfig.Index.getModelName();
+    }
+
+    @ModelAttribute("jobs")
+    public List<Job> populateJobs() {
+        return (List) employeeService.getJobs();
     }
 
     /**
