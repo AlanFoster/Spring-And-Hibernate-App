@@ -7,3 +7,14 @@
 .arc path {
     stroke: white;
 }
+
+/* Hide the chart by deafault */
+#jobCategoriesReport {
+    display: none;
+}
+
+
+label {
+    display: inline-block;
+    width: 5em;
+}

@@ -3,6 +3,7 @@ package me.alanfoster.application.controllers.notification;
 import me.alanfoster.application.controllers.notification.config.NotificationModelConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * A class for handling generic form response notifications
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @version 1.0.0-SNAPSHOT
  */
 @Controller
+@SessionAttributes
 public class NotificationController {
     @RequestMapping(value = "/formResult")
     public String searchEmployee() {

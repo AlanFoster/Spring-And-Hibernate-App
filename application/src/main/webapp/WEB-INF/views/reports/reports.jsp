@@ -4,17 +4,19 @@
 
 <div class="tabbable">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1" data-toggle="tab">Job Categories</a></li>
-        <li><a href="#tab2" data-toggle="tab">Total Employees</a></li>
+        <li class="active"><a href="#jobCategories" data-toggle="tab">Job Categories</a></li>
+        <li><a href="#totalEmployees" data-toggle="tab">Total Employees</a></li>
     </ul>
     <div class="tab-content">
-        <div class="tab-pane active" id="tab1">
-            Data
-            <div id="jobCategoriesReport"></div>
+        <div class="tab-pane active" id="jobCategories">
+            <div id="jobCategoriesContainer" style="text-align:center">
+                <div id="jobCategoriesLoadingImage"><img src="/resources/img/ajax-loader.gif" alt="Loading Data..."/>
+                </div>
+                <div id="jobCategoriesReport"></div>
+            </div>
         </div>
-        <div class="tab-pane" id="tab2">
+        <div class="tab-pane" id="totalEmployees">
             <p>Total Employees</p>
         </div>
     </div>
 </div>
-

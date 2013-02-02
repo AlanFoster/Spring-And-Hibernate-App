@@ -39,6 +39,7 @@
         <selenium.version>2.28.0</selenium.version>
         <xerces.version>2.9.1</xerces.version>
         <cxf.version>2.7.1</cxf.version>
+        <jackson.version>1.7.1</jackson.version>
     </properties>
 
     <dependencies>
@@ -178,6 +179,13 @@
             <version>${hibernate.version}</version>
             <type>jar</type>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- JSON ORM for JSON pages -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Database Dependencies -->
