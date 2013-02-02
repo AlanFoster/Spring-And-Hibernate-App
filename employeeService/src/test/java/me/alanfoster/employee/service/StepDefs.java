@@ -1,25 +1,21 @@
 package me.alanfoster.employee.service;
 
 
-import cucumber.api.java.After;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.models.impl.Job;
 import me.alanfoster.services.employee.service.IEmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
-import javax.transaction.TransactionManager;
 
 import static junit.framework.Assert.*;
+import static me.alanfoster.employee.service.EmployeeAssert.*;
 
 import java.util.List;
 
@@ -46,8 +42,8 @@ public class StepDefs {
 
     @Given("^an employee with the following details$")
     @When("^the create employee service is called with the following data$")
-    public void I_add_the_following_Employee(List<Employee> employees) throws Throwable {
-        IEmployee employee = employees.get(0);
+    public void I_add_the_following_Employee(List<FlatEmployee> employees) throws Throwable {
+        IEmployee employee = employees.get(0).getAsEmployee();
         Integer employeeId = employeeService.create(employee);
     }
 
@@ -57,21 +53,16 @@ public class StepDefs {
     }
 
     @Then("^the employee with id '(\\d+)' will have the following details$")
-    public void the_employee_with_id_will_have_the_following_details(int employeeId, List<Employee> employees) throws Throwable {
-        IEmployee expectedEmployee = employees.get(0);
+    public void the_employee_with_id_will_have_the_following_details(int employeeId, List<FlatEmployee> employees) throws Throwable {
+        FlatEmployee expectedEmployee = employees.get(0);
         IEmployee actualEmployee = employeeService.get(employeeId);
 
-        assertNotNull("The retrieved employee should not be null", actualEmployee);
-        assertEquals("The employee id should be as expected", expectedEmployee.getId(), actualEmployee.getId());
-        assertEquals("The first name should be as expected", expectedEmployee.getFirstName(), actualEmployee.getFirstName());
-        assertEquals("The second name should be as expected", expectedEmployee.getSecondName(), actualEmployee.getSecondName());
-     //   assertEquals("The job title should be as expected", expectedEmployee.getJobTitle(), actualEmployee.getJobTitle());
-        assertEquals("The desk id should be as expected", expectedEmployee.getDeskId(), actualEmployee.getDeskId());
+        assertEqual(expectedEmployee, actualEmployee);
     }
 
     @When("^the update employee service is called with the following data$")
-    public void the_update_employee_service_is_called_with_the_following_data(List<Employee> employees) throws Throwable {
-        IEmployee employee = employees.get(0);
+    public void the_update_employee_service_is_called_with_the_following_data(List<FlatEmployee> employees) throws Throwable {
+        IEmployee employee = employees.get(0).getAsEmployee();
         employeeService.update(employee);
     }
 
