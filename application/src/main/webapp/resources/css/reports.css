@@ -1,0 +1,9 @@
+/* Increase the container size, otherwise graphs get cut off */
+.tab-content {
+    height: 500px;
+}
+
+/* Setting specific arc information */
+.arc path {
+    stroke: white;
+}

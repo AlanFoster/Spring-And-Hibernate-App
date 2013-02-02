@@ -49,11 +49,16 @@
         <put-attribute name="body" value="/WEB-INF/views/employee/viewEmployees.jsp" />
     </definition>
 
-
     <!-- The model used for when form has submitted succesfully/unsuccesfully -->
     <definition name="notification" extends="base.definition">
         <put-attribute name="page.title" value="Employee Search" />
         <put-attribute name="body" value="/WEB-INF/views/notification/notification.jsp" />
+    </definition>
+
+    <!-- The model used for an Ajax syle application -->
+    <definition name="reports" extends="base.definition">
+        <put-attribute name="page.title" value="Reports" />
+        <put-attribute name="body" value="/WEB-INF/views/reports/reports.jsp" />
     </definition>
 
 </tiles-definitions>
