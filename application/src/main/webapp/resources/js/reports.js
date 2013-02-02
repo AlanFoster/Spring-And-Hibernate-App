@@ -48,9 +48,7 @@ var EmployeeApp;
             .attr("class", "arc");
 
         // Append a simple tooltip to each arc
-        arcs.attr("title", function (d) {
-                return d.data[labelName] + " : " + d.data[dataName];
-            });
+        arcs.attr("title", function (d) { return d.data[labelName] + " : " + d.data[dataName]; });
 
         // Fill in each arc with the correct color
         arcs.append("svg:path")
@@ -98,10 +96,7 @@ $(function () {
             $("#jobCategoriesReport").fadeIn();
         })
     });
-});
 
-
-
-$(function () {
+    // Wire up tooltips
     $(document).tooltip({items: "[title]"});
 });

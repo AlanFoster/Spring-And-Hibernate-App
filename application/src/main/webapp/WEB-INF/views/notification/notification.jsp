@@ -10,13 +10,13 @@
     </c:when>
     <c:when test="${formResult == 'error'}">
         <div class="alert alert-error">
-            Unable to complete this action unsuccesfully.
+            Unable to complete this action unsuccessfully.
             ${formResultDetail}
         </div>
     </c:when>
     <c:otherwise>
         <div class="alert alert">
-            Unable to complete this action unsuccesfully.
+            Unable to complete this action unsuccessfully.
             ${formResultDetail}
         </div>
     </c:otherwise>
