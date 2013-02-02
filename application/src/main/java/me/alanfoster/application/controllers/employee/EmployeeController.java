@@ -55,10 +55,11 @@ public class EmployeeController {
      * This allows for custom property editors to be registered
      *
      * @param binder The binder which is automatically injected by spring
+     * @see JobEditor
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(Job.class, new JobEditor(employeeService));
+        binder.registerCustomEditor(Job.class, new JobEditor());
     }
 
     @RequestMapping("/")
