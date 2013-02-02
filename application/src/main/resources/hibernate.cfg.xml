@@ -3,8 +3,10 @@
         "-//Hibernate/Hibernate Configuration DTD//EN"
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
+<!-- TODO Delete this -->
 <hibernate-configuration>
     <session-factory>
         <mapping class="me.alanfoster.services.employee.models.impl.Employee"/>
+        <mapping class="me.alanfoster.services.employee.models.impl.Job"/>
     </session-factory>
 </hibernate-configuration>

@@ -16,12 +16,9 @@
         </div>
     </div>
     <div class="control-group">
-        <form:label path="jobTitle" cssClass="control-label">Job Title</form:label>
+        <form:label path="job" cssClass="control-label">Job Title</form:label>
         <div class="controls">
-            <form:select path="jobTitle">
-                <form:option value="" label="Select One"/>
-                <form:options items="${jobTitles}" />
-            </form:select>
+            <form:select path="job" items="${jobs}" itemValue="jobId" itemLabel="jobTitle"/>
         </div>
     </div>
     <div class="control-group">

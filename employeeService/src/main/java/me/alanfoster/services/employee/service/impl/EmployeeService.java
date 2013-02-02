@@ -2,12 +2,15 @@ package me.alanfoster.services.employee.service.impl;
 
 import me.alanfoster.services.employee.dao.IEmployeeDAO;
 import me.alanfoster.services.employee.models.IEmployee;
+import me.alanfoster.services.employee.models.IJob;
+import me.alanfoster.services.employee.models.impl.Job;
 import me.alanfoster.services.employee.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,16 +61,23 @@ public class EmployeeService implements IEmployeeService {
 
     @Transactional
     @Override
-    public Map<String, String> getJobTitles() {
-        // TODO This should be database driven of course
-        Map<String, String> jobTitles = new LinkedHashMap<String, String>();
-        jobTitles.put("HR", "HR");
-        jobTitles.put("Operations", "Operations");
-        jobTitles.put("Engineer", "Engineer");
-        jobTitles.put("Senior Engineer", "Senior Engineer");
-        jobTitles.put("Executive Engineer", "Executive Engineer");
-        jobTitles.put("Tester", "Tester");
+    public List<IJob> getJobs() {
+        List<Job> jobs = new LinkedList<Job>();
+        jobs.add(getJob(1,"HR"));
+        jobs.add(getJob(2,"Operations"));
+        jobs.add(getJob(3,"Engineer"));
+        jobs.add(getJob(4, "Senior Engineer"));
+        jobs.add(getJob(5, "Executive Engineer"));
+        jobs.add(getJob(6, "Developer"));
+        jobs.add(getJob(7, "Tester"));
 
-        return jobTitles;
+        return (List) jobs;
+    }
+
+    public Job getJob(Integer id, String jobTitle) {
+        Job job = new Job();
+        job.setJobId(id);
+        job.setJobTitle(jobTitle);
+        return job;
     }
 }

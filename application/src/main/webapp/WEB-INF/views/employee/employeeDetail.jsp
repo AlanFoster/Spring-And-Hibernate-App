@@ -2,6 +2,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 
+
+
 <c:choose>
     <c:when test="${empty employee}">
         Sorry. That employee does not exist in the system.
@@ -27,12 +29,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <form:label path="jobTitle" cssClass="control-label">Job Title</form:label>
+                <form:label path="job" cssClass="control-label">Job Title ${jobs}</form:label>
                 <div class="controls">
-                    <form:select path="jobTitle">
-                        <form:option value="" label="Select One"/>
-                        <form:options items="${jobTitles}"/>
-                    </form:select>
+                    <form:select path="job" items="${jobs}" />
                 </div>
             </div>
             <div class="control-group">

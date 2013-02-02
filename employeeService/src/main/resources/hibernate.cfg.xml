@@ -4,7 +4,9 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
+    <!-- Define all of the classes annotated with JPA (Java Persistance Annotations) -->
     <session-factory>
         <mapping class="me.alanfoster.services.employee.models.impl.Employee"/>
+        <mapping class="me.alanfoster.services.employee.models.impl.Job"/>
     </session-factory>
 </hibernate-configuration>

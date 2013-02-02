@@ -26,7 +26,7 @@
         <application.port>8080</application.port>
 
         <!-- Dependency Versions -->
-        <spring.version>3.1.0.RELEASE</spring.version>
+        <spring.version>3.2.0.RELEASE</spring.version>
         <jstl.version>1.2</jstl.version>
         <taglibs.version>1.1.2</taglibs.version>
         <tiles.version>2.2.2</tiles.version>

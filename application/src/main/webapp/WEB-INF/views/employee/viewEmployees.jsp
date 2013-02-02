@@ -25,7 +25,7 @@
                     <td>${employee.id}</td>
                     <td>${employee.firstName}</td>
                     <td>${employee.secondName}</td>
-                    <td>${employee.jobTitle}</td>
+                    <td>${employee.job.jobTitle}</td>
                     <td>${employee.deskId}</td>
                     <td><a href="/employees/edit/${employee.id}" title="Edit this employee">Edit</a></td>
                 </tr>

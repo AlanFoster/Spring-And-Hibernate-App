@@ -1,5 +1,7 @@
 package me.alanfoster.services.employee.models;
 
+import me.alanfoster.services.employee.models.impl.Job;
+
 import java.io.Serializable;
 
 /**
@@ -16,9 +18,11 @@ public interface IEmployee extends Serializable {
     String getSecondName();
     void setSecondName(String secondName);
 
-    String getJobTitle();
-    void setJobTitle(String jobTitle);
+    IJob getJob();
+    void setJob(Job job);
 
     Integer getDeskId();
     void setDeskId(Integer deskId);
+
+
 }

@@ -1,6 +1,7 @@
 package me.alanfoster.services.employee.models.impl;
 
 import me.alanfoster.services.employee.models.IEmployee;
+import me.alanfoster.services.employee.models.IJob;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-@Entity
+@javax.persistence.Entity
 @Table(name = "Employees")
 public class Employee implements IEmployee {
     @Id
@@ -21,8 +22,9 @@ public class Employee implements IEmployee {
     private String firstName;
     @Column(name = "secondName")
     private String secondName;
-    @Column(name = "jobTitle")
-    private String jobTitle;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "jobId")
+    private Job job;
     @Column(name="deskId")
     private Integer deskId;
 
@@ -59,16 +61,6 @@ public class Employee implements IEmployee {
     }
 
     @Override
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    @Override
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    @Override
     public Integer getDeskId() {
         return deskId;
     }
@@ -87,13 +79,23 @@ public class Employee implements IEmployee {
     }
 
     @Override
+    public IJob getJob() {
+        return job;
+    }
+
+    @Override
+    public void setJob(Job job) {
+        this.job = (Job) job;
+    }
+
+    @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
-                ", jobTitle='" + jobTitle + '\'' +
+                ", job=" + job +
                 ", deskId=" + deskId +
-        '}';
+                '}';
     }
 }
