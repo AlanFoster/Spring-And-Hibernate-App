@@ -2,7 +2,6 @@ package me.alanfoster.services.employee.service.impl;
 
 import me.alanfoster.services.employee.dao.IEmployeeDAO;
 import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.IJob;
 import me.alanfoster.services.employee.models.impl.Job;
 import me.alanfoster.services.employee.service.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,7 @@ public class EmployeeService implements IEmployeeService {
 
     @Transactional
     @Override
-    public List<IJob> getJobs() {
+    public List<Job> getJobs() {
         List<Job> jobs = new LinkedList<Job>();
         jobs.add(getJob(1,"HR"));
         jobs.add(getJob(2,"Operations"));

@@ -19,15 +19,13 @@ public class JobEditor extends PropertyEditorSupport {
 
     @Override
     public void setAsText(String jobId) throws IllegalArgumentException {
-        System.out.println("Property editor id is  " + jobId);
         Job job = new Job();
-        job.setJobId(3);
+        job.setJobId(Integer.valueOf(jobId));
         super.setValue(job);
     }
 
     @Override
     public String getAsText() throws IllegalArgumentException {
-        if(getValue() == null) return "ERROR";
         Job job = (Job) this.getValue();
         return String.valueOf(job.getJobTitle());
    }

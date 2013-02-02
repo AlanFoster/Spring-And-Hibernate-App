@@ -6,7 +6,6 @@ import me.alanfoster.application.controllers.employee.forms.JobEditor;
 import me.alanfoster.application.controllers.notification.config.Notification;
 import me.alanfoster.application.controllers.notification.config.NotificationRequestMappingConfig;
 import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.IJob;
 import me.alanfoster.services.employee.models.impl.Employee;
 import me.alanfoster.services.employee.models.impl.Job;
 import me.alanfoster.services.employee.service.IEmployeeService;
@@ -59,7 +58,6 @@ public class EmployeeController {
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(IJob.class, new JobEditor(employeeService));
         binder.registerCustomEditor(Job.class, new JobEditor(employeeService));
     }
 

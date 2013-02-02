@@ -1,7 +1,5 @@
 package me.alanfoster.services.employee.models.impl;
 
-import me.alanfoster.services.employee.models.IJob;
-
 import javax.persistence.*;
 
 /**
@@ -12,7 +10,7 @@ import javax.persistence.*;
  */
 @javax.persistence.Entity
 @Table(name = "jobs")
-public class Job implements IJob {
+public class Job {
     @Id
     @Column(name = "jobId")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,26 +18,21 @@ public class Job implements IJob {
     @Column(name = "jobTitle")
     private String jobTitle;
 
-    @Override
     public Integer getJobId() {
         return jobId;
     }
 
-    @Override
     public void setJobId(Integer jobId) {
         this.jobId = jobId;
     }
 
-    @Override
     public String getJobTitle() {
         return jobTitle;
     }
 
-    @Override
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
     }
-
 
     public static Job findJob(Integer jobId) {
         Job job = new Job();

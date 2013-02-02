@@ -18,7 +18,7 @@ public interface IEmployee extends Serializable {
     String getSecondName();
     void setSecondName(String secondName);
 
-    IJob getJob();
+    Job getJob();
     void setJob(Job job);
 
     Integer getDeskId();

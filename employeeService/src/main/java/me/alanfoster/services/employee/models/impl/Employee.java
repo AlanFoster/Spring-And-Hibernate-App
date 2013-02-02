@@ -1,7 +1,6 @@
 package me.alanfoster.services.employee.models.impl;
 
 import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.IJob;
 
 import javax.persistence.*;
 
@@ -79,7 +78,7 @@ public class Employee implements IEmployee {
     }
 
     @Override
-    public IJob getJob() {
+    public Job getJob() {
         return job;
     }
 
