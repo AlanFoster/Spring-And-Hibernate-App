@@ -57,26 +57,4 @@ public class EmployeeService implements IEmployeeService {
     public void delete(Integer key) {
         employeeDAO.delete(key);
     }
-
-    @Transactional
-    @Override
-    public List<Job> getJobs() {
-        List<Job> jobs = new LinkedList<Job>();
-        jobs.add(getJob(1,"HR"));
-        jobs.add(getJob(2,"Operations"));
-        jobs.add(getJob(3,"Engineer"));
-        jobs.add(getJob(4, "Senior Engineer"));
-        jobs.add(getJob(5, "Executive Engineer"));
-        jobs.add(getJob(6, "Developer"));
-        jobs.add(getJob(7, "Tester"));
-
-        return (List) jobs;
-    }
-
-    public Job getJob(Integer id, String jobTitle) {
-        Job job = new Job();
-        job.setJobId(id);
-        job.setJobTitle(jobTitle);
-        return job;
-    }
 }

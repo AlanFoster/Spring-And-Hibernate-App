@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * The base interface which all IDAOs should extend
- *
+
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public interface IGenericDAO<T, K extends Serializable> {
+public interface ICrudDAO<T, K extends Serializable> extends IDAO {
     /* Create Operations */
     public K create(T object);
 
