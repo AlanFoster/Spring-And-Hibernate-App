@@ -7,12 +7,16 @@
     <!-- The base definition which other definitions should extend from -->
     <definition name="base.definition" template="/WEB-INF/views/core/layout.jsp">
         <!-- Core Website Attributes -->
-        <put-attribute name="website.title" value="Employee Application" />
+        <put-attribute name="website.title" value="Employee Management System" />
+        <put-attribute name="website.brand" value="EMS" />
         <put-attribute name="website.version" value="1.0" />
 
         <put-attribute name="page.title" value="" cascade="true" />
 
         <put-attribute name="body" value="" />
+
+        <!-- Used to represent the page which show be 'selected' in the menu bar -->
+        <put-attribute name="highlightedPage" value="" />
 
         <put-attribute name="copyright" value="/WEB-INF/views/core/copyright.jsp" />
     </definition>
@@ -21,6 +25,7 @@
     <definition name="employee.index" extends="base.definition">
         <put-attribute name="page.title" value="Welcome" cascade="true" />
         <put-attribute name="body" value="/WEB-INF/views/employee/employeeIndex.jsp" />
+        <put-attribute name="highlightedPage" value="" />
     </definition>
 
     <!-- The Core employee Detail view which should be extended by other views as appropriate -->
@@ -32,17 +37,23 @@
     <!-- Add Employee View -->
     <definition name="employee.add" extends="employee.detail">
         <put-attribute name="page.title" value="Add Employee" cascade="true" />
+        <!-- Select the add employee tab in the menu -->
+        <put-attribute name="highlightedPage" value="addEmployee" />
     </definition>
 
     <!-- Edit Employee View -->
     <definition name="employee.edit" extends="employee.detail">
         <put-attribute name="page.title" value="Edit Employee" cascade="true" />
+        <!-- Select the search tab in the menu -->
+        <put-attribute name="highlightedPage" value="searchEmployee" />
     </definition>
 
     <!-- The Core employee Detail view which should be extended by other views as appropiate -->
     <definition name="employee.search" extends="base.definition">
         <put-attribute name="page.title" value="Employee Search" cascade="true" />
         <put-attribute name="body" value="/WEB-INF/views/employee/viewEmployees.jsp" />
+        <!-- Select the searchEmployee tab in the menu -->
+        <put-attribute name="highlightedPage" value="searchEmployee" />
     </definition>
 
     <!-- The model used for when form has submitted succesfully/unsuccesfully -->
@@ -54,6 +65,8 @@
     <!-- The model used for an Ajax syle application -->
     <definition name="reports" extends="base.definition">
         <put-attribute name="page.title" value="Reports" />
+        <!-- Select the searchEmployee tab in the menu -->
+        <put-attribute name="highlightedPage" value="reports" />
         <put-attribute name="body" value="/WEB-INF/views/reports/reports.jsp" />
     </definition>
 
