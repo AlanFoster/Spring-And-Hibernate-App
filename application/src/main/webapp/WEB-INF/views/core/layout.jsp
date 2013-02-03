@@ -11,10 +11,10 @@
 </head>
 <body>
 <div class="container-fluid wrapper">
-
     <div class="row-fluid">
         <div class="span2 row">
             <div class="well">
+                <div><a href="/">Home</a></div>
                 <div><a href="/employees/add">Add Employee</a></div>
                 <div><a href="/employees/search">Search Employee</a></div>
                 <div><a href="/reports">Reports</a></div>

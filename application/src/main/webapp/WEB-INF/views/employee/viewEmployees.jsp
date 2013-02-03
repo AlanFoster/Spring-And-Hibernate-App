@@ -1,8 +1,9 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 
-<h1>Search Employees</h1>
+<h2><tiles:getAsString name="page.title"/></h2>
 
 <c:choose>
     <c:when test="${empty employees}">

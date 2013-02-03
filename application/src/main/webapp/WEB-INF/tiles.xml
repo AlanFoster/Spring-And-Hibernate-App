@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
-        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<!-- The tiles definitions that the website uses for its layout, using apache tiles -->
 <tiles-definitions>
     <!-- The base definition which other definitions should extend from -->
     <definition name="base.definition" template="/WEB-INF/views/core/layout.jsp">
@@ -9,49 +10,44 @@
         <put-attribute name="website.title" value="Employee Application" />
         <put-attribute name="website.version" value="1.0" />
 
-        <put-attribute name="page.title" value="" />
+        <put-attribute name="page.title" value="" cascade="true" />
 
         <put-attribute name="body" value="" />
 
         <put-attribute name="copyright" value="/WEB-INF/views/core/copyright.jsp" />
     </definition>
 
-    <!-- The Core employee Detail view which should be extended by other views as appropiate -->
+    <!-- The Core employee Detail view which should be extended by other views as appropriate -->
     <definition name="employee.index" extends="base.definition">
-        <put-attribute name="page.title" value="Employee Manager Index" />
+        <put-attribute name="page.title" value="Welcome" cascade="true" />
         <put-attribute name="body" value="/WEB-INF/views/employee/employeeIndex.jsp" />
     </definition>
 
-    <!-- The Core employee Detail view which should be extended by other views as appropiate -->
+    <!-- The Core employee Detail view which should be extended by other views as appropriate -->
     <definition name="employee.detail" extends="base.definition">
         <put-attribute name="page.title" value="Employee Detail" />
         <put-attribute name="body" value="/WEB-INF/views/employee/employeeDetail.jsp" />
-        <!-- Detail Type one of 'Edit', 'View' (Read Only) -->
-        <put-attribute name="detailType" value="" />
     </definition>
 
-    <!-- TODO Add Employee View -->
-    <definition name="employee.add" extends="base.definition">
-        <put-attribute name="page.title" value="Employee" />
-        <put-attribute name="body" value="/WEB-INF/views/employee/employee.jsp" />
+    <!-- Add Employee View -->
+    <definition name="employee.add" extends="employee.detail">
+        <put-attribute name="page.title" value="Add Employee" cascade="true" />
     </definition>
 
     <!-- Edit Employee View -->
     <definition name="employee.edit" extends="employee.detail">
-        <put-attribute name="page.title" value="Edit Employee" />
-        <put-attribute name="body" value="/WEB-INF/views/employee/employeeDetail.jsp" />
-        <put-attribute name="detailType" value="edit" />
+        <put-attribute name="page.title" value="Edit Employee" cascade="true" />
     </definition>
 
     <!-- The Core employee Detail view which should be extended by other views as appropiate -->
     <definition name="employee.search" extends="base.definition">
-        <put-attribute name="page.title" value="Employee Search" />
+        <put-attribute name="page.title" value="Employee Search" cascade="true" />
         <put-attribute name="body" value="/WEB-INF/views/employee/viewEmployees.jsp" />
     </definition>
 
     <!-- The model used for when form has submitted succesfully/unsuccesfully -->
     <definition name="notification" extends="base.definition">
-        <put-attribute name="page.title" value="Employee Search" />
+        <put-attribute name="page.title" value="Employee Search" cascade="true" />
         <put-attribute name="body" value="/WEB-INF/views/notification/notification.jsp" />
     </definition>
 
