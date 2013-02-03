@@ -9,6 +9,8 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="jobCategories">
+            <%-- Shown when no data was found --%>
+            <div id="jobCategoriesEmpty" class="alert">Sorry, there was not enough information to generate a report. Please add some employees to the system.</div>
             <div id="jobCategoriesContainer" style="text-align:center">
                 <div id="jobCategoriesLoadingImage"><img src="/resources/img/ajax-loader.gif" alt="Loading Data..."/>
                 </div>

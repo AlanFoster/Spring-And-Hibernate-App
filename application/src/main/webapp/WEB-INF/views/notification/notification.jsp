@@ -15,7 +15,7 @@
         </div>
     </c:when>
     <c:otherwise>
-        <div class="alert alert">
+        <div class="alert">
             Unable to complete this action unsuccessfully.
             ${formResultDetail}
         </div>

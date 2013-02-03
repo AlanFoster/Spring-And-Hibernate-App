@@ -9,6 +9,7 @@ import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
 import me.alanfoster.services.employee.models.impl.Job;
 import me.alanfoster.services.employee.service.IEmployeeService;
+import me.alanfoster.services.employee.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,7 +21,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +40,9 @@ public class EmployeeController {
 
     @Autowired
     private IEmployeeService employeeService;
+
+    @Autowired
+    private IJobService jobService;
 
     @Autowired
     private IEmployeeWebservice employeeWebservice;
@@ -65,7 +68,7 @@ public class EmployeeController {
 
     @ModelAttribute("jobs")
     public List<Job> populateJobs() {
-        return (List) employeeService.getJobs();
+        return jobService.getJobs();
     }
 
     /**
@@ -87,11 +90,7 @@ public class EmployeeController {
         logger.info("Received Request for /employees");
 
         Employee employee = new Employee();
-        Job job = new Job();
-        job.setJobId(2);
-        job.setJobTitle("Operations");
-
-        employee.setJob(job);
+        employee.setJob(new Job());
 
         map.put("employee", employee);
         map.put("employees", employeeService.getAll());

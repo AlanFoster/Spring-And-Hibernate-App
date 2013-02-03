@@ -11,7 +11,6 @@ var EmployeeApp;
             $.getJSON("/reports/jobs/titleCounts", {}, callback);
         }, 200);
     }
-
 })(EmployeeApp || (EmployeeApp = {}));
 
 (function (EmployeeApp) {
@@ -76,6 +75,22 @@ var EmployeeApp;
  */
 $(function () {
     EmployeeApp.getJobCategories(function (data) {
+        /**
+         * A function to fade out the ajax loader and fade in the required element
+         */
+        function swapAjaxLoaderWith(selector) {
+            // Fadeout the loader and fade in required element
+            $("#jobCategoriesLoadingImage").fadeOut(100, function () {
+                $(selector).fadeIn();
+            })
+        }
+
+        // Check if the data is empty, and if it is, update the interface
+        if(!data || data.length === 0) {
+            swapAjaxLoaderWith("#jobCategoriesEmpty");
+            return;
+        }
+
         // All of the options for creating the Pie Chart
         var jobPieChartOptions = {
             width: 450,

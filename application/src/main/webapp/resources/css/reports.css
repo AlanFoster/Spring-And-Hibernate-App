@@ -8,11 +8,10 @@
     stroke: white;
 }
 
-/* Hide the chart by deafault */
-#jobCategoriesReport {
+/* Hide the chartand empty message by default  */
+#jobCategoriesReport, #jobCategoriesEmpty {
     display: none;
 }
-
 
 label {
     display: inline-block;

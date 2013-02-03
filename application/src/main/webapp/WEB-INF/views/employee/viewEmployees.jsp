@@ -6,7 +6,7 @@
 
 <c:choose>
     <c:when test="${empty employees}">
-        Sorry. There are no employees which matched your requirement.
+        <div class="alert">Sorry. There are no employees which matched your requirement</div>
     </c:when>
     <c:otherwise>
         <table class="table table-striped">
