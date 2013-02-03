@@ -23,6 +23,10 @@
     </properties>
 
     <modules>
+		<!-- Maven Dependencies Poms
+			 These should be referenced throughout the application modules -->
+		<module>dependencies</module>
+		<!-- The main application modules -->
         <module>application</module>
 		<module>employeeService</module>
 		<module>webservice</module>
