@@ -2,7 +2,7 @@
 <script src="/resources/js/reports.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/reports.css">
 
-<div class="tabbable">
+<div class="tabbable tabs-left">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#jobCategories" data-toggle="tab">Job Categories</a></li>
         <li><a href="#totalEmployees" data-toggle="tab">Total Employees</a></li>

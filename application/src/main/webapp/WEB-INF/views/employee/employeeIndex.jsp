@@ -1,4 +1,10 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<h2><tiles:getAsString name="page.title"/></h2>
-
-This is the employee index. Welcome.
+<div class="hero-unit">
+    <h1><tiles:getAsString name="page.title"/></h1>
+    <p>To the Employee Management System!</p>
+    <p>
+        <a class="btn btn-primary btn-large">
+            Learn more
+        </a>
+    </p>
+</div>

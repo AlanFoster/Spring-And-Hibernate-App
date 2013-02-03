@@ -1,8 +1,4 @@
-/**
- * EmployeeApp should be the namespace for all javascript to
- * register itself with in this basic Employee Application
- */
-var EmployeeApp;
+
 
 (function (EmployeeApp) {
     EmployeeApp.getJobCategories = function (callback) {
@@ -64,7 +60,8 @@ var EmployeeApp;
             .attr("text-anchor", "middle")
             .text(function (d) {
                 return d.data[labelName];
-            });
+            })
+            .attr("class", "arcLabel");
 
     };
 })(EmployeeApp || (EmployeeApp = {}));
@@ -112,6 +109,4 @@ $(function () {
         })
     });
 
-    // Wire up tooltips
-    $(document).tooltip({items: "[title]"});
 });

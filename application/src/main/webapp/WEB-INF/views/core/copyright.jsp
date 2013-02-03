@@ -1,1 +1,1 @@
-Copyright details
+<em>Copyright 2013-2014 - Employment Management System</em>

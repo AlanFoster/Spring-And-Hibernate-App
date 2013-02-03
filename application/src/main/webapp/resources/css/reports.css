@@ -2,16 +2,25 @@
 .tab-content {
     height: 500px;
 }
-
 /* Setting specific arc information */
+.arcLabel {
+    /* Allow pass through of DOM event when hovering over label */
+    pointer-events:none;
+}
+
 .arc path {
     stroke: white;
 }
 
-/* Hide the chartand empty message by default  */
+.arc path:hover {
+    opacity: 0.7;
+}
+
+/* Hide the chart and empty message by default  */
 #jobCategoriesReport, #jobCategoriesEmpty {
     display: none;
 }
+
 
 label {
     display: inline-block;

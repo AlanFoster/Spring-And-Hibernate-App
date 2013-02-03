@@ -6,71 +6,76 @@
      This template should be reused as appropiate for the CRUD operations --%>
 
 <h2><tiles:getAsString name="page.title"/></h2>
+
 <c:choose>
     <c:when test="${empty employee}">
-        Sorry. That employee does not exist in the system.
+        <div class="alert">Sorry. That employee does not exist in the system.</div>
     </c:when>
     <c:otherwise>
-        <form:form modelAttribute="employee" method="post" cssClass="form-horizontal">
-            <%-- If the employee has a Job Id, show it read only mode --%>
-            <c:if test="${!empty employee.id}">
-                <div class="control-group">
-                    <form:label path="id" cssClass="control-label">Employee Id</form:label>
-                    <div class="controls">
-                        <form:input path="id" cssClass="uneditable-input"/>
+        <div class="row">
+            <div class="span12">
+                <form:form modelAttribute="employee" method="post" cssClass="form-horizontal">
+                    <%-- If the employee has a Job Id, show it read only mode --%>
+                    <c:if test="${!empty employee.id}">
+                        <div class="control-group">
+                            <form:label path="id" cssClass="control-label">Employee Id</form:label>
+                            <div class="controls">
+                                <form:input path="id" cssClass="uneditable-input"/>
+                            </div>
+                        </div>
+                    </c:if>
+                    <div class="control-group">
+                        <form:label path="firstName" cssClass="control-label">First Name</form:label>
+                        <div class="controls">
+                            <form:input path="firstName"/> <form:errors path="firstName" cssClass="help-inline"/>
+                        </div>
                     </div>
-                </div>
-            </c:if>
-            <div class="control-group">
-                <form:label path="firstName" cssClass="control-label">First Name</form:label>
-                <div class="controls">
-                    <form:input path="firstName"/> <form:errors path="firstName" cssClass="help-inline"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <form:label path="secondName" cssClass="control-label">Second Name</form:label>
-                <div class="controls">
-                    <form:input path="secondName"/> <form:errors path="secondName" cssClass="help-inline"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <form:label path="job" cssClass="control-label">Job Title</form:label>
-                <div class="controls">
-                    <form:select path="job">
-                        <form:option value="-1" label="Select One"/>
-                        <form:options items="${jobs}" itemLabel="jobTitle" itemValue="jobId"/>
-                    </form:select>
-                    <form:errors path="job" cssClass="help-inline"/>
-                    <form:errors path="job.jobId" cssClass="help-inline"/>
-                    <form:errors path="job.jobTitle" cssClass="help-inline"/>
-                </div>
-            </div>
-            <div class="control-group">
-                <form:label path="deskId" cssClass="control-label">Desk Id</form:label>
-                <div class="controls">
-                    <form:input path="deskId"/> <form:errors path="deskId" cssClass="help-inline"/>
-                </div>
-            </div>
+                    <div class="control-group">
+                        <form:label path="secondName" cssClass="control-label">Second Name</form:label>
+                        <div class="controls">
+                            <form:input path="secondName"/> <form:errors path="secondName" cssClass="help-inline"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <form:label path="job" cssClass="control-label">Job Title</form:label>
+                        <div class="controls">
+                            <form:select path="job">
+                                <form:option value="-1" label="Select One"/>
+                                <form:options items="${jobs}" itemLabel="jobTitle" itemValue="jobId"/>
+                            </form:select>
+                            <form:errors path="job" cssClass="help-inline"/>
+                            <form:errors path="job.jobId" cssClass="help-inline"/>
+                            <form:errors path="job.jobTitle" cssClass="help-inline"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <form:label path="deskId" cssClass="control-label">Desk Id</form:label>
+                        <div class="controls">
+                            <form:input path="deskId"/> <form:errors path="deskId" cssClass="help-inline"/>
+                        </div>
+                    </div>
 
-            <div class="control-group">
-                <div class="controls">
-                        <%-- Show the 'Add Employee' button if this is a new employee, otherwise show the update/delete buttons --%>
-                    <c:choose>
-                        <c:when test="${empty employee.id}">
-                            <button type="submit" name="save" class="btn btn-primary">Add Employee</button>
-                        </c:when>
-                        <c:otherwise>
-                            <button type="submit" name="save" class="btn btn-primary">Save</button>
-                            <%-- Note :: This button activates some javascript which is bound to
-                                automatically through the id 'confirmDelete'
-                                 - this is so users without javascript still make use of the system --%>
-                            <a href="/employees/delete/${employee.id}" class="btn btn-danger"
-                               id="confirmDelete">Delete</a>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                    <div class="control-group">
+                        <div class="controls">
+                                <%-- Show the 'Add Employee' button if this is a new employee, otherwise show the update/delete buttons --%>
+                            <c:choose>
+                                <c:when test="${empty employee.id}">
+                                    <button type="submit" name="save" class="btn btn-primary">Add Employee</button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button type="submit" name="save" class="btn btn-primary">Save</button>
+                                    <%-- Note :: This button activates some javascript which is bound to
+                                        automatically through the id 'confirmDelete'
+                                         - this is so users without javascript still make use of the system --%>
+                                    <a href="/employees/delete/${employee.id}" class="btn btn-danger"
+                                       id="confirmDelete">Delete</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </form:form>
             </div>
-        </form:form>
+        </div>
+        </div>
     </c:otherwise>
 </c:choose>
-
