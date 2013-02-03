@@ -71,6 +71,22 @@ public class EmployeeController {
         return jobService.getJobs();
     }
 
+
+    /*********************************************************************
+     *  Get Methods
+     *********************************************************************/
+
+    @RequestMapping(value = "/employees/search")
+    public String searchEmployee(Map<String, Object> map) {
+        logger.info("Received Request for /search");
+        map.put("employees", employeeService.getAll());
+        return EmployeeModelConfig.Search.getModelName();
+    }
+
+    /*********************************************************************
+     *  Create Methods
+     *********************************************************************/
+
     /**
      * Handle adding an employee
      *
@@ -85,7 +101,7 @@ public class EmployeeController {
 
         // If the form has errors, log it, and redirect back to the previous page
         if(result.hasErrors()) {
-            logger.info("Form for add employee had errors - {}", new Object[] { result.getAllErrors() });
+            logger.debug("Form for add employee had errors - {}", new Object[] { result.getAllErrors() });
             return EmployeeModelConfig.Add.getModelName();
         }
 
@@ -106,6 +122,10 @@ public class EmployeeController {
         return EmployeeModelConfig.Add.getModelName();
     }
 
+    /*********************************************************************
+     *  Edit Methods
+     *********************************************************************/
+
     @RequestMapping(value = "/employees/edit/{employeeId}")
     public String editEmployee(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
         logger.info("Received Request for /edit/{}", new Object[]{employeeId});
@@ -120,24 +140,26 @@ public class EmployeeController {
         return EmployeeModelConfig.Edit.getModelName();
     }
 
-    @RequestMapping(value = "/employees/search")
-    public String searchEmployee(Map<String, Object> map) {
-        logger.info("Received Request for /search");
-        map.put("employees", employeeService.getAll());
-        return EmployeeModelConfig.Search.getModelName();
-    }
-
     @RequestMapping(value = "/employees/edit/{employeeId}", method = RequestMethod.POST)
-    public String editEmployeePost(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId,
-                                   @Valid @ModelAttribute("employee") Employee employee, BindingResult result,
+    public String editEmployeePost(@PathVariable("employeeId") Integer employeeId, @Valid @ModelAttribute("employee") Employee employee, BindingResult result,
                                    final RedirectAttributes redirectAttributes) {
         logger.info("Received Request for /edit/{}", new Object[]{employeeId});
+
+        // If the form has errors, log it, and redirect back to the previous page
+        if(result.hasErrors()) {
+            logger.debug("Form for edit employee had errors - {}", new Object[] { result.getAllErrors() });
+            return EmployeeModelConfig.Edit.getModelName();
+        }
+
         employeeService.update(employee);
         // Add a flash attribute to let the redirected page know of our success
         redirectAttributes.addFlashAttribute("formResult", Notification.SUCCESS.getValue());
         return NotificationRequestMappingConfig.Notification.getRedirectRequestMapping();
     }
 
+    /*********************************************************************
+     *  Delete Methods
+     *********************************************************************/
     @RequestMapping(value = "/employees/delete/{employeeId}")
     public String deleteEmployeePost(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId, final RedirectAttributes redirectAttributes) {
         logger.info("Received Request for /delete/{}", new Object[]{employeeId});
