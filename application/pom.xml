@@ -64,30 +64,18 @@
             <type>pom</type>
         </dependency>
 
-        <!-- Core Spring dependencies -->
+        <!-- References our dependencies pom folder for spring -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
+            <groupId>me.alanfoster.employee.dependencies</groupId>
+            <artifactId>spring</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+
+        <!-- Get the additional spring dependencies for spring mvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
         </dependency>
 
@@ -209,7 +197,6 @@
             <version>${xerces.version}</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>

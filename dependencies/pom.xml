@@ -25,6 +25,7 @@
     <modules>
 		<module>testing</module>
         <module>logging</module>
+        <module>spring</module>
     </modules>
 
 </project>
