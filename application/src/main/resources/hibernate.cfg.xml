@@ -8,5 +8,6 @@
     <session-factory>
         <mapping class="me.alanfoster.services.employee.models.impl.Employee"/>
         <mapping class="me.alanfoster.services.employee.models.impl.Job"/>
+        <mapping class="me.alanfoster.services.employee.models.impl.JobTitleCount"/>
     </session-factory>
 </hibernate-configuration>

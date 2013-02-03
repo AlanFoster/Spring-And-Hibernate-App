@@ -20,8 +20,7 @@ INSERT INTO jobs (jobTitle) VALUES ('HR');
 INSERT INTO jobs (jobTitle) VALUES ('Operations');
 INSERT INTO jobs (jobTitle) VALUES ('Engineer');
 INSERT INTO jobs (jobTitle) VALUES ('Senior Engineer');
-INSERT INTO jobs (jobTitle) VALUES ('Executive Engineer');
-INSERT INTO jobs (jobTitle) VALUES ('Developer');
+INSERT INTO jobs (jobTitle) VALUES ('Principal Engineer');
 INSERT INTO jobs (jobTitle) VALUES ('Tester');
 
 --

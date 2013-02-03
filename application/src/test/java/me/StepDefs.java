@@ -20,7 +20,7 @@ import static junit.framework.Assert.*;
 import java.util.List;
 
 /**
- * Basic Cucumber StepDefs
+ * Basic Cucumber EmployeeStepDefs
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
