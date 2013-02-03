@@ -3,11 +3,11 @@ package me.alanfoster.services.employee.dao;
 import me.alanfoster.services.core.dao.IDAO;
 import me.alanfoster.services.employee.models.impl.Job;
 import me.alanfoster.services.employee.models.impl.JobTitleCount;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 /**
+ * The DataAccess interface for Job
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
@@ -25,4 +25,12 @@ public interface IJobDAO extends IDAO {
      *  @return The list of Job title + count objects
      */
     List<JobTitleCount> getJobTitleCounts();
+
+    /**
+     * Used to get a specific Job with the specific job id
+     *
+     * @param jobId The unique job id
+     * @return The job instance matching the job id
+     */
+    Job get(Integer jobId);
 }

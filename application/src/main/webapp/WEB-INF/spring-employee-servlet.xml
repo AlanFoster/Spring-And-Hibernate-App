@@ -33,6 +33,11 @@
     <!-- Forward requests to "/" to be the main view -->
     <mvc:view-controller path="/" view-name="/employees"/>
 
+    <!-- Create the message store that Spring will use for displaying custom messages to the user -->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages" />
+    </bean>
+
     <!-- Let Apache Tiles be our view resolver -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>

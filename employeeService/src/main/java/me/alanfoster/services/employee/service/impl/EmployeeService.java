@@ -14,8 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Implements the IEmployeeService interface in order to provide a concrete implementation
+ *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
+ * @see IEmployeeService
  */
 @Service
 public class EmployeeService implements IEmployeeService {

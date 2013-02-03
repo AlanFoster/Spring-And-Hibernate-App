@@ -15,36 +15,57 @@ import java.util.List;
  */
 @Repository
 public class HibernateEmployeeDAO implements IEmployeeDAO {
+    /**
+     * The hibernate session factory, autowired by spring
+     */
     @Autowired
     private SessionFactory sessionFactory;
 
+    /**
+     * {@inheritDoc
+     */
     @Override
     public Integer create(IEmployee employee) {
         return (Integer) sessionFactory.getCurrentSession().save(employee);
     }
 
+    /**
+     * {@inheritDoc
+     */
     @Override
     public IEmployee get(Integer key) {
         return (IEmployee) sessionFactory.getCurrentSession().get(Employee.class, key);
     }
 
+    /**
+     * {@inheritDoc
+     */
     @Override
     public List<IEmployee> getAll() {
         return sessionFactory.getCurrentSession().createQuery("from Employee").list();
     }
 
+    /**
+     * {@inheritDoc
+     */
     @Override
     public void update(IEmployee employee) {
         sessionFactory.getCurrentSession().update(employee);
     }
 
+    /**
+     * {@inheritDoc
+     */
     @Override
     public void delete(IEmployee employee) {
         sessionFactory.getCurrentSession().delete(employee);
     }
 
+    /**
+     * {@inheritDoc
+     */
     @Override
     public void delete(Integer key) {
-       delete(get(key));
+        delete(get(key));
     }
 }

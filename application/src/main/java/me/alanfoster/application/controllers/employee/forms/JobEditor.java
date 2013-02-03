@@ -1,6 +1,7 @@
 package me.alanfoster.application.controllers.employee.forms;
 
 import me.alanfoster.services.employee.models.impl.Job;
+import me.alanfoster.services.employee.service.IJobService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,7 @@ import java.beans.PropertyEditorSupport;
  * <br />
  * An alternative to extending PropertyEditorSupport and the potential
  * overhead of instantiating this class multiple times is using a Generic
- * Spring Concvert  which was introduced in Spring 3.0
+ * Spring Converter which was introduced in Spring 3.0
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
@@ -29,12 +30,17 @@ public class JobEditor extends PropertyEditorSupport {
      */
     private static final Logger logger = LoggerFactory.getLogger(JobEditor.class);
 
-    @Override
-    public void setAsText(String jobId) throws IllegalArgumentException {
-        logger.info("Setting as text for jobId {}", new Object[]{jobId});
+    private IJobService jobService;
 
-        Job job = new Job();
-        job.setJobId(Integer.valueOf(jobId));
+    public JobEditor(IJobService jobService) {
+        this.jobService = jobService;
+    }
+
+    @Override
+    public void setAsText(String stringJobId) throws IllegalArgumentException {
+        logger.info("Setting as text for jobId {}", new Object[]{stringJobId});
+        Integer jobId = Integer.parseInt(stringJobId);
+        Job job = jobId == -1 ? new Job() : jobService.get(jobId);
         super.setValue(job);
     }
 }

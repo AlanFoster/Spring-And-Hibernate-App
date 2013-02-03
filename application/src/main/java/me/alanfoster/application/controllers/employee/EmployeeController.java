@@ -21,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +57,7 @@ public class EmployeeController {
      */
     @InitBinder
     public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(Job.class, new JobEditor());
+        binder.registerCustomEditor(Job.class, new JobEditor(jobService));
     }
 
     @RequestMapping("/")
@@ -79,7 +80,15 @@ public class EmployeeController {
      */
     // TODO Use Validation annotations
     @RequestMapping(value = "/employees/add", method = RequestMethod.POST)
-    public String addEmployeePost(@ModelAttribute("employee") Employee employee, BindingResult result) {
+    public String addEmployeePost(@Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
+        logger.info("Received post request for //employees/add");
+
+        // If the form has errors, log it, and redirect back to the previous page
+        if(result.hasErrors()) {
+            logger.info("Form for add employee had errors - {}", new Object[] { result.getAllErrors() });
+            return EmployeeModelConfig.Add.getModelName();
+        }
+
         employeeService.create(employee);
         return EmployeeRequestMappingConfig.Search.getRedirectRequestMapping();
     }
@@ -120,7 +129,7 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees/edit/{employeeId}", method = RequestMethod.POST)
     public String editEmployeePost(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId,
-                                   @ModelAttribute("employee") Employee employee, BindingResult result,
+                                   @Valid @ModelAttribute("employee") Employee employee, BindingResult result,
                                    final RedirectAttributes redirectAttributes) {
         logger.info("Received Request for /edit/{}", new Object[]{employeeId});
         employeeService.update(employee);

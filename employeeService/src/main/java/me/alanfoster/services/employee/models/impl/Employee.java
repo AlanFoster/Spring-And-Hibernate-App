@@ -3,6 +3,11 @@ package me.alanfoster.services.employee.models.impl;
 import me.alanfoster.services.employee.models.IEmployee;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * Represents a basic Employee Model
@@ -18,13 +23,19 @@ public class Employee implements IEmployee {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "firstName")
+    @NotEmpty
     private String firstName;
     @Column(name = "secondName")
+    @NotEmpty
     private String secondName;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "jobId")
+    @Valid
+    @NotNull
     private Job job;
     @Column(name="deskId")
+    @Range(min = 1)
+    @NotNull
     private Integer deskId;
 
     /**
