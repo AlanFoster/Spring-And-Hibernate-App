@@ -68,3 +68,15 @@ Feature: Job Service
       | Principal Engineer | 1     |
       | Tester             | 1     |
 
+  Scenario: Calling the get jobs operation
+    Given there is an job service
+    And there is an employee service
+    When the get jobs operation is called
+    Then the job returned jobs will be
+      | JobId | jobTitle           |
+      | 1     | HR                 |
+      | 2     | Operations         |
+      | 3     | Engineer           |
+      | 4     | Senior Engineer    |
+      | 5     | Principal Engineer |
+      | 6     | Tester             |

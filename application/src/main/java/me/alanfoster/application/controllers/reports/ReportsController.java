@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,7 +29,6 @@ public class ReportsController {
     private IEmployeeService employeeService;
     @Autowired
     private IJobService jobService;
-
 
     @RequestMapping(value = "/reports")
     public String searchEmployee() {

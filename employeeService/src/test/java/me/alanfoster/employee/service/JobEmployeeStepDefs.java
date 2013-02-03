@@ -3,6 +3,7 @@ package me.alanfoster.employee.service;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import me.alanfoster.services.employee.models.impl.Job;
 import me.alanfoster.services.employee.models.impl.JobTitleCount;
 import me.alanfoster.services.employee.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.unitils.reflectionassert.ReflectionComparatorMode;
 import java.util.List;
 
 import static junit.framework.Assert.*;
-import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
+import static org.unitils.reflectionassert.ReflectionAssert.*;
 
 /**
  * @author Alan Foster
@@ -21,6 +22,7 @@ public class JobEmployeeStepDefs {
     @Autowired
     private IJobService jobService;
     private List<JobTitleCount> jobTitleCounts;
+    private List<Job> jobs;
 
     @Given("^there is an job service$")
     public void there_is_an_job_service() throws Throwable {
@@ -50,4 +52,14 @@ public class JobEmployeeStepDefs {
         assertEquals("The count should be the same", expected.getCount(), actual.getCount());
     }
 
+    @When("^the get jobs operation is called$")
+    public void the_get_jobs_operation_is_called() throws Throwable {
+        jobs = jobService.getJobs();
+    }
+
+    @Then("^the job returned jobs will be$")
+    public void the_job_returned_jobs_will_be(List<Job> expectedJobs) throws Throwable {
+        // Assert the expected and returned lists are equal in the SAME order
+        assertReflectionEquals(expectedJobs, jobs);
+    }
 }

@@ -62,7 +62,6 @@ public class EmployeeController {
     @RequestMapping("/")
     public String index(Map<String, Object> map) {
         logger.info("Received Request for /");
-        //logger.info("Interacting with employee web service :: " + employeeWebservice.getAllEmployees());
         return EmployeeModelConfig.Index.getModelName();
     }
 
@@ -94,7 +93,6 @@ public class EmployeeController {
 
         map.put("employee", employee);
         map.put("employees", employeeService.getAll());
-
 
         return EmployeeModelConfig.Add.getModelName();
     }
