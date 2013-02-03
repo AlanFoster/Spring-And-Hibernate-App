@@ -24,6 +24,7 @@
 
     <modules>
 		<module>testing</module>
+        <module>logging</module>
     </modules>
 
 </project>

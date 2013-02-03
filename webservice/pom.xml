@@ -24,7 +24,8 @@
 
         <!-- The port number to expose the `mvn jetty:run` instance on -->
         <webservice.port>8090</webservice.port>
-        <!--  <webservice.location>me.alanfoster.employee.webservice.EmployeeWebservice</webservice.location>-->
+        <!-- The location of the webservice -->
+        <webservice.className>me.alanfoster.employee.webservice.EmployeeWebservice</webservice.className>
 
         <!-- Dependency Versions -->
         <spring.version>3.1.0.RELEASE</spring.version>
@@ -40,6 +41,14 @@
             <artifactId>service</artifactId>
             <version>${project.version}</version>
             <type>jar</type>
+        </dependency>
+
+        <!-- References our dependencies pom folder for logging -->
+        <dependency>
+            <groupId>me.alanfoster.employee.dependencies</groupId>
+            <artifactId>logging</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
         </dependency>
 
         <!-- Core Spring dependencies -->
@@ -85,7 +94,7 @@
                         <id>process-classes</id>
                         <phase>process-classes</phase>
                         <configuration>
-                            <className>me.alanfoster.employee.webservice.EmployeeWebservice</className>
+                            <className>${webservice.className}</className>
                             <genWsdl>true</genWsdl>
                             <verbose>true</verbose>
                         </configuration>

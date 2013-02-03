@@ -32,10 +32,6 @@
         <tiles.version>2.2.2</tiles.version>
         <hibernate.version>3.3.2.GA</hibernate.version>
         <logging.version>1.5.8</logging.version>
-        <mysq.version>5.1.22</mysq.version>
-        <h2.version>1.3.170</h2.version>
-        <junit.version>4.10</junit.version>
-        <cucumber.version>1.1.1</cucumber.version>
         <selenium.version>2.28.0</selenium.version>
         <xerces.version>2.9.1</xerces.version>
         <cxf.version>2.7.1</cxf.version>
@@ -58,6 +54,14 @@
             <version>${project.version}</version>
             <type>jar</type>
             <scope>compile</scope>
+        </dependency>
+
+        <!-- References our dependencies pom folder for logging -->
+        <dependency>
+            <groupId>me.alanfoster.employee.dependencies</groupId>
+            <artifactId>logging</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
         </dependency>
 
         <!-- Core Spring dependencies -->
@@ -149,22 +153,6 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- Logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${logging.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${logging.version}</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-
         <!-- Core Hibernate Dependencies -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -220,7 +208,6 @@
             <artifactId>xercesImpl</artifactId>
             <version>${xerces.version}</version>
         </dependency>
-
     </dependencies>
 
 
