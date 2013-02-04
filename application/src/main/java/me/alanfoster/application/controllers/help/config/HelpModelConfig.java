@@ -1,8 +1,8 @@
-package me.alanfoster.application.controllers.employee.config;
+package me.alanfoster.application.controllers.help.config;
 
 import me.alanfoster.application.controllers.core.config.ModelConfig;
 
-/**
+ /**
  * This enum stores a subset of the Models which are related to the
  * Employee application.
  * <br />
@@ -15,15 +15,12 @@ import me.alanfoster.application.controllers.core.config.ModelConfig;
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public enum EmployeeModelConfig implements ModelConfig {
-    Index("employee.index"),
-    Add("employee.add"),
-    Edit("employee.edit"),
-    Search("employee.search");
+public enum HelpModelConfig implements ModelConfig {
+    Help("help");
 
     private String value;
 
-    EmployeeModelConfig(String value) {
+    HelpModelConfig(String value) {
         this.value = value;
     }
 

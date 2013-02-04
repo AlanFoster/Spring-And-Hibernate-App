@@ -4,20 +4,17 @@
         "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <!-- The tiles definitions that the website uses for its layout, using apache tiles -->
 <tiles-definitions>
+
     <!-- The base definition which other definitions should extend from -->
     <definition name="base.definition" template="/WEB-INF/views/core/layout.jsp">
         <!-- Core Website Attributes -->
         <put-attribute name="website.title" value="Employee Management System" />
         <put-attribute name="website.brand" value="EMS" />
         <put-attribute name="website.version" value="1.0" />
-
         <put-attribute name="page.title" value="" cascade="true" />
-
         <put-attribute name="body" value="" />
-
         <!-- Used to represent the page which show be 'selected' in the menu bar -->
         <put-attribute name="highlightedPage" value="" />
-
         <put-attribute name="copyright" value="/WEB-INF/views/core/copyright.jsp" />
     </definition>
 
@@ -68,6 +65,14 @@
         <!-- Select the searchEmployee tab in the menu -->
         <put-attribute name="highlightedPage" value="reports" />
         <put-attribute name="body" value="/WEB-INF/views/reports/reports.jsp" />
+    </definition>
+
+    <!-- The definition for the Help model -->
+    <definition name="help" extends="base.definition">
+        <put-attribute name="page.title" value="Help" />
+        <!-- Select the help tab in the menu -->
+        <put-attribute name="highlightedPage" value="help" />
+        <put-attribute name="body" value="/WEB-INF/views/help/help.jsp" />
     </definition>
 
 </tiles-definitions>

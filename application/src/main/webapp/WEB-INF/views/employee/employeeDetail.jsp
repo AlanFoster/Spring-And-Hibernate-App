@@ -2,9 +2,9 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
+
 <%-- This one JSP page represents the 'employee detail' object detail page.
      This template should be reused as appropiate for the CRUD operations --%>
-
 <h2><tiles:getAsString name="page.title"/></h2>
 
 <c:choose>
@@ -57,7 +57,7 @@
 
                     <div class="control-group">
                         <div class="controls">
-                                <%-- Show the 'Add Employee' button if this is a new employee, otherwise show the update/delete buttons --%>
+                            <%-- Show the 'Add Employee' button if this is a new employee, otherwise show the update/delete buttons --%>
                             <c:choose>
                                 <c:when test="${empty employee.id}">
                                     <button type="submit" name="save" class="btn btn-primary">Add Employee</button>

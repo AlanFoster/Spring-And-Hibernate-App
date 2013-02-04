@@ -1,4 +1,4 @@
-package me.alanfoster.application.controllers.notification.config;
+package me.alanfoster.application.controllers.help.config;
 
 import me.alanfoster.application.controllers.core.config.RequestMappingConfig;
 
@@ -15,12 +15,12 @@ import me.alanfoster.application.controllers.core.config.RequestMappingConfig;
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public enum NotificationRequestMappingConfig implements RequestMappingConfig {
-    Notification("/formResult");
+public enum HelpRequestMappingConfig implements RequestMappingConfig {
+    Help("/help");
 
     private String value;
 
-    NotificationRequestMappingConfig(String value) {
+    HelpRequestMappingConfig(String value) {
         this.value = value;
     }
 

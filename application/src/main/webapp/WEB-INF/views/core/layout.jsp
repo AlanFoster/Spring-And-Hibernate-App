@@ -14,7 +14,8 @@
 </head>
 <body>
 
-<%-- Extract the variable for which page should be highlighted, which will be used later in a ternary operator on the menu items --%>
+<%-- Extract the variable for which menu item should be highlighted
+     This is used later in a ternary operator on the menu items to decide the class --%>
 <c:set var="highlightedPage"><tiles:getAsString name="highlightedPage"/></c:set>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
@@ -28,7 +29,7 @@
 
             <div class="pull-right">
                 <ul class="nav pull-right">
-                    <li class="${highlightedPage == 'help' ? 'active' : ''}"><a href="/#help" title="Need Help?"><i class="icon-question-sign"></i> Help</a></li>
+                    <li class="${highlightedPage == 'help' ? 'active' : ''}"><a href="/help" title="Need Help?"><i class="icon-question-sign"></i> Help</a></li>
                 </ul>
             </div>
         </div>
