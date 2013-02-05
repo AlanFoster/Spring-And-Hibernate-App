@@ -5,8 +5,10 @@ Feature: Enterprise Application Integration
 
   Scenario: Placing legacy XML into the 'drop folder' and interacting with the employee webservice with a success
     Given there is an employee webservice
+    And the drop folder is empty
     When I drop the following XML payload into the drop folder
     """
+    <?xml version="1.0" encoding="UTF-8"?>
     <foo:people xmlns:foo="http://www.foobarbaz.com/">
         <foo:persons>
             <foo:name content="Helen_Bevilacqua"/>
@@ -25,33 +27,35 @@ Feature: Enterprise Application Integration
         </foo:persons>
     </foo:people>
     """
-    Then the employee webservice will be called with the following employee details
-      | firstName | secondName | jobId | jobTitle   | deskId |
-      | Helen     | Bevilacqua | 6     | Tester     | 1      |
-      | Darren    | Tawil      | 3     | Engineer   | 2      |
-      | Allan     | Motyka     | 2     | Operations | 3      |
+    Then the employee webservice will now have the following employee details
+      | id | firstName | secondName | jobId | jobTitle   | deskId |
+      | 1  | Helen     | Bevilacqua | 6     | Tester     | 1      |
+      | 2  | Darren    | Tawil      | 3     | Engineer   | 2      |
+      | 3  | Allan     | Motyka     | 2     | Operations | 3      |
     And the output folder will contain an xml file
     And the xml result file will contain a successful response
 
 
+  @Ignore
   Scenario: Placing blank legacy XML into the 'drop folder' and interacting with the employee webservice with a success
     Given there is an employee webservice
+    And the drop folder is empty
     When I drop the following XML payload into the drop folder
     """
+    <?xml version="1.0" encoding="UTF-8"?>
     <foo:people xmlns:foo="http://www.foobarbaz.com/" />
     """
-    Then the employee webservice will be called with the following employee details
-      | firstName | secondName | jobId | jobTitle   | deskId |
-      | Helen     | Bevilacqua | 6     | Tester     | 1      |
-      | Darren    | Tawil      | 3     | Engineer   | 2      |
-      | Allan     | Motyka     | 2     | Operations | 3      |
+    Then the employee webservice will no employee details
     And the result will contain be a success
     And the failed employee list will be empty
 
+  @Ignore
   Scenario: Ensuring the batch completes ignoring single failures
     Given there is an employee webservice
+    And the drop folder is empty
     When I drop the following XML payload into the drop folder
     """
+    <?xml version="1.0" encoding="UTF-8"?>
     <foo:people xmlns:foo="http://www.foobarbaz.com/">
         <foo:persons>
             <foo:name content="Helen_Bevilacqua"/>
@@ -70,10 +74,9 @@ Feature: Enterprise Application Integration
         </foo:persons>
     </foo:people>
     """
-    Then the employee webservice will be called with the following employee details
-      | firstName | secondName | jobId | jobTitle   | deskId |
-      | Helen     | Bevilacqua | 6     | Tester     | 1      |
-      | Darren    | Tawil      | 3     | Engineer   | 2      |
-      | Allan     | Motyka     | 2     | Operations | 3      |
+    Then the employee webservice will now have the following employee details
+      | id | firstName | secondName | jobId | jobTitle   | deskId |
+      | 1  | Helen     | Bevilacqua | 6     | Tester     | 1      |
+      | 3  | Darren    | Tawil      | 3     | Engineer   | 2      |
     And the xml result file will contain an unsuccessful response
     And the xml result will contain one failed employee

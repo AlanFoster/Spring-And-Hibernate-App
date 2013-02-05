@@ -11,13 +11,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.unitils.reflectionassert.ReflectionComparatorMode;
 import org.unitils.thirdparty.org.apache.commons.io.FileUtils;
 
 import javax.sql.DataSource;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.List;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 /**
  * @author Alan Foster
@@ -26,6 +30,7 @@ import static junit.framework.Assert.assertNotNull;
 public class StepDefs {
     /**
      * Basic SLF4J logger
+     *
      * @See {@link http://www.slf4j.org/}
      */
     private static final Logger logger = LoggerFactory.getLogger(StepDefs.class);
@@ -43,11 +48,20 @@ public class StepDefs {
     private String dropBoxOutput;
 
     private String inputFileName;
+    private File outputFile;
+
+    @Autowired
+    private IBatchProcessor batchProcessor;
 
     @Given("^there is an employee webservice$")
     public void there_is_an_employee_webservice() throws Throwable {
         // Autowired
         assertNotNull("Employee web service should not be null", employeeWebservice);
+    }
+
+    @Given("^the drop folder is empty$")
+    public void the_drop_folder_is_empty() throws Exception {
+        FileUtils.deleteDirectory(new File(dropBoxInput));
     }
 
     @When("^I drop the following XML payload into the drop folder$")
@@ -59,18 +73,24 @@ public class StepDefs {
         FileUtils.copyFileToDirectory(inputFile, new File(dropBoxInput));
 
         // Kick off the EAI process manually
-
+        batchProcessor.poll();
     }
 
-
-    @Then("^the employee webservice will be called with the following employee details$")
-    public void the_employee_webservice_will_be_called_with_the_following_employee_details(List<FlatEmployee> flatEmployees) throws Throwable {
+    @Then("^the employee webservice will now have the following employee details$")
+    public void the_employee_webservice_will_now_have_the_following_employee_details(List<FlatEmployee> flatEmployees) throws Throwable {
         List<IEmployee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsIEmployee(flatEmployees);
-
+        List<Employee> actualEmployees = employeeWebservice.getAllEmployees();
+        // Assert the expected and returned lists are equal in any order
+        assertReflectionEquals(expectedEmployees, actualEmployees, ReflectionComparatorMode.LENIENT_ORDER);
     }
 
     @Then("^the output folder will contain an xml file$")
     public void the_output_folder_will_contain_an_xml_file() throws Throwable {
+        File[] files = new File(dropBoxOutput).listFiles();
+        assertEquals("The output directory should contain one file", files.length, 1);
+
+        outputFile = files[0];
+        assertEquals("The file should have the same input file name", outputFile.getName(), inputFileName);
     }
 
     @Then("^the xml result file will contain a successful response$")

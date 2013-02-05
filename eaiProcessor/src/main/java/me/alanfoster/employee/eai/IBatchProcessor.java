@@ -1,5 +1,8 @@
 package me.alanfoster.employee.eai;
 
+import me.alanfoster.employee.webservice.IEmployeeWebservice;
+import me.alanfoster.services.employee.models.IEmployee;
+
 /**
  * Implements a basic EAI (Enterprise Application Integration) pattern
  * Which picks up a file from a drop box, interacts with a webservice
@@ -14,7 +17,7 @@ package me.alanfoster.employee.eai;
 public interface IBatchProcessor {
     /**
      * Polls the required input folder.
-     * The input folder to check will be set by the setInputDropBox method within this interface
+     * The input folder to check will be set by the setDropBoxInput method within this interface
      */
     void poll();
 
@@ -22,12 +25,17 @@ public interface IBatchProcessor {
      * Set the input dropbox location
      * @param input The string location
      */
-    void setInputDropBox(String input);
+    void setDropBoxInput(String input);
 
     /**
      * Set the output (Result) dropbox location
      * @param output The string location
      */
-    void setOutputDropBox(String output);
+    void setDropBoxOutput(String output);
 
+    /**
+     * Set the webservice instance that the batch processor should interact with
+     * @param employeeWebservice The webservice to interact with
+     */
+    void setEmployeeWebservice(IEmployeeWebservice employeeWebservice);
 }

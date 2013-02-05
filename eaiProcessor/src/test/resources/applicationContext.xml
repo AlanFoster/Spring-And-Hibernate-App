@@ -28,13 +28,6 @@
         </property>
     </bean>
 
-    <!-- Allow spring to load all components from our controllers package -->
-    <context:component-scan base-package="me.alanfoster.services"/>
-
-    <!-- Scan classes for annotations - In particular @Required and @Autowired -->
-    <context:annotation-config />
-    <!-- Handle @Transaction annotations -->
-    <tx:annotation-driven />
 
     <!-- Application Config property placeholder -->
     <bean id="eaiConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -45,6 +38,15 @@
             </list>
         </property>
     </bean>
+
+    <!-- Allow spring to load all components from our controllers package -->
+    <context:component-scan base-package="me.alanfoster"/>
+
+    <!-- Scan classes for annotations - In particular @Required and @Autowired -->
+    <context:annotation-config />
+    <!-- Handle @Transaction annotations -->
+    <tx:annotation-driven />
+
 
     <!-- Wire up our the webservice beans -->
     <import resource="classpath:webservice-context.xml" />
@@ -65,4 +67,10 @@
     <!-- CXF client -->
     <jaxws:client id="webserviceClient" serviceClass="me.alanfoster.employee.webservice.IEmployeeWebservice" address="http://localhost:8090/EmployeeWebservice?wsdl" />
 
+    <!-- Manually create an instance of the BathProcessor, and inject the dropBox locations -->
+    <bean id="batchProcessor" class="me.alanfoster.employee.eai.BatchProcessor">
+        <property name="dropBoxInput" value="${dropBox.input}"/>
+        <property name="dropBoxOutput" value="${dropBox.output}" />
+        <property name="employeeWebservice" ref="webserviceClient" />
+    </bean>
 </beans>

@@ -21,17 +21,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <!-- The port number to expose the `mvn jetty:run` instance on -->
-        <webservice.port>8090</webservice.port>
-        <!-- The location of the webservice -->
-        <webservice.className>me.alanfoster.employee.webservice.EmployeeWebservice</webservice.className>
-
-        <!-- Dependency Versions -->
-        <spring.version>3.1.0.RELEASE</spring.version>
-        <cxf.version>2.7.0</cxf.version>
-
-        <warplugin.version>2.1</warplugin.version>
     </properties>
 
     <dependencies>
@@ -85,9 +74,19 @@
             <type>test-jar</type>
             <classifier>tests</classifier>
         </dependency>
+
+        <!-- Dom4j parser -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.4</version>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
-
-
-
 
 </project>
