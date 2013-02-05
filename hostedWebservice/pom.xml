@@ -16,7 +16,7 @@
     <packaging>war</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>Employee MVC Hosted WebService</name>
+    <name>Employee Application Hosted WebService</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

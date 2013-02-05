@@ -16,7 +16,7 @@
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>Employee Service</name>
+    <name>Employee Application Service</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -28,6 +28,8 @@
         <taglibs.version>1.1.2</taglibs.version>
         <tiles.version>2.2.2</tiles.version>
         <hibernate.version>3.3.2.GA</hibernate.version>
+        <mysql.version>5.1.22</mysql.version>
+        <hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
     </properties>
 
     <dependencies>
@@ -75,7 +77,14 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>4.2.0.Final</version>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
+
+        <!-- Database Dependencies -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -15,7 +15,7 @@
     <artifactId>dependencies</artifactId>
     <packaging>pom</packaging>
 
-    <name>Employee MVC Application Dependencies</name>
+    <name>Employee Application Dependencies</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
