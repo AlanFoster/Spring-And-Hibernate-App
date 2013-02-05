@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.annotation.DirtiesContext;
 
 /**
- * Sets up the test runner for the Cucumber JVM behaviour tests
+ * Sets up the test runner for the Cucumber JVM Integration/Behaviour tests
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
@@ -16,5 +16,5 @@ import org.springframework.test.annotation.DirtiesContext;
         glue = {"me"},
         format = {"pretty", "html:target/cucumber"}
 )
-public class CucumberTests {
+public class Cucumber_IT {
 }

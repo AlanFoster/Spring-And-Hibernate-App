@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This application context is automatically called when the cucumber-spring dependency has been added
+    NOTE :: Do not edit this directly, it is recommended to edit the applicationContext.xml file instead.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    ">
+
+    <!-- Component scan cucumber jvm -->
+    <context:component-scan base-package="cucumber.runtime.java.spring"/>
+    <context:annotation-config/>
+
+    <!-- Search the classpath for applicationContext (Read document header) -->
+    <import resource="classpath:/applicationContext.xml"/>
+
+</beans>

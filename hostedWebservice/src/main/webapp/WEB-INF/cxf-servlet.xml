@@ -1,5 +1,4 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:jaxws="http://cxf.apache.org/jaxws"
        xsi:schemaLocation="
@@ -11,7 +10,7 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-   <import resource="classpath:webservice-context.xml" />
+    <import resource="classpath:webservice-context.xml" />
 
     <!-- Instantiate the jax-webservice endpoint -->
     <jaxws:endpoint id="employeeWebservice" implementor="me.alanfoster.employee.webservice.EmployeeWebservice" address="/EmployeeWebservice"/>

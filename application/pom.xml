@@ -79,23 +79,6 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- Core CXF dependencies used for hosting/consuming webservices -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
-        <!-- Jetty is needed if you're are not using the CXFServlet -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
 
         <!-- Apache Tiles Dependencies -->
         <dependency>

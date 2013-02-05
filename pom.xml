@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>Employee MVC Application</name>
+    <name>Employee Application Root</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,6 +31,7 @@
 		<module>employeeService</module>
 		<module>webservice</module>
 		<module>hostedWebservice</module>
+        <module>eaiProcessor</module>
     </modules>
 
     <!-- Include some of the specific repositories used to host our maven dependencies -->
@@ -51,6 +52,7 @@
         </repository>
     </repositories>
 
+
     <build>
         <defaultGoal>install</defaultGoal>
 
@@ -65,6 +67,24 @@
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
+
+            <!-- Run the cucumber integration tests as part of the build verify/integration-test lifecycle
+                Useful Link : http://docs.codehaus.org/display/MAVENUSER/Maven+and+Integration+Testing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.12</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
 </project>

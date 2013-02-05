@@ -4,6 +4,9 @@ import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
 import me.alanfoster.services.employee.models.impl.Job;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a basic model for the representing an Employee during cucumber tests
  * Note, this is a <em>flat</em> representation of an employee and not the actual 'IEmployee' object
@@ -98,6 +101,19 @@ public class FlatEmployee {
         employee.setJob(job);
 
         return employee;
+    }
+
+    /**
+     * Used to convert a list of flat employees into a list of IEmployee
+     * @param employeeDataTable The datatable to convert
+     * @return The list of non-flat employees
+     */
+    public static List<IEmployee> getEmployeeDataTableAsIEmployee(List<FlatEmployee> employeeDataTable) {
+        List<IEmployee> employeeList = new ArrayList<IEmployee>(employeeDataTable.size());
+        for(FlatEmployee flatEmployee : employeeDataTable) {
+            employeeList.add(flatEmployee.getAsEmployee());
+        }
+        return employeeList;
     }
 
 

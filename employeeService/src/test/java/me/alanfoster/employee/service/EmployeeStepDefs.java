@@ -25,6 +25,10 @@ import java.util.List;
  * @version 1.0.0-SNAPSHOT
  */
 public class EmployeeStepDefs {
+    /**
+     * Basic SLF4J logger
+     * @See {@link http://www.slf4j.org/}
+     */
     private static final Logger logger = LoggerFactory.getLogger(EmployeeStepDefs.class);
 
     @Autowired

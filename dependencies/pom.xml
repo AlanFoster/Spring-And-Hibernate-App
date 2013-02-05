@@ -26,6 +26,6 @@
 		<module>testing</module>
         <module>logging</module>
         <module>spring</module>
+        <module>cxf</module>
     </modules>
-
 </project>

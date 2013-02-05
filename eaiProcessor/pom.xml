@@ -12,11 +12,11 @@
     </parent>
 
     <groupId>me.alanfoster.employee</groupId>
-    <artifactId>hostedWebservice</artifactId>
-    <packaging>war</packaging>
+    <artifactId>eai</artifactId>
+    <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>Employee Application Hosted WebService</name>
+    <name>Employee Application EAI</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,20 +24,31 @@
 
         <!-- The port number to expose the `mvn jetty:run` instance on -->
         <webservice.port>8090</webservice.port>
+        <!-- The location of the webservice -->
+        <webservice.className>me.alanfoster.employee.webservice.EmployeeWebservice</webservice.className>
 
         <!-- Dependency Versions -->
-        <spring.version>3.2.0.RELEASE</spring.version>
+        <spring.version>3.1.0.RELEASE</spring.version>
+        <cxf.version>2.7.0</cxf.version>
+
         <warplugin.version>2.1</warplugin.version>
     </properties>
 
     <dependencies>
-        <!-- Include the employee webservice classes on our classpath
-             We could have of course used the wsdl and generated the pojo classes with a maven wsdl2java goal too -->
+        <!-- Include the hosted employee webservice-->
         <dependency>
             <groupId>me.alanfoster.employee</groupId>
             <artifactId>webservice</artifactId>
             <version>${project.version}</version>
             <type>jar</type>
+        </dependency>
+
+        <!-- References our dependencies pom folder for logging -->
+        <dependency>
+            <groupId>me.alanfoster.employee.dependencies</groupId>
+            <artifactId>logging</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
         </dependency>
 
         <!-- References our dependencies pom folder for spring -->
@@ -48,6 +59,15 @@
             <type>pom</type>
         </dependency>
 
+        <!-- References our dependencies pom folder for tests -->
+        <dependency>
+            <groupId>me.alanfoster.employee.dependencies</groupId>
+            <artifactId>tests</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+
         <!-- References our dependencies pom folder for cxf -->
         <dependency>
             <groupId>me.alanfoster.employee.dependencies</groupId>
@@ -55,39 +75,19 @@
             <version>${project.version}</version>
             <type>pom</type>
         </dependency>
+
+        <!-- Import all of the service's test classes to be reused by this artifact-->
+        <dependency>
+            <groupId>me.alanfoster.employee</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
+            <scope>tests</scope>
+            <type>test-jar</type>
+            <classifier>tests</classifier>
+        </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${warplugin.version}</version>
-                <configuration>
-                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
-                </configuration>
-            </plugin>
 
-            <!-- Jetty Plugin -->
-            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>${jetty.version}</version>
-                <configuration>
-                    <webAppSourceDirectory>${project.build.directory}/${project.name}-${project.version}</webAppSourceDirectory>
-                    <scanIntervalSeconds>1</scanIntervalSeconds>
-                    <useTestScope>true</useTestScope>
-                    <webAppConfig>
-                        <contextPath>${jetty.contextPath}</contextPath>
-                    </webAppConfig>
-                    <connectors>
-                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                            <port>${webservice.port}</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
-                </configuration>
-            </plugin>
-        </plugins>
-        <finalName>HostedEmployeeWebservice</finalName>
-    </build>
+
+
 </project>

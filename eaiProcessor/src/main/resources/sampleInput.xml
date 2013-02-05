@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Example of poor quality XML input; Un-normalised XML input with a different namespace, yuck! -->
+<foo:people xmlns:foo="http://www.foobarbaz.com/">
+    <foo:persons>
+        <foo:name content="Helen_Bevilacqua"/>
+        <foo:job id="6" title="Tester"/>
+        <foo:desk>1</foo:desk>
+    </foo:persons>
+    <foo:persons>
+        <foo:name content="Darren_Tawil"/>
+        <foo:job id="3" title="Engineer"/>
+        <foo:desk>2</foo:desk>
+    </foo:persons>
+    <foo:persons>
+        <foo:name content="Allan_Motyka"/>
+        <foo:job id="2" title="Operations"/>
+        <foo:desk>3</foo:desk>
+    </foo:persons>
+</foo:people>
