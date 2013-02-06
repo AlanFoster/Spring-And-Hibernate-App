@@ -1,5 +1,6 @@
 package me.alanfoster.employee.eai;
 
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -38,9 +39,6 @@ public class StepDefs {
     @Autowired
     private IEmployeeWebservice employeeWebservice;
 
-    @Autowired
-    private DataSource dataSource;
-
     @Value("${dropBox.input}")
     private String dropBoxInput;
 
@@ -53,15 +51,28 @@ public class StepDefs {
     @Autowired
     private IBatchProcessor batchProcessor;
 
+    @Autowired
+    private DataSource dataSource;
+
+    @Before
+    public void startUp() {
+        System.out.println(dataSource);
+    }
+
     @Given("^there is an employee webservice$")
     public void there_is_an_employee_webservice() throws Throwable {
         // Autowired
         assertNotNull("Employee web service should not be null", employeeWebservice);
     }
 
-    @Given("^the drop folder is empty$")
-    public void the_drop_folder_is_empty() throws Exception {
+    @Given("^the drop input folder is empty$")
+    public void the_drop_input_folder_is_empty() throws Exception {
         FileUtils.deleteDirectory(new File(dropBoxInput));
+    }
+
+    @Given("^the drop output folder is empty$")
+    public void the_drop_output_folder_is_empty() throws Exception {
+        FileUtils.deleteDirectory(new File(dropBoxOutput));
     }
 
     @When("^I drop the following XML payload into the drop folder$")
@@ -87,6 +98,7 @@ public class StepDefs {
     @Then("^the output folder will contain an xml file$")
     public void the_output_folder_will_contain_an_xml_file() throws Throwable {
         File[] files = new File(dropBoxOutput).listFiles();
+        assertNotNull("The output directory should exist", files);
         assertEquals("The output directory should contain one file", files.length, 1);
 
         outputFile = files[0];

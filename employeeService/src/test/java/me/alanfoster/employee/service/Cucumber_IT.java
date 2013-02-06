@@ -13,7 +13,7 @@ import org.springframework.test.annotation.DirtiesContext;
 @RunWith(Cucumber.class)
 @Cucumber.Options(
         tags = "~@Ignore",
-        glue = {"me"},
+        glue = {"me.alanfoster.employee.eai"},
         format = {"pretty", "html:target/cucumber"}
 )
 public class Cucumber_IT {

@@ -11,23 +11,6 @@
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
     ">
 
-    <!-- Create an in memory database used for testing
-         Note, jdbc:embedded-datasource was not usable as it didn't support the 'scope' attribute,
-         which is needed for Cucumber tests for clearing down state which might affect other tests -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean" scope="cucumber-glue">
-        <property name="databaseType" value="H2"/>
-        <property name="databasePopulator">
-            <bean class="org.springframework.jdbc.datasource.init.ResourceDatabasePopulator">
-                <property name="scripts">
-                    <list>
-                        <value>classpath:sql/rollback.sql</value>
-                        <value>classpath:sql/db-schema.sql</value>
-                    </list>
-                </property>
-            </bean>
-        </property>
-    </bean>
-
 
     <!-- Application Config property placeholder -->
     <bean id="eaiConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -47,9 +30,11 @@
     <!-- Handle @Transaction annotations -->
     <tx:annotation-driven />
 
+    <!-- Import the in memory datasource, instead of the mysqlDataSourceBeans -->
+    <import resource="classpath:inMemoryDataSourceBeans.xml" />
 
-    <!-- Wire up our the webservice beans -->
-    <import resource="classpath:webservice-context.xml" />
+    <!-- Import the core hibernate files -->
+    <import resource="classpath:hibernateCoreBeans.xml" />
 
     <!--
         Create the CXF client/server ourselves for testing purposes
@@ -59,10 +44,9 @@
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <import resource="classpath:webservice-context.xml" />
 
     <!-- Instantiate the jax-webservice endpoint -->
-    <jaxws:endpoint implementor="me.alanfoster.employee.webservice.EmployeeWebservice" address="/EmployeeWebservice"/>
+    <jaxws:endpoint implementor="me.alanfoster.employee.webservice.EmployeeWebservice" address="http://localhost:8090/EmployeeWebservice"/>
 
     <!-- CXF client -->
     <jaxws:client id="webserviceClient" serviceClass="me.alanfoster.employee.webservice.IEmployeeWebservice" address="http://localhost:8090/EmployeeWebservice?wsdl" />

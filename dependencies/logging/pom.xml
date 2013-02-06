@@ -20,7 +20,7 @@
 
     <properties>
         <!-- Dependency Versions -->
-        <logging.version>1.5.8</logging.version>
+        <logging.version>1.6.2</logging.version>
     </properties>
 
     <!-- Define all of the common logging  dependencies for this application -->

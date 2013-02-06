@@ -8,18 +8,21 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- Allow spring to load all components from our controllers package -->
-    <context:component-scan base-package="me.alanfoster.services"/>
+    <!-- Application Config property placeholder -->
+    <bean id="config" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" primary="" >
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
 
-    <!-- Scan classes for annotations - In particular @Required and @Autowired -->
-    <context:annotation-config />
-    <!-- Handle @Transaction annotations -->
-    <tx:annotation-driven />
-
-    <!-- Import the in memory datasource, instead of the mysqlDataSourceBeans -->
-    <import resource="classpath:inMemoryDataSourceBeans.xml" />
-
-    <!-- Import the core hibernate files -->
-    <import resource="classpath:hibernateCoreBeans.xml" />
+    <!-- Create the datasource (With properties derived from the config property placeholder bean) -->
+    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
 
 </beans>

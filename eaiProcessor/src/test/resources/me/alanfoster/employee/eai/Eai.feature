@@ -5,7 +5,8 @@ Feature: Enterprise Application Integration
 
   Scenario: Placing legacy XML into the 'drop folder' and interacting with the employee webservice with a success
     Given there is an employee webservice
-    And the drop folder is empty
+    And the drop input folder is empty
+    And the drop output folder is empty
     When I drop the following XML payload into the drop folder
     """
     <?xml version="1.0" encoding="UTF-8"?>
@@ -39,7 +40,8 @@ Feature: Enterprise Application Integration
   @Ignore
   Scenario: Placing blank legacy XML into the 'drop folder' and interacting with the employee webservice with a success
     Given there is an employee webservice
-    And the drop folder is empty
+    And the drop input folder is empty
+    And the drop output folder is empty
     When I drop the following XML payload into the drop folder
     """
     <?xml version="1.0" encoding="UTF-8"?>
