@@ -14,7 +14,7 @@ In order to install the required dependencies into your local maven repository y
 from the root directory of your project (Once Maven is installed)
 
     mvn install
-	
+    
 When running this install, it should be noted that the tests will automatically run.
 If you don't wish to automatically run these tests then you can use
 
@@ -57,7 +57,7 @@ And the webservice wsdl here :
 Note - As part of the maven build process I have set it up so that the wsdl is generated automatically
 This can be seen at the following location (relative to the root directory)
 
-     \webservice\target\generated\wsdl\EmployeeWebservice.wsdl
+     /webservice/target/generated/wsdl/EmployeeWebservice.wsdl
  
 	
 Running the Web Application 
@@ -69,7 +69,6 @@ To run the main web application you can do so with the following commands
     mvn jetty:run
 
 After deployment is successful you can visit the application at [http://localhost:8080/](http://localhost:8080)
-
 
 Debugging
 ---------
@@ -86,19 +85,22 @@ After running this command you should see the following output
 This means that the application will now be waiting for a remote debugger to attach on port 8000. 
 It is only when the remote debugger has attached will the application continue to deploy
 
+Note; You can also inspect the SLF4J log files which will be outputted to `/target/logs/*.log`
+
 Development
 ------------
 
-- IntelliJ
+- **IntelliJ**
     For an enojoyable developer experience is it recommended to use Intellij :)
-    IntelliJ has great facets for Hibernate and Spring, so make sure you wire them up!
-    (Included in the Useful links section)
+    IntelliJ has great facets for Hibernate and Spring, so make sure you wire them up! (Tutorial Included in the Useful links section)
 
-- Eclipse
+- **Eclipse**
     You can of course use Eclipse too, but you'll probably want to make life easier by setting up the facets manually.
+   
     Some useful plugins for Eclipse are 
-	     - m2e - Maven Integration plugin
-		 - WTP - Supports automatically handling of web facets
+	     
+    - *m2e* - Maven Integration plugin
+	- *WTP* - Supports automatically handling of web facets
 		 
 You can also use the following commands to get you started, YMMV
 
@@ -111,11 +113,9 @@ Or
 Test Suite
 -------
 
-This project makes use of [CucumberJVM](https://github.com/cucumber/cucumber-jvm) in order to run Behaviour tests written
-in Gherkin syntax.
+This project makes use of [CucumberJVM](https://github.com/cucumber/cucumber-jvm) in order to run Behaviour tests written in Gherkin syntax.
 
-Currently these tests are hooked up to run during the maven verify/integration-tests stage. Currently these tests also
-log during maven install.
+Currently these tests are hooked up to run during the maven verify/integration-tests stage. Currently these tests also log during maven install.
 
 To see the results of the tests, they can be found under
 
@@ -125,8 +125,7 @@ For example, the EAI testing will be under
 
     eaiProcessor\target\cucumber
 	
-The application itself also has some basic Selenium tests which will take screenshots during the steps, these have also
-been written with Gherkin
+The application itself also has some basic Selenium tests which will take screenshots during the steps, these have also been written with Gherkin
 
 Useful Links
 ------------
