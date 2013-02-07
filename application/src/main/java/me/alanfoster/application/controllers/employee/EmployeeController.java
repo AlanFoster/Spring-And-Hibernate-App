@@ -93,7 +93,6 @@ public class EmployeeController {
      * @param result
      * @return The redirect to follow - employees.html
      */
-    // TODO Use Validation annotations
     @RequestMapping(value = "/employees/add", method = RequestMethod.POST)
     public String addEmployeePost(@Valid @ModelAttribute("employee") Employee employee, BindingResult result) {
         logger.info("Received post request for //employees/add");

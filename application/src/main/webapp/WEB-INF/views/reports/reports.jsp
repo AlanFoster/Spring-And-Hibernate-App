@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="tab-pane" id="totalEmployees">
-            <p>Total Employees</p>
+            <p>TODO if I have time.</p>
         </div>
     </div>
 </div>

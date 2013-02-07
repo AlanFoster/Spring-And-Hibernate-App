@@ -8,6 +8,8 @@ basic CRUD (Create, Read, Update, Delete) operations
 Getting Started
 ---------------
 
+#####Installing/Building####
+
 This project uses [Maven](http://maven.apache.org/) for all of its building and dependency management
 
 In order to install the required dependencies into your local maven repository you can run the following command
@@ -29,6 +31,20 @@ This application is targeted to run under java 1.6
 This application is also targeted to run under modern browsers - Firefox/Chrome are best suited for this application
 
 Please also read the dependencies markdown file when developing too :)
+
+#####Database#####
+
+After you have installed maven you will then need to set up your database;
+This application works with MySql by default with a database name of 'employee' - But is configurable by changing jdbc.properties
+
+The install scripts can be found at 
+
+    /employeeService/src/main/resources/sql/db-schema.sql
+
+And the rollback script can be found at 
+
+    /employeeService/src/main/resources/sql/rollback.sql
+	
 	
 Hosting the Webservice
 ----------------------
@@ -126,6 +142,9 @@ For example, the EAI testing will be under
     eaiProcessor\target\cucumber
 	
 The application itself also has some basic Selenium tests which will take screenshots during the steps, these have also been written with Gherkin
+
+As far as possible I used integration testing; So I have used a real in memory database which executes the same install and rollback scripts 
+that would be ran on a production server, which has worked out really great and saved a lot of potential issues
 
 Useful Links
 ------------
