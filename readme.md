@@ -23,6 +23,12 @@ If you don't wish to automatically run these tests then you can use
 This application also makes use of a Jetty maven plugin in order to host the Webservice and Application;
 This will be the quickest way to get the application up and running - However, as a simple war is created during
 the mvn install process it's also very easy to deploy into different containers!
+
+This application is targeted to run under java 1.6
+
+This application is also targeted to run under modern browsers - Firefox/Chrome are best suited for this application
+
+Please also read the dependencies markdown file when developing too :)
 	
 Hosting the Webservice
 ----------------------
@@ -85,14 +91,14 @@ Development
 
 - IntelliJ
     For an enojoyable developer experience is it recommended to use Intellij :)
-    IntelliJ has great facets for Hibernate and Spring, so make sure you wire them up! (Included in the Useful links section)
+    IntelliJ has great facets for Hibernate and Spring, so make sure you wire them up!
+    (Included in the Useful links section)
 
 - Eclipse
     You can of course use Eclipse too, but you'll probably want to make life easier by setting up the facets manually.
     Some useful plugins for Eclipse are 
 	     - m2e - Maven Integration plugin
 		 - WTP - Supports automatically handling of web facets
-		 
 		 
 You can also use the following commands to get you started, YMMV
 
@@ -105,9 +111,11 @@ Or
 Test Suite
 -------
 
-This project makes use of [CucumberJVM](https://github.com/cucumber/cucumber-jvm) in order to run Behaviour tests written in Gherkin syntax.
+This project makes use of [CucumberJVM](https://github.com/cucumber/cucumber-jvm) in order to run Behaviour tests written
+in Gherkin syntax.
 
-Currently these tests are hooked up to run during the maven verify/integration-tests stage. Currently the tests log during maven install.
+Currently these tests are hooked up to run during the maven verify/integration-tests stage. Currently these tests also
+log during maven install.
 
 To see the results of the tests, they can be found under
 
@@ -116,6 +124,9 @@ To see the results of the tests, they can be found under
 For example, the EAI testing will be under 
 
     eaiProcessor\target\cucumber
+	
+The application itself also has some basic Selenium tests which will take screenshots during the steps, these have also
+been written with Gherkin
 
 Useful Links
 ------------

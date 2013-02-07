@@ -3,7 +3,8 @@ Maven Dependency Poms
 
 This folder/module is used for storing logically grouped dependencies that will be reused many times in this application.
 
-The maven packaging type for these poms is 'pom', IE, they build no jar/wars, but when referenced can be used to import the jars as expected.
+The maven packaging type for these poms is 'pom', IE, they build no jar/wars, but when referenced can be used to import
+the jars as expected.
 
 To use one of these dependencies you should reference it in your module like so
 
@@ -21,7 +22,8 @@ To use one of these dependencies you should reference it in your module like so
 Testing Dependencies
 --------------------
 
-If you are using one of these core pom files for testing then you should still supply the scope element and set it to 'test' as normal
+If you are using one of these core pom files for testing then you should still supply the scope element and set it to
+'test' as normal
 
 For example
 
@@ -38,4 +40,5 @@ For example
 Why?
 ----
 
-I have created this collection of 'Master Depdencies' in order to reduce the amount of duplicated dependency blocks for DRY purposes, and to avoid the potential versioning hell that always happens :)
+I have created this collection of 'Master Depdencies' in order to reduce the amount of duplicated dependency blocks for
+DRY purposes, and to avoid the potential versioning hell that always happens :)

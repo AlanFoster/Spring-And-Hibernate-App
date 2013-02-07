@@ -31,10 +31,8 @@
         <taglibs.version>1.1.2</taglibs.version>
         <tiles.version>2.2.2</tiles.version>
         <hibernate.version>3.3.2.GA</hibernate.version>
-        <logging.version>1.5.8</logging.version>
         <selenium.version>2.28.0</selenium.version>
         <xerces.version>2.9.1</xerces.version>
-        <cxf.version>2.7.1</cxf.version>
         <jackson.version>1.7.1</jackson.version>
     </properties>
 
