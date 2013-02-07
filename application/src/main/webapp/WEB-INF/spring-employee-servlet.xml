@@ -55,36 +55,14 @@
         <property name="locations">
             <list>
                 <value>classpath:core.properties</value>
-                <value>classpath:employeeWebservice.properties</value>
+                <value>classpath:employeewebservice.properties</value>
                 <value>classpath:jdbc.properties</value>
             </list>
         </property>
     </bean>
 
-    <!-- Create the datasource (With properties derived from the config property placeholder bean) -->
-    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
-
-    <!-- Hibernate Session Factory Configuration -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
-        <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">${jdbc.dialect}</prop>
-                <prop key="hibernate.show_sql">true</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+    <!-- Import the service context -->
+    <import resource="classpath:service-context.xml" />
 
     <jaxws:client id="employeeWebserviceClient" serviceClass="me.alanfoster.employee.webservice.IEmployeeWebservice" address="http://localhost:8090/EmployeeWebservice?wsdl" />
 </beans>

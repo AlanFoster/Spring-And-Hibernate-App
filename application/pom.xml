@@ -70,13 +70,20 @@
             <type>pom</type>
         </dependency>
 
+        <!-- References our dependencies pom folder for cxf -->
+        <dependency>
+            <groupId>me.alanfoster.employee.dependencies</groupId>
+            <artifactId>cxf</artifactId>
+            <version>${project.version}</version>
+            <type>pom</type>
+        </dependency>
+
         <!-- Get the additional spring dependencies for spring mvc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-
 
         <!-- Apache Tiles Dependencies -->
         <dependency>

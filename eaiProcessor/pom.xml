@@ -21,6 +21,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <logging.version>1.6.2</logging.version>
     </properties>
 
     <dependencies>
@@ -32,12 +34,20 @@
             <type>jar</type>
         </dependency>
 
-        <!-- References our dependencies pom folder for logging -->
+        <!-- Note, we can't reference our dependencies pom folder for logging as cxf needs a newer version of slf4j-->
         <dependency>
-            <groupId>me.alanfoster.employee.dependencies</groupId>
-            <artifactId>logging</artifactId>
-            <version>${project.version}</version>
-            <type>pom</type>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${logging.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${logging.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
         </dependency>
 
         <!-- References our dependencies pom folder for spring -->
