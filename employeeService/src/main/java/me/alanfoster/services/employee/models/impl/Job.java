@@ -41,12 +41,6 @@ public class Job {
         this.jobTitle = jobTitle;
     }
 
-    public static Job findJob(Integer jobId) {
-        Job job = new Job();
-        job.setJobId(jobId);
-        return job;
-    }
-
     @Override
     public String toString() {
         return "Job{" +

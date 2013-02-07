@@ -8,6 +8,9 @@ import me.alanfoster.employee.service.FlatEmployee;
 import me.alanfoster.employee.webservice.IEmployeeWebservice;
 import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +50,7 @@ public class StepDefs {
 
     private String inputFileName;
     private File outputFile;
+    private Document outputDocument;
 
     @Autowired
     private IBatchProcessor batchProcessor;
@@ -78,7 +82,7 @@ public class StepDefs {
     @When("^I drop the following XML payload into the drop folder$")
     public void I_drop_the_following_XML_payload_into_the_drop_folder(String xml) throws Throwable {
         // Create a temp file and keep track of its name, then place it into the drop box
-        File inputFile = File.createTempFile("input", ".xml");
+        File inputFile = File.createTempFile("batchFile", ".xml");
         inputFileName = inputFile.getName();
         FileUtils.writeStringToFile(inputFile, xml, "UTF-8");
         FileUtils.copyFileToDirectory(inputFile, new File(dropBoxInput));
@@ -103,25 +107,51 @@ public class StepDefs {
 
         outputFile = files[0];
         assertEquals("The file should have the same input file name", outputFile.getName(), inputFileName);
+        String fileContent = FileUtils.readFileToString(outputFile, "UTF-8");
+        outputDocument = DocumentHelper.parseText(fileContent);
     }
 
-    @Then("^the xml result file will contain a successful response$")
-    public void the_xml_result_file_will_contain_a_successful_response() throws Throwable {
+    @Then("^the xml result file will be in a state of '(success|failed)'$")
+    public void the_xml_result_file_will_be_in_a_state_of_success(String expectedState) throws Throwable {
+      assertEquals("The state should be as expected", outputDocument.selectSingleNode("/BatchProcessorResponse/state").getText(), expectedState);
     }
 
-    @Then("^the result will contain be a success$")
-    public void the_result_will_contain_be_a_success() throws Throwable {
+    @Then("^the (successfulEmployees|failedEmployees) list will contain the following$")
+    public void the_successfulEmployees_list_will_contain_the_following(String type, List<FlatEmployee> flatEmployees) throws Throwable {
+        List<IEmployee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsIEmployee(flatEmployees);
+        List<Employee> actualEmployees = type.equals("successfulEmployees") ? getSuccessfullEmployees() : getFailedEmployees();
+
+        // Assert the expected and returned lists are equal in the exact order
+        assertReflectionEquals(expectedEmployees, actualEmployees);
     }
 
-    @Then("^the failed employee list will be empty$")
-    public void the_failed_employee_list_will_be_empty() throws Throwable {
+    @Then("^the successfulEmployees list will be empty$")
+    public void the_failedEmployees_list_will_be_empty() throws Throwable {
+        assertEquals("There should be no failed employees", getSuccessfullEmployees().size(), 0);
     }
 
-    @Then("^the xml result file will contain an unsuccessful response$")
-    public void the_xml_result_file_will_contain_an_unsuccessful_response() throws Throwable {
+
+    @Then("^the failedEmployees list will be empty$")
+    public void the_successfulEmployees_list_will_be_empty() throws Throwable {
+        assertEquals("There should be no failed employees", getFailedEmployees().size(), 0);
     }
 
-    @Then("^the xml result will contain one failed employee$")
-    public void the_xml_result_will_contain_one_failed_employee() throws Throwable {
+    @Then("^the employee webservice will have no employee details$")
+    public void the_employee_webservice_will_have_no_employee_details() throws Throwable {
+        assertEquals("The employee web service should have no employees", employeeWebservice.getAllEmployees().size(), 0);
+    }
+
+    private List<Employee> getSuccessfullEmployees() {
+        return getEmployees("successfulEmployees");
+    }
+
+    private List<Employee> getFailedEmployees() {
+        return getEmployees("failedEmployees");
+    }
+
+    private List<Employee> getEmployees(String type) {
+        List<Element> employeeElements = outputDocument.selectNodes("/BatchProcessorResponse/" + type + "/employee");
+        List<Employee> employees = EmployeeElementHelper.getElementAsEmployee(employeeElements);
+        return employees;
     }
 }

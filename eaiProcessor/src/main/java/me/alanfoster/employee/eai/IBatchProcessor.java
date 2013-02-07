@@ -4,13 +4,10 @@ import me.alanfoster.employee.webservice.IEmployeeWebservice;
 import me.alanfoster.services.employee.models.IEmployee;
 
 /**
- * Implements a basic EAI (Enterprise Application Integration) pattern
+ * Interface for a basic EAI (Enterprise Application Integration) pattern
  * Which picks up a file from a drop box, interacts with a webservice
  * then drops it into the result folder.
- * <br />
- * For anything more advanced it's worth investing time looking into
- * Apache Camel
- *
+
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */

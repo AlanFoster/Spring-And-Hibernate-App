@@ -30,6 +30,10 @@ import java.util.List;
  * <br />
  * For anything more advanced it's worth investing time looking into
  * Apache Camel
+ * <br />
+ * Note :: This specific implementation will carry on processing if
+ * any of the employees fail; And at the end it will produce a response
+ * document with the list of employees which suceeded and failed
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
@@ -91,15 +95,16 @@ public class BatchProcessor implements IBatchProcessor {
         try {
             employeeTuple = processDocument(document);
         } catch(Exception e) {
-            logger.error("Unsuccesfully processed document", e);
-            // create a fail file
-            //Document response = createFailureResonse();
-            // write it
+            logger.error("Unsuccessfully processed document", e);
+            // create a fail file and write it
+            Document response = createFailureResponse();
+            writeResponse(fileName, response);
             return;
         }
 
-        // Create and write success file
-        Document response = createSuccessResponse(employeeTuple);
+        // If any of the employees have failed in the batch then overall we have failed
+        boolean hasFailed = employeeTuple.getItemTwo().size() > 0;
+        Document response = hasFailed ? createFailureResponse(employeeTuple) : createSuccessResponse(employeeTuple);
         writeResponse(fileName, response);
     }
 
@@ -109,6 +114,14 @@ public class BatchProcessor implements IBatchProcessor {
      */
     public Document createFailureResponse() {
         return createResponse(false, null);
+    }
+
+    /**
+     * Create the fail response
+     * @return The failure response
+     */
+    public Document createFailureResponse(Tuple<List<Employee>, List<Employee>> employeeTuple) {
+        return createResponse(false, employeeTuple);
     }
 
     /**
@@ -122,7 +135,7 @@ public class BatchProcessor implements IBatchProcessor {
 
     /**
      * Creates a basic response, consisting of a state and a list of success and unsuccessful employees
-     * @param success True or false, this will afffect the stateElement that is outputted
+     * @param success True or false, this will affect the stateElement that is outputted
      * @param employeeTuple The tuple of employee, where Item1 is success and Item is failed employees
      * @return The document response
      */
@@ -130,15 +143,15 @@ public class BatchProcessor implements IBatchProcessor {
         Document document = DocumentHelper.createDocument();
         Element root = document.addElement("BatchProcessorResponse");
 
-        Element stateElement = root.addElement("state").addText(success ? "success" : "failure");
+        Element stateElement = root.addElement("state").addText(success ? "success" : "failed");
 
         // Add the employees
         if(employeeTuple != null) {
-            List<Employee> succesfulEmployees = employeeTuple.getItemOne();
-            Element successfulEmployeesElement = root.addElement("succesfulEmployees");
-            addEmployeesToElement(successfulEmployeesElement, succesfulEmployees);
+            List<Employee> successfulEmployees = employeeTuple.getItemOne();
+            Element successfulEmployeesElement = root.addElement("successfulEmployees");
+            addEmployeesToElement(successfulEmployeesElement, successfulEmployees);
 
-            List<Employee> failedEmployees = employeeTuple.getItemOne();
+            List<Employee> failedEmployees = employeeTuple.getItemTwo();
             Element failedEmployeesElement = root.addElement("failedEmployees");
             addEmployeesToElement(failedEmployeesElement, failedEmployees);
         }
@@ -154,7 +167,7 @@ public class BatchProcessor implements IBatchProcessor {
      */
     public void addEmployeesToElement(Element parent, List<Employee> employees) {
         for(Employee employee : employees) {
-            parent.add(getEmployeeAsElement(employee));
+            parent.add(EmployeeElementHelper.getEmployeeAsElement(employee));
         }
     }
 
@@ -197,9 +210,10 @@ public class BatchProcessor implements IBatchProcessor {
 
         List<Element> employeeNodes = transformedDocument.selectNodes("/employees/employee");
         for (Element employeeElement : employeeNodes) {
-            Employee employee = getElementAsEmployee(employeeElement);
+            Employee employee = EmployeeElementHelper.getElementAsEmployee(employeeElement);
             try {
-                employeeWebservice.createEmployee(employee);
+                Integer id = employeeWebservice.createEmployee(employee);
+                employee.setId(id);
             } catch(Exception e) {
                 logger.error("Failed adding employee {}", new Object[] { employee }, e);
                 failedEmployees.add(employee);
@@ -212,69 +226,6 @@ public class BatchProcessor implements IBatchProcessor {
         Tuple<List<Employee>, List<Employee>> response =  new Tuple<List<Employee>, List<Employee>>(succeededEmployees, failedEmployees);
         return response;
     }
-
-    /**
-     * Returns an element as an employee
-     * @param element The the element to convert
-     * @return The new employee object
-     */
-    public Employee getElementAsEmployee(Element element) {
-        Employee employee = new Employee();
-        employee.setFirstName(getNodeValueAsText(element, "./firstName"));
-        employee.setSecondName(getNodeValueAsText(element, "./secondName"));
-        employee.setDeskId(getNodeValueAsInteger(element, "./deskId"));
-
-        Job job = new Job();
-        job.setJobId(getNodeValueAsInteger(element, "./job/jobId"));
-        job.setJobTitle(getNodeValueAsText(element, ".//job/jobTitle"));
-
-        employee.setJob(job);
-
-        return employee;
-    }
-
-    /**
-     * Converts an employee to an element
-     * @param employee The employee object
-     * @return The new element object (Not attached to a root element/Document)
-     */
-    public Element getEmployeeAsElement(Employee employee) {
-        Element employeeElement = DocumentHelper.createElement("employee");
-
-        employeeElement.addElement("id").setText(String.valueOf(employee.getId()));
-        employeeElement.addElement("firstName").setText(employee.getFirstName());
-        employeeElement.addElement("secondName").setText(employee.getFirstName());
-        employeeElement.addElement("deskId").setText(String.valueOf(employee.getDeskId()));
-
-        Element jobElement = employeeElement.addElement("job");
-        jobElement.addElement("jobId").setText(String.valueOf(employee.getJob().getJobId()));
-        jobElement.addElement("jobTitle").setText(employee.getJob().getJobTitle());
-
-        return employeeElement;
-    }
-
-
-    /**
-     * Get the node value as a string
-     * @param parent The parent node
-     * @param nodeName The node to get the text of
-     * @return The text in string format
-     */
-    public String getNodeValueAsText(Element parent, String nodeName) {
-        return parent.selectSingleNode(nodeName).getText();
-    }
-
-    /**
-     * Get the node value as an integer.
-     * Note this method intenrally uses Integer.parseInt, IE normal parsing exceptions apply
-     * @param parent The parent node
-     * @param nodeName The node to get the text of
-     * @return The text in integer format
-     */
-    public Integer getNodeValueAsInteger(Element parent, String nodeName) {
-        return Integer.parseInt(getNodeValueAsText(parent, nodeName));
-    }
-
 
     /**
      * Get an XML string as a Document
