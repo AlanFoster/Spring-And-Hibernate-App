@@ -49,11 +49,11 @@ And the rollback script can be found at
 Hosting the Webservice
 ----------------------
 
-Running the webservice within jetty is extremely easy.
+Running the webservice within jetty using cxf is extremely easy.
 
 Open up a command terminal from the root directory and execute the following commands
 
-    cd application
+    cd hostedWebservice
     mvn jetty:run
 
 You should see the following appear
