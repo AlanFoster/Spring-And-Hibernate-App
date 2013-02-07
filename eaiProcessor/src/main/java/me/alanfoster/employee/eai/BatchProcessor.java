@@ -2,7 +2,6 @@ package me.alanfoster.employee.eai;
 
 import me.alanfoster.employee.webservice.IEmployeeWebservice;
 import me.alanfoster.services.employee.models.impl.Employee;
-import me.alanfoster.services.employee.models.impl.Job;
 import org.apache.cxf.helpers.FileUtils;
 import org.dom4j.*;
 import org.dom4j.io.DocumentResult;
@@ -11,7 +10,6 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.jdbc.odbc.ee.ObjectPool;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;

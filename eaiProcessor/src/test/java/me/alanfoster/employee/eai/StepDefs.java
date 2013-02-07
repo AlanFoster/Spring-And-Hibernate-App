@@ -20,7 +20,6 @@ import org.unitils.thirdparty.org.apache.commons.io.FileUtils;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.nio.file.Files;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
