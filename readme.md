@@ -42,9 +42,17 @@ You should see the following appear
 The webservice will be hosted on port 8090 - which is configurable with maven properties
 You can see the main cxf operations at the root directory here :
 
+    http://localhost:8090/
+
 And the webservice wsdl here :
 
+    http://localhost:8090/EmployeeWebservice?wsdl
 
+Note - As part of the maven build process I have set it up so that the wsdl is generated automatically
+This can be seen at the following location (relative to the root directory)
+
+     \webservice\target\generated\wsdl\EmployeeWebservice.wsdl
+ 
 	
 Running the Web Application 
 ----------------------------
@@ -54,8 +62,8 @@ To run the main web application you can do so with the following commands
     cd application
     mvn jetty:run
 
-
 After deployment is successful you can visit the application at [http://localhost:8080/](http://localhost:8080)
+
 
 Debugging
 ---------
@@ -75,16 +83,39 @@ It is only when the remote debugger has attached will the application continue t
 Development
 ------------
 
-For an enojoyable developer experience is it recommended to use Intellij :)
+- IntelliJ
+    For an enojoyable developer experience is it recommended to use Intellij :)
+    IntelliJ has great facets for Hibernate and Spring, so make sure you wire them up! (Included in the Useful links section)
+
+- Eclipse
+    You can of course use Eclipse too, but you'll probably want to make life easier by setting up the facets manually.
+    Some useful plugins for Eclipse are 
+	     - m2e - Maven Integration plugin
+		 - WTP - Supports automatically handling of web facets
+		 
+		 
+You can also use the following commands to get you started, YMMV
+
+    mvn idea:idea
+
+Or
+
+	mvn eclipse:eclipse
 
 Test Suite
 -------
 
 This project makes use of [CucumberJVM](https://github.com/cucumber/cucumber-jvm) in order to run Behaviour tests written in Gherkin syntax.
 
-Currently these tests are hooked up to run during the maven verify/integration-tests stage.
+Currently these tests are hooked up to run during the maven verify/integration-tests stage. Currently the tests log during maven install.
 
+To see the results of the tests, they can be found under
 
+    [directory]/target/cucumber
+	
+For example, the EAI testing will be under 
+
+    eaiProcessor\target\cucumber
 
 Useful Links
 ------------
