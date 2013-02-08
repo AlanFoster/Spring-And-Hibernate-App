@@ -1,6 +1,5 @@
 package me.alanfoster.employee.service;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import me.alanfoster.services.employee.models.IEmployee;
@@ -11,11 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.sql.DataSource;
-
-import static junit.framework.Assert.*;
 import static junit.framework.Assert.assertEquals;
-import static me.alanfoster.employee.service.EmployeeAssert.*;
 import static org.unitils.reflectionassert.ReflectionAssert.assertReflectionEquals;
 
 import java.util.List;
@@ -50,4 +45,12 @@ public class EmployeeSearchSteps {
         // Assert the expected and returned lists are equal in the SAME order
         assertReflectionEquals(expectedEmployees, searchResults);
     }
+
+    @Then("^search employee service will return no employees$")
+    public void search_employee_service_will_return_no_employees() throws Throwable {
+        assertEquals("There should be no employees returned by the search", 0, searchResults.size());
+    }
+
+
+
 }

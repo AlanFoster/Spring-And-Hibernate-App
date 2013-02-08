@@ -3,10 +3,7 @@ package me.alanfoster.services.employee.dao.impl;
 import me.alanfoster.services.employee.dao.IEmployeeDAO;
 import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
-import me.alanfoster.services.employee.service.EmployeeSearch;
-import me.alanfoster.services.employee.service.ISearchCriteria;
-import me.alanfoster.services.employee.service.ISearchCriteriaBetween;
-import me.alanfoster.services.employee.service.ISearchCriteriaLike;
+import me.alanfoster.services.employee.service.*;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
@@ -108,6 +105,9 @@ public class HibernateEmployeeDAO implements IEmployeeDAO {
             } else if(criteria instanceof ISearchCriteriaBetween) {
                 ISearchCriteriaBetween searchCriteriaBetween = (ISearchCriteriaBetween) criteria;
                 hibernateCriteria.add(Restrictions.between(searchCriteriaBetween.getFieldName(),searchCriteriaBetween.getMin(), searchCriteriaBetween.getMax()));
+            } else if(criteria instanceof ISearchCriteriaEq) {
+                ISearchCriteriaEq searchCriteriaEq = (ISearchCriteriaEq) criteria;
+                hibernateCriteria.add(Restrictions.eq(searchCriteriaEq.getFieldName(), searchCriteriaEq.getValue()));
             }
         }
 

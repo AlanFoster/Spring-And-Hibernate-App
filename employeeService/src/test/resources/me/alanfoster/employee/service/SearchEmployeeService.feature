@@ -59,7 +59,7 @@ Feature: Searching
       | 2  | Ray       | McPherson   | 5     | Principal Engineer | 2      |
       | 5  | Darren    | Tawil       | 3     | Engineer           | 5      |
       | 7  | Roy       | McHatterson | 5     | Principal Engineer | 2      |
-  @Ignore
+
   Scenario: Searching for an employee id
     When the search employee service is called with the following data
       | id |
@@ -68,7 +68,7 @@ Feature: Searching
       | id | firstName | secondName | jobId | jobTitle | deskId |
       | 3  | Ted       | Whaley     | 1     | HR       | 3      |
 
-  Scenario: Searching for an employee id between two values
+  Scenario: Searching for a desk id between two values
     When the search employee service is called with the following data
       | minDeskId | maxDeskId |
       | 5         | 15        |
@@ -77,3 +77,9 @@ Feature: Searching
       | 5  | Darren    | Tawil       | 3     | Engineer           | 5      |
       | 6  | Allan     | Motyka      | 2     | Operations         | 6      |
       | 7  | Roy       | McHatterson | 5     | Principal Engineer | 7      |
+
+  Scenario: Search which will return no results
+    When the search employee service is called with the following data
+      | minDeskId | maxDeskId |
+      | 5         | 0       |
+    Then search employee service will return no employees

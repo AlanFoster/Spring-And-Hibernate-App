@@ -90,6 +90,7 @@ public class EmployeeService implements IEmployeeService {
         List<ISearchCriteria> searchCriterias = new SearchCriteriaCreator()
                 .ilike("firstName", employeeSearch.getFirstName())
                 .ilike("secondName", employeeSearch.getSecondName())
+                .eq("id", employeeSearch.getId())
                 .between("deskId", employeeSearch.getMinDeskId(), employeeSearch.getMaxDeskId())
         // Finally get all of the search criteria as a list
         .getSearchCriterias();
@@ -178,6 +179,22 @@ public class EmployeeService implements IEmployeeService {
         }
 
         /**
+         * Adds a search criteria for the field value to be exactly that given
+         *
+         * @param fieldName The name of the field represented in the object
+         * @param value  The value the field should be equal to
+         * @return The SearchCriteriaCreator object in order to allow chaining
+         */
+        public SearchCriteriaCreator eq(String fieldName, Object value) {
+            if (value != null) {
+                searchCriterias.add(new SearchCriteriaEq(fieldName, value));
+            }
+            return this;
+        }
+
+
+
+        /**
          * When you have finished chaining this object to create the criteria, you can retrieve
          * the completed search criterias with this operation
          *
@@ -186,7 +203,6 @@ public class EmployeeService implements IEmployeeService {
         public List<ISearchCriteria> getSearchCriterias() {
             return this.searchCriterias;
         }
-
     }
 
 
