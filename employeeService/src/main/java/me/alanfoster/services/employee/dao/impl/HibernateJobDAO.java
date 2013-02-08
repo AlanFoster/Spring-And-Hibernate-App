@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * A concrete implementation for the IJobDAO interface
+ * This class expects the Hibernate sessionFactory to be injected in
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
@@ -24,6 +25,14 @@ public class HibernateJobDAO implements IJobDAO {
      */
     @Autowired
     private SessionFactory sessionFactory;
+
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     /**
      * {@inheritDoc}
