@@ -88,6 +88,13 @@ public class EmployeeController {
         return EmployeeModelConfig.Search.getModelName();
     }
 
+   /* @RequestMapping(value = "/employees/search", method = RequestMethod.POST)
+    public @ResponseBody List<Employee> searchEmployeePost(@RequestBody EmployeeSearch employeeSearchCriteria) {
+        //logger.info("Received Post Request for /search. Binding result has errors : '{}'", new Object[] { result.hasErrors() });
+        logger.info("Received AJAX request");
+        return employeeService.search(employeeSearchCriteria);
+    }*/
+
     @RequestMapping(value = "/employees/search", method = RequestMethod.POST)
     public String searchEmployeePost(@ModelAttribute("employeeSearchCriteria") @Valid EmployeeSearch employeeSearchCriteria,
                                  BindingResult result, Map<String, Object> map) {

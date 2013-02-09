@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="/resources/css/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="/resources/css/ui-lightness/jquery-ui-1.10.0.custom.min.css"/>
     <link rel="stylesheet" href="/resources/css/main.css"/>
-    <script src="/resources/js/vendor/jquery-1.9.0.min.js"></script>
-    <script src="/resources/js/vendor/bootstrap.min.js"></script>
-    <script src="/resources/js/vendor/jquery-ui-1.10.0.custom.min.js"></script>
+    <script type="text/javascript" src="/resources/js/vendor/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/resources/js/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resources/js/vendor/jquery-ui-1.10.0.custom.min.js"></script>
+    <script type="text/javascript" src="/resources/js/vendor/json.min.js"></script>
     <script src="/resources/js/main.js"></script>
 </head>
 <body>
