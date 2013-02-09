@@ -27,13 +27,13 @@
                     <div class="control-group">
                         <form:label path="firstName" cssClass="control-label">First Name</form:label>
                         <div class="controls">
-                            <form:input path="firstName"/> <form:errors path="firstName" cssClass="help-inline"/>
+                            <form:input path="firstName" placeholder="First Name"/> <form:errors path="firstName" cssClass="help-inline"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <form:label path="secondName" cssClass="control-label">Second Name</form:label>
                         <div class="controls">
-                            <form:input path="secondName"/> <form:errors path="secondName" cssClass="help-inline"/>
+                            <form:input path="secondName" placeHolder="Second Name"/> <form:errors path="secondName" cssClass="help-inline"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -51,7 +51,7 @@
                     <div class="control-group">
                         <form:label path="deskId" cssClass="control-label">Desk Id</form:label>
                         <div class="controls">
-                            <form:input path="deskId"/> <form:errors path="deskId" cssClass="help-inline"/>
+                            <form:input path="deskId" placeholder="Desk Id"/> <form:errors path="deskId" cssClass="help-inline"/>
                         </div>
                     </div>
 
