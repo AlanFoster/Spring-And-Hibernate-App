@@ -4,6 +4,8 @@ import me.alanfoster.services.employee.dao.IEmployeeDAO;
 import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
 import me.alanfoster.services.employee.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,8 +21,16 @@ import java.util.*;
  */
 @Service
 public class EmployeeService implements IEmployeeService {
+    /**
+     * Basic SLF4J logger
+     * @See {@link http://www.slf4j.org/}
+     */
+    private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
+
     @Autowired
     private IEmployeeDAO employeeDAO;
+
+
 
     /**
      * {@inheritDoc}
@@ -86,6 +96,8 @@ public class EmployeeService implements IEmployeeService {
     @Transactional
     @Override
     public List<Employee> search(EmployeeSearch employeeSearch) {
+        logger.info("Employee Search request {}", new Object[] { employeeSearch });
+
         // Create a new instance of the SearchCriteriaCreator and compose our search criteria
         List<ISearchCriteria> searchCriterias = new SearchCriteriaCreator()
                 .ilike("firstName", employeeSearch.getFirstName())
@@ -94,6 +106,8 @@ public class EmployeeService implements IEmployeeService {
                 .between("deskId", employeeSearch.getMinDeskId(), employeeSearch.getMaxDeskId())
         // Finally get all of the search criteria as a list
         .getSearchCriterias();
+
+        logger.info("DAO Search Criteria is : {}", new Object[] { searchCriterias });
 
         return employeeDAO.search(searchCriterias);
     }

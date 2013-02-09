@@ -8,11 +8,13 @@ import me.alanfoster.application.controllers.notification.config.NotificationReq
 import me.alanfoster.services.employee.models.IEmployee;
 import me.alanfoster.services.employee.models.impl.Employee;
 import me.alanfoster.services.employee.models.impl.Job;
+import me.alanfoster.services.employee.service.EmployeeSearch;
 import me.alanfoster.services.employee.service.IEmployeeService;
 import me.alanfoster.services.employee.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import me.alanfoster.employee.webservice.IEmployeeWebservice;
@@ -77,10 +79,32 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employees/search")
     public String searchEmployee(Map<String, Object> map) {
-        logger.info("Received Request for /search");
+        logger.info("Received Get Request for /search");
+
+        // Load all of the default information to show, including a new employee search object
         map.put("employees", employeeService.getAll());
+        map.put("employeeSearchCriteria", new EmployeeSearch());
+
         return EmployeeModelConfig.Search.getModelName();
     }
+
+    @RequestMapping(value = "/employees/search", method = RequestMethod.POST)
+    public String searchEmployeePost(@ModelAttribute("employeeSearchCriteria") @Valid EmployeeSearch employeeSearchCriteria,
+                                 BindingResult result, Map<String, Object> map) {
+        logger.info("Received Post Request for /search. Binding result has errors : '{}'", new Object[] { result.hasErrors() });
+
+        // If the form has errors, log it log it and don't retrieve the new employees
+        if(result.hasErrors()) {
+            logger.info("Form for add employee had errors - {}", new Object[]{result.getAllErrors()});
+        } else {
+            // Otherwise, since there are no errors search for the new employees
+           map.put("employees", employeeService.search(employeeSearchCriteria));
+        }
+
+        // Return the search view again (Regardless of errors or success)
+        return EmployeeModelConfig.Search.getModelName();
+    }
+
 
     /*********************************************************************
      *  Create Methods

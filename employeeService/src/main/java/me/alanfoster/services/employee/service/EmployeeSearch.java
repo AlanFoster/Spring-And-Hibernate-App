@@ -1,5 +1,8 @@
 package me.alanfoster.services.employee.service;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
 /**
  * Represents a generic object which is used to for generic
  * searching in a dataset
@@ -8,11 +11,14 @@ package me.alanfoster.services.employee.service;
  * @version 1.0.0-SNAPSHOT
  */
 public class EmployeeSearch {
+    @Range(min = 1)
     private Integer id;
     private String firstName;
     private String secondName;
     private String jobTitle;
+    @Range(min = 1)
     private Integer minDeskId;
+    @Range(min = 1)
     private Integer maxDeskId;
 
 
@@ -64,4 +70,15 @@ public class EmployeeSearch {
         this.maxDeskId = maxDeskId;
     }
 
+    @Override
+    public String toString() {
+        return "EmployeeSearch{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", minDeskId=" + minDeskId +
+                ", maxDeskId=" + maxDeskId +
+                '}';
+    }
 }

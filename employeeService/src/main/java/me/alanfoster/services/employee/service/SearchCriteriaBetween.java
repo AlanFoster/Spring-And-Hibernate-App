@@ -29,4 +29,13 @@ public class SearchCriteriaBetween implements ISearchCriteriaBetween {
     public String getFieldName() {
         return fieldName;
     }
+
+    @Override
+    public String toString() {
+        return "SearchCriteriaBetween{" +
+                "min=" + min +
+                ", max=" + max +
+                ", fieldName='" + fieldName + '\'' +
+                '}';
+    }
 }

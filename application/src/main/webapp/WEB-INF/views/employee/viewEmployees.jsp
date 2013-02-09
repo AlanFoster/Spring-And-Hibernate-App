@@ -5,6 +5,38 @@
 
 <h2><tiles:getAsString name="page.title"/></h2>
 
+<div class="well">
+
+    <form:form modelAttribute="employeeSearchCriteria" method="post" cssClass="form-horizontal">
+        <div class="control-group">
+            <form:label path="firstName" cssClass="control-label">First Name</form:label>
+            <div class="controls">
+                <form:input path="firstName"/> <form:errors path="firstName" cssClass="help-inline"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <form:label path="secondName" cssClass="control-label">Second Name</form:label>
+            <div class="controls">
+                <form:input path="secondName"/> <form:errors path="secondName" cssClass="help-inline"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <form:label path="minDeskId" cssClass="control-label">Min Desk Id</form:label>
+            <div class="controls">
+                <form:input path="minDeskId"/> <form:errors path="minDeskId" cssClass="help-inline"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <form:label path="maxDeskId" cssClass="control-label">Max Desk Id</form:label>
+            <div class="controls">
+                <form:input path="maxDeskId"/> <form:errors path="maxDeskId" cssClass="help-inline"/>
+            </div>
+        </div>
+
+        <button type="submit" name="search" class="btn btn-primary">Search</button>
+    </form:form>
+</div>
+
 <c:choose>
     <c:when test="${empty employees}">
         <div class="alert">Sorry. There are no employees which matched your requirement</div>

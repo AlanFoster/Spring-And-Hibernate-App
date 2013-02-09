@@ -23,4 +23,12 @@ public class SearchCriteriaEq implements ISearchCriteriaEq {
     public Object getValue() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "SearchCriteriaEq{" +
+                "fieldName='" + fieldName + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }

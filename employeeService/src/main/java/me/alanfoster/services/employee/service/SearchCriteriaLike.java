@@ -32,4 +32,14 @@ public class SearchCriteriaLike implements ISearchCriteriaLike {
     public boolean isCaseInsensitive() {
         return caseInsensitive;
     }
+
+    @Override
+    public String toString() {
+        return "SearchCriteriaLike{" +
+                "fieldName='" + fieldName + '\'' +
+                ", requiredValue='" + requiredValue + '\'' +
+                ", caseInsensitive=" + caseInsensitive +
+                '}';
+    }
 }
+
