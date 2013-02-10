@@ -2,7 +2,10 @@ package me.alanfoster.services.employee.dao.impl;
 
 import me.alanfoster.services.employee.dao.IEmployeeDAO;
 import me.alanfoster.services.employee.models.Employee;
-import me.alanfoster.services.employee.service.*;
+import me.alanfoster.services.employee.service.ISearchCriteria;
+import me.alanfoster.services.employee.service.ISearchCriteriaBetween;
+import me.alanfoster.services.employee.service.ISearchCriteriaEq;
+import me.alanfoster.services.employee.service.ISearchCriteriaLike;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -12,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Provides a concrete implementation of the the basic IEmployeeDAO interface
+ * Provides a concrete implementation of the the basic IEmployeeDAO interface.
  * This class expects the Hibernate sessionFactory to be injected in
  *
  * @author Alan Foster
@@ -21,99 +24,120 @@ import java.util.List;
 @Repository
 public class HibernateEmployeeDAO implements IEmployeeDAO {
     /**
-     * The hibernate session factory, autowired by spring
+     * The hibernate session factory, autowired by spring.
      */
     @Autowired
     private SessionFactory sessionFactory;
 
-    public SessionFactory getSessionFactory() {
+    /**
+     * Accessor method.
+     *
+     * @return The session factory instance
+     */
+    public final SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
+    /**
+     * Mutator method.
+     *
+     * @param sessionFactory The new session factory
+     */
+    public final void setSessionFactory(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     /**
-     * {@inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Integer create(Employee employee) {
+    public final Integer create(final Employee employee) {
         return (Integer) sessionFactory.getCurrentSession().save(employee);
     }
 
     /**
-     * {@inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Employee get(Integer key) {
-        return (Employee) sessionFactory.getCurrentSession().get(Employee.class, key);
+    public final Employee get(final Integer key) {
+        return (Employee) sessionFactory.getCurrentSession().get(
+                Employee.class, key);
     }
 
     /**
-     * {@inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public List<Employee> getAll() {
-        return sessionFactory.getCurrentSession().createQuery("from Employee").list();
+    public final List<Employee> getAll() {
+        return sessionFactory.getCurrentSession().createQuery("from Employee")
+                .list();
     }
 
     /**
-     * {@inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void update(Employee employee) {
+    public final void update(final Employee employee) {
         sessionFactory.getCurrentSession().update(employee);
     }
 
     /**
-     * {@inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void delete(Employee employee) {
+    public final void delete(final Employee employee) {
         sessionFactory.getCurrentSession().delete(employee);
     }
 
     /**
-     * {@inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void delete(Integer key) {
+    public final void delete(final Integer key) {
         delete(get(key));
     }
 
     /**
-     * {@inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public List<Employee> search(List<ISearchCriteria> criterias) {
-        Criteria hibernateCriteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+    public final List<Employee> search(final List<ISearchCriteria> criterias) {
+        Criteria hibernateCriteria = sessionFactory.getCurrentSession()
+                .createCriteria(Employee.class);
 
-        // Iterate the list of critera and add it to the the hibernate criteria object
+        // Iterate the list of critera and add it to the the hibernate criteria
+        // object
         for (ISearchCriteria criteria : criterias) {
             // Is there a better way to do this?
-            if(criteria instanceof ISearchCriteriaLike) {
-                ISearchCriteriaLike searchCriteriaLike = (ISearchCriteriaLike) criteria;
-                if(searchCriteriaLike.isCaseInsensitive()) {
-                    hibernateCriteria.add(Restrictions.ilike(searchCriteriaLike.getFieldName(), searchCriteriaLike.getRequiredValue()));
+            if (criteria instanceof ISearchCriteriaLike) {
+                ISearchCriteriaLike searchCriteriaLike =
+                        (ISearchCriteriaLike) criteria;
+                if (searchCriteriaLike.isCaseInsensitive()) {
+                    hibernateCriteria.add(Restrictions.ilike(
+                            searchCriteriaLike.getFieldName(),
+                            searchCriteriaLike.getRequiredValue()));
                 } else {
-                    hibernateCriteria.add(Restrictions.like(searchCriteriaLike.getFieldName(), searchCriteriaLike.getRequiredValue()));
+                    hibernateCriteria.add(Restrictions.like(
+                            searchCriteriaLike.getFieldName(),
+                            searchCriteriaLike.getRequiredValue()));
                 }
-            } else if(criteria instanceof ISearchCriteriaBetween) {
-                ISearchCriteriaBetween searchCriteriaBetween = (ISearchCriteriaBetween) criteria;
-                hibernateCriteria.add(Restrictions.between(searchCriteriaBetween.getFieldName(),searchCriteriaBetween.getMin(), searchCriteriaBetween.getMax()));
-            } else if(criteria instanceof ISearchCriteriaEq) {
+            } else if (criteria instanceof ISearchCriteriaBetween) {
+                ISearchCriteriaBetween searchCriteriaBetween =
+                        (ISearchCriteriaBetween) criteria;
+                hibernateCriteria.add(Restrictions.between(
+                        searchCriteriaBetween.getFieldName(),
+                        searchCriteriaBetween.getMin(),
+                        searchCriteriaBetween.getMax()));
+            } else if (criteria instanceof ISearchCriteriaEq) {
                 ISearchCriteriaEq searchCriteriaEq = (ISearchCriteriaEq) criteria;
-                hibernateCriteria.add(Restrictions.eq(searchCriteriaEq.getFieldName(), searchCriteriaEq.getValue()));
+                hibernateCriteria.add(Restrictions.eq(
+                        searchCriteriaEq.getFieldName(),
+                        searchCriteriaEq.getValue()));
             }
         }
 
         List<Employee> matchingEmployees = hibernateCriteria.list();
 
         return matchingEmployees;
-    }
-
-    public void Test(ISearchCriteriaLike like) {
-
     }
 }
