@@ -22,7 +22,7 @@ public class EmployeeElementHelper {
 
     /**
      * Returns a list of Element as List of Employee
-     * @param element The the elements to convert
+     * @param elements The elements to convert
      * @return The new list of employees, in the same sort as the List type provided
      */
     public static List<Employee> getElementAsEmployee(List<Element> elements) {

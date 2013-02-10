@@ -11,35 +11,33 @@
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
     ">
 
-
     <!-- Application Config property placeholder -->
-    <bean id="eaiConfigTesting" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+    <bean id="eaiConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath:eai.properties</value>
-                <value>classpath:jdbc.properties</value>
             </list>
         </property>
     </bean>
 
-    <!-- Import the in memory datasource, instead of the mysqlDataSourceBeans -->
-    <import resource="classpath:inMemoryDataSourceBeans.xml" />
+    <!-- Allow spring to load all components from our controllers package -->
+    <context:component-scan base-package="me.alanfoster.employee.eai"/>
 
-    <!-- Import the core hibernate files -->
-    <import resource="classpath:hibernateCoreBeans.xml" />
+    <!-- Scan classes for annotations - In particular @Required and @Autowired -->
+    <context:annotation-config />
+    <!-- Handle @Transaction annotations -->
+    <tx:annotation-driven />
 
-    <!--
-        Create the CXF client/server ourselves for testing purposes
-    -->
-
-    <!-- Import the resources from the class path as per usual -->
+    <!-- CXF web service client -->
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
-    <!-- Instantiate the jax-webservice endpoint -->
-    <jaxws:endpoint implementor="me.alanfoster.employee.webservice.EmployeeWebservice" address="http://localhost:8090/EmployeeWebservice"/>
+    <jaxws:client id="webserviceClient" serviceClass="me.alanfoster.employee.webservice.IEmployeeWebservice" address="http://localhost:8090/EmployeeWebservice?wsdl" />
 
-    <!-- Once we have set up all our own instances include the normal eai-context -->
-    <import resource="eai-context.xml" />
-
+    <!-- Manually create an instance of the BathProcessor, and inject the dropBox locations -->
+    <bean id="batchProcessor" class="me.alanfoster.employee.eai.BatchProcessor">
+        <property name="dropBoxInput" value="${dropBox.input}"/>
+        <property name="dropBoxOutput" value="${dropBox.output}" />
+        <property name="employeeWebservice" ref="webserviceClient" />
+    </bean>
 </beans>

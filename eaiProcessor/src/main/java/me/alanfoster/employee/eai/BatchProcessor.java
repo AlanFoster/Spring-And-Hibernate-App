@@ -67,6 +67,7 @@ public class BatchProcessor implements IBatchProcessor {
         File[] files = new File(dropBoxInput).listFiles();
         // Pick up all files and process them
         for (File file : files) {
+            logger.info("Polled file {} from the directory {}", new Object[] { file.getName(), dropBoxInput });
             processFile(file);
         }
     }
@@ -102,6 +103,7 @@ public class BatchProcessor implements IBatchProcessor {
 
         // If any of the employees have failed in the batch then overall we have failed
         boolean hasFailed = employeeTuple.getItemTwo().size() > 0;
+        logger.info("Successfully called employee webservice. Overall transaction success : '{}'", new Object[] { hasFailed });
         Document response = hasFailed ? createFailureResponse(employeeTuple) : createSuccessResponse(employeeTuple);
         writeResponse(fileName, response);
     }
@@ -175,10 +177,12 @@ public class BatchProcessor implements IBatchProcessor {
      * @param response The document response to write in the file
       */
     public void writeResponse(String fileName, Document response) {
+        logger.debug("Writing response to dropBoxOutput : '{}' with fileName : '{}'", new Object[] { fileName, dropBoxOutput});
         try {
             String responseFileName = fileName;
             File dropBoxOutputFolder = new File(dropBoxOutput);
             if(!dropBoxOutputFolder.exists()) {
+                logger.debug("Creating dropBoxOutput directories as they didn't previously exist");
                 dropBoxOutputFolder.mkdirs();
             }
 
@@ -186,7 +190,7 @@ public class BatchProcessor implements IBatchProcessor {
             XMLWriter writer = new XMLWriter(new FileWriter(responseFile), OutputFormat.createPrettyPrint());
             writer.write(response);
             writer.close();
-
+            logger.debug("Successfully wrote EAI Batch procesor response to dropBoxOutput");
         } catch (IOException e) {
             logger.error("Couldn't successfully write the file {} to {}", new Object[] { response.asXML(), fileName  }, e);
         }
@@ -210,8 +214,10 @@ public class BatchProcessor implements IBatchProcessor {
         for (Element employeeElement : employeeNodes) {
             Employee employee = EmployeeElementHelper.getElementAsEmployee(employeeElement);
             try {
+                logger.debug("Calling employee web service");
                 Integer id = employeeWebservice.createEmployee(employee);
                 employee.setId(id);
+                logger.debug("Successfully called employee web service with id", new Object[] { id });
             } catch(Exception e) {
                 logger.error("Failed adding employee {}", new Object[] { employee }, e);
                 failedEmployees.add(employee);
@@ -255,6 +261,7 @@ public class BatchProcessor implements IBatchProcessor {
      * @throws Exception If the transform was not successful
      */
     public Document applyTransform(Document document, String xsltLocation) throws Exception {
+        logger.debug("Applying transform from location ; '{}'", new Object[] { xsltLocation });
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         InputStream stream = BatchProcessor.class.getResourceAsStream(xsltLocation);
         Transformer transformer = transformerFactory.newTransformer(new StreamSource(stream));
@@ -263,6 +270,7 @@ public class BatchProcessor implements IBatchProcessor {
         DocumentResult result = new DocumentResult();
         transformer.transform(source, result);
 
+        logger.debug("Successfully applied transform ; '{}'", new Object[] { xsltLocation });
         return result.getDocument();
     }
 
