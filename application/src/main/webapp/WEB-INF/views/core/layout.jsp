@@ -23,9 +23,9 @@
         <div class="container">
             <a class="brand" href="/"><tiles:getAsString name="website.brand" /></a>
             <ul class="nav">
-                <li class="${highlightedPage == 'addEmployee' ? 'active' : ''}"><a href="/employees/add"><i class="icon-user"></i> Add Employee</a></li>
-                <li class="${highlightedPage == 'searchEmployee' ? 'active' : ''}"><a href="/employees/search"><i class="icon-search"></i> Search</a></li>
-                <li class="${highlightedPage == 'reports' ? 'active' : ''}"><a href="/reports"><i class="icon-picture"></i> Reports</a></li>
+                <li class="${highlightedPage == 'addEmployee' ? 'active' : ''}"><a href="/employees/add" id="addEmployee" ><i class="icon-user"></i> Add Employee</a></li>
+                <li class="${highlightedPage == 'searchEmployee' ? 'active' : ''}"><a href="/employees/search" id="searchEmployee" ><i class="icon-search"></i> Search</a></li>
+                <li class="${highlightedPage == 'reports' ? 'active' : ''}"><a href="/reports" id="reports"><i class="icon-picture"></i> Reports</a></li>
             </ul>
 
             <div class="pull-right">

@@ -3,11 +3,26 @@ Feature: Employee Application
   I want to use the application to add and remove employees
   In order to maintain employee records
 
-  Scenario: Visiting in the employee page
-    When I visit the employees page
-    Then the browser title should be 'Employee Application 1.0'
+  Scenario: Visiting the home page
+    When I visit the home page
+    Then the browser title should be 'Employee Management System 1.0'
 
-  @ignore
+  Scenario: Visiting the add employee page
+    Given I am on the home page
+    When I click the 'addEmployee' navigation link
+    Then the content title will be 'Add Employee'
+
+  Scenario: Visiting the search page with no employees in the system
+    Given I am on the home page
+    When I click the 'searchEmployee' navigation link
+    Then the alert will say 'Sorry. There are no employees which matched your requirement'
+
+  Scenario: Visiting the reports page
+    Given I am on the home page
+    When I click the 'reports' navigation link
+    Then the browser title should be 'Employee Management System 1.0'
+
+  @Ignore
   Scenario: Adding an employee
     Given I am on the employee page
     When I put in the following information

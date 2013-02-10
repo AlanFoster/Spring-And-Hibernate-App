@@ -207,8 +207,6 @@
 
     <build>
         <plugins>
-            <!-- Maven War Plugin -->
-            <!-- TODO - Not actually required, but it can be nice to be explicit -->
 
             <!-- Jetty Plugin -->
             <plugin>
@@ -218,7 +216,9 @@
                 <configuration>
                     <webAppSourceDirectory>${project.build.directory}/${project.name}-${project.version}
                     </webAppSourceDirectory>
-                    <scanIntervalSeconds>1</scanIntervalSeconds>
+                    <scanIntervalSeconds>0</scanIntervalSeconds>
+                    <stopKey>acb6f0a8b50240a8b84f620c244721af</stopKey>
+                    <stopPort>8079</stopPort>
                     <useTestScope>true</useTestScope>
                     <webAppConfig>
                         <contextPath>${jetty.contextPath}</contextPath>
@@ -230,6 +230,31 @@
                         </connector>
                     </connectors>
                 </configuration>
+                <!-- Integreation selenium tests -->
+                <executions>
+                    <execution>
+                        <id>start-jetty</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <daemon>true</daemon>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-jetty</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                        <configuration>
+                            <stopKey>acb6f0a8b50240a8b84f620c244721af</stopKey>
+                            <stopPort>8079</stopPort>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

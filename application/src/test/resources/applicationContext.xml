@@ -9,7 +9,7 @@
 
 
     <!-- Application Config property placeholder -->
-    <bean id="config" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean id="applicationTestConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath:core.properties</value>
@@ -20,13 +20,13 @@
     </bean>
 
     <!-- Import the in memory datasource, instead of the mysqlDataSourceBeans -->
-   <import resource="classpath:inMemoryDataSourceBeans.xml" />
+<!--   <import resource="classpath:inMemoryDataSourceBeans.xml" />-->
 
     <!-- Import the core hibernate files -->
-    <import resource="classpath:hibernateCoreBeans.xml" />
+<!--    <import resource="classpath:hibernateCoreBeans.xml" />-->
 
     <!-- Wire up our application's beans -->
-    <import resource="classpath:/spring-employee-servlet.xml"/>
+<!--    <import resource="classpath:/spring-employee-servlet.xml"/>-->
 
     <!-- Selenium Releated Beans -->
     <bean id="firefoxWebDriver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="quit" />
