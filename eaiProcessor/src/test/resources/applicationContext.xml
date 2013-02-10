@@ -22,6 +22,9 @@
         </property>
     </bean>
 
+    <!-- Allow spring to load all components -->
+    <context:component-scan base-package="me.alanfoster"/>
+
     <!-- Import the in memory datasource, instead of the mysqlDataSourceBeans -->
     <import resource="classpath:inMemoryDataSourceBeans.xml" />
 

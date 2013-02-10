@@ -20,7 +20,7 @@
         </property>
     </bean>
 
-    <!-- Allow spring to load all components from our controllers package -->
+    <!-- Allow spring to load all components -->
     <context:component-scan base-package="me.alanfoster.employee.eai"/>
 
     <!-- Scan classes for annotations - In particular @Required and @Autowired -->

@@ -31,7 +31,7 @@ import java.util.List;
  * <br />
  * Note :: This specific implementation will carry on processing if
  * any of the employees fail; And at the end it will produce a response
- * document with the list of employees which suceeded and failed
+ * document with the list of employees which succeeded and failed
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
