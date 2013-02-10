@@ -92,6 +92,7 @@
             <version>${tiles.version}</version>
             <type>jar</type>
             <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>org.apache.tiles</groupId>
@@ -166,6 +167,16 @@
             <version>${project.version}</version>
             <type>pom</type>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Import all of the service's test classes to be reused by this artifact-->
+        <dependency>
+            <groupId>me.alanfoster.employee</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
+            <scope>tests</scope>
+            <type>test-jar</type>
+            <classifier>tests</classifier>
         </dependency>
 
         <!-- Selenium Testing -->

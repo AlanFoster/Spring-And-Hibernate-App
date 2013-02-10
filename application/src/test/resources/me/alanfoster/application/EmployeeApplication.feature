@@ -3,7 +3,6 @@ Feature: Employee Application
   I want to use the application to add and remove employees
   In order to maintain employee records
 
-  @Ignore
   Scenario: Visiting in the employee page
     When I visit the employees page
     Then the browser title should be 'Employee Application 1.0'

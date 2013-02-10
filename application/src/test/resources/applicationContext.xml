@@ -7,10 +7,23 @@
         http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
     ">
 
-    <!-- Create an in memory database used for testing -->
-    <jdbc:embedded-database id="dataSource" type="H2">
-        <jdbc:script location="classpath:src/main/resources/sql/db-schema.sql"/>
-    </jdbc:embedded-database>
+
+    <!-- Application Config property placeholder -->
+    <bean id="config" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:core.properties</value>
+                <value>classpath:employeewebservice.properties</value>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Import the in memory datasource, instead of the mysqlDataSourceBeans -->
+   <import resource="classpath:inMemoryDataSourceBeans.xml" />
+
+    <!-- Import the core hibernate files -->
+    <import resource="classpath:hibernateCoreBeans.xml" />
 
     <!-- Wire up our application's beans -->
     <import resource="classpath:/spring-employee-servlet.xml"/>
