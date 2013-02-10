@@ -8,15 +8,32 @@ package me.alanfoster.application.controllers.notification.config;
  * @version 1.0.0-SNAPSHOT
  */
 public enum Notification {
+    /**
+     * Sucess Notification
+     */
     SUCCESS("success"),
+    /**
+     * Error Notification
+     */
     ERROR("error");
 
+    /**
+     * The string value of the enum
+     */
     private String value;
 
-    Notification(String value) {
+    /**
+     * Adds a new notification object with the string value of the notificatoin
+     * @param value The value of hte notification
+     */
+    Notification(final String value) {
         this.value = value;
     }
 
+    /**
+     * Access method to get the notification value
+     * @return The notification value
+     */
     public String getValue() {
         return value;
     }

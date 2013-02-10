@@ -2,7 +2,6 @@ package me.alanfoster.application.controllers.reports;
 
 import me.alanfoster.application.controllers.reports.config.ReportsModelConfig;
 import me.alanfoster.services.employee.models.JobTitleCount;
-import me.alanfoster.services.employee.service.IEmployeeService;
 import me.alanfoster.services.employee.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,18 +24,28 @@ import java.util.List;
 @Controller
 @SessionAttributes
 public class ReportsController {
-    @Autowired
-    private IEmployeeService employeeService;
+    /**
+     * The job service.
+     */
     @Autowired
     private IJobService jobService;
 
+    /**
+     * The main page for the ajax reports page
+     * @return the required model to render
+     */
     @RequestMapping(value = "/reports")
-    public String searchEmployee() {
+    public final String searchEmployee() {
         return ReportsModelConfig.Reports.getModelName();
     }
 
+    /**
+     * Post Method exposed to return JSON to the ajax application
+     * @return THe list of job title count objects
+     */
     @RequestMapping(value = "/reports/jobs/titleCounts", method = RequestMethod.GET)
-    public @ResponseBody List<JobTitleCount> getJobTitleCounts() {
+    @ResponseBody
+    public final List<JobTitleCount> getJobTitleCounts() {
         return jobService.getJobTitleCounts();
     }
 }

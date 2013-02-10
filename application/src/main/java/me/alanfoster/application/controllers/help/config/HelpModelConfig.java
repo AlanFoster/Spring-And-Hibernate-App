@@ -2,7 +2,7 @@ package me.alanfoster.application.controllers.help.config;
 
 import me.alanfoster.application.controllers.core.config.ModelConfig;
 
- /**
+/**
  * This enum stores a subset of the Models which are related to the
  * Employee application.
  * <br />
@@ -16,11 +16,22 @@ import me.alanfoster.application.controllers.core.config.ModelConfig;
  * @version 1.0.0-SNAPSHOT
  */
 public enum HelpModelConfig implements ModelConfig {
+    /**
+     * Help model.
+     */
     Help("help");
 
+    /**
+     * The model name which the view resolver can make use of.
+     */
     private String value;
 
-    HelpModelConfig(String value) {
+    /**
+     * Construct a new model config with the given model name.
+     *
+     * @param value The model name which the view resolver can make use of
+     */
+    private HelpModelConfig(final String value) {
         this.value = value;
     }
 

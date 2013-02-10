@@ -15,5 +15,10 @@ package me.alanfoster.application.controllers.core.config;
  * @version 1.0.0-SNAPSHOT
  */
 public interface ModelConfig {
-    public String getModelName();
+    /**
+     * Get the model name.
+     *
+     * @return The model name which the view resolver can map to
+     */
+    String getModelName();
 }

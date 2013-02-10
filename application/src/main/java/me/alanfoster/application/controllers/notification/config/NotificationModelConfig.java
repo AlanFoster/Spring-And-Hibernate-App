@@ -16,11 +16,22 @@ import me.alanfoster.application.controllers.core.config.ModelConfig;
  * @version 1.0.0-SNAPSHOT
  */
 public enum NotificationModelConfig implements ModelConfig {
+    /**
+     * Notification model.
+     */
     Notification("notification");
 
+    /**
+     * The model name which the view resolver can make use of.
+     */
     private String value;
 
-    NotificationModelConfig(String value) {
+    /**
+     * Construct a new model config with the given model name.
+     *
+     * @param value The model name which the view resolver can make use of
+     */
+    private NotificationModelConfig(final String value) {
         this.value = value;
     }
 

@@ -10,20 +10,39 @@ import me.alanfoster.application.controllers.core.config.ModelConfig;
  * than dealing with a lot of Strings which can be absolutely anything.
  * Plus the String datatype is final, so you can't even start using your
  * own datatype which extends String in an attempt to acquire more
- * static typing
- *
+ * static typing.
+ * {@inheritDoc}
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
 public enum EmployeeModelConfig implements ModelConfig {
+    /**
+     * The index
+     */
     Index("employee.index"),
+    /**
+     * Add an employee
+     */
     Add("employee.add"),
+    /**
+     * Edit an employee
+     */
     Edit("employee.edit"),
+    /**
+     * Search for an employee
+     */
     Search("employee.search");
 
+    /**
+     * The model name which the view resolver can make use of
+     */
     private String value;
 
-    EmployeeModelConfig(String value) {
+    /**
+     * Construct a new employee model config with the given model name
+     * @param value The model name which the view resolver can make use of
+     */
+    private EmployeeModelConfig(final String value) {
         this.value = value;
     }
 

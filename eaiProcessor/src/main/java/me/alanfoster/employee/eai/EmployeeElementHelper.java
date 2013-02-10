@@ -10,25 +10,32 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * A basic helper class to convert to/from Employee/Elements
- * If things the objects involved were to get more complex, it
- * would be a good idea to make use of a library like xstream etc
+ * A basic helper class to convert to/from Employee/Elements. If things the
+ * objects involved were to get more complex, it would be a good idea to make
+ * use of a library like xstream etc
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public class EmployeeElementHelper {
-     private EmployeeElementHelper() { }
+public final class EmployeeElementHelper {
+    /**
+     * Private as it is a static helper class and should not be instantiated.
+     */
+    private EmployeeElementHelper() {
+    }
 
     /**
-     * Returns a list of Element as List of Employee
+     * Returns a list of Element as List of Employee.
+     *
      * @param elements The elements to convert
-     * @return The new list of employees, in the same sort as the List type provided
+     * @return The new list of employees, in the same sort as the List type
+     *         provided
      */
-    public static List<Employee> getElementAsEmployee(List<Element> elements) {
+    public static List<Employee> getElementAsEmployee(
+            final List<Element> elements) {
         List<Employee> employeeList = new LinkedList<Employee>();
 
-        for(Element element : elements) {
+        for (Element element : elements) {
             Employee employee = getElementAsEmployee(element);
             employeeList.add(employee);
         }
@@ -36,11 +43,12 @@ public class EmployeeElementHelper {
     }
 
     /**
-     * Returns an element as an employee
+     * Returns an element as an employee.
+     *
      * @param element The the element to convert
      * @return The new employee object
      */
-    public static Employee getElementAsEmployee(Element element) {
+    public static Employee getElementAsEmployee(final Element element) {
         Employee employee = new Employee();
         employee.setId(getNodeValueAsInteger(element, "./id"));
         employee.setFirstName(getNodeValueAsText(element, "./firstName"));
@@ -57,48 +65,60 @@ public class EmployeeElementHelper {
     }
 
     /**
-     * Converts an employee to an element
+     * Converts an employee to an element.
+     *
      * @param employee The employee object
      * @return The new element object (Not attached to a root element/Document)
      */
-    public static Element getEmployeeAsElement(Employee employee) {
+    public static Element getEmployeeAsElement(final Employee employee) {
         Element employeeElement = DocumentHelper.createElement("employee");
 
-        employeeElement.addElement("id").setText(String.valueOf(employee.getId()));
-        employeeElement.addElement("firstName").setText(employee.getFirstName());
-        employeeElement.addElement("secondName").setText(employee.getSecondName());
-        employeeElement.addElement("deskId").setText(String.valueOf(employee.getDeskId()));
+        employeeElement.addElement("id").setText(
+                String.valueOf(employee.getId()));
+        employeeElement.addElement("firstName")
+                .setText(employee.getFirstName());
+        employeeElement.addElement("secondName").setText(
+                employee.getSecondName());
+        employeeElement.addElement("deskId").setText(
+                String.valueOf(employee.getDeskId()));
 
         Element jobElement = employeeElement.addElement("job");
-        jobElement.addElement("jobId").setText(String.valueOf(employee.getJob().getJobId()));
-        jobElement.addElement("jobTitle").setText(employee.getJob().getJobTitle());
+        jobElement.addElement("jobId").setText(
+                String.valueOf(employee.getJob().getJobId()));
+        jobElement.addElement("jobTitle").setText(
+                employee.getJob().getJobTitle());
 
         return employeeElement;
     }
 
-
     /**
-     * Get the node value as a string
-     * @param parent The parent node
+     * Get the node value as a string.
+     *
+     * @param parent   The parent node
      * @param nodeName The node to get the text of
      * @return The text in string format
      */
-    private static String getNodeValueAsText(Element parent, String nodeName) {
+    private static String getNodeValueAsText(final Element parent,
+                                             final String nodeName) {
         Node selectedNode = parent.selectSingleNode(nodeName);
         // Handle null cases
         return selectedNode == null ? null : selectedNode.getText();
     }
 
     /**
-     * Get the node value as an integer.
-     * Note this method intenrally uses Integer.parseInt, IE normal parsing exceptions apply
-     * @param parent The parent node
+     * Get the node value as an integer. Note this method internally uses
+     * Integer.parseInt, IE normal parsing exceptions apply
+     *
+     * @param parent   The parent node
      * @param nodeName The node to get the text of
      * @return The text in integer format
      */
-    private static Integer getNodeValueAsInteger(Element parent, String nodeName) {
+    private static Integer getNodeValueAsInteger(final Element parent,
+                                                 final String nodeName) {
         String stringValue = getNodeValueAsText(parent, nodeName);
         // Handle null cases
-        return stringValue == null || stringValue.isEmpty() || stringValue.equals("null") ? null : Integer.parseInt(stringValue);
+        return stringValue == null || stringValue.isEmpty()
+                || stringValue.equals("null") ? null : Integer
+                .parseInt(stringValue);
     }
 }

@@ -21,17 +21,17 @@ public interface IBatchProcessor {
      * Set the input dropbox location
      * @param input The string location
      */
-    void setDropBoxInput(String input);
+    void setDropBoxInput(final String input);
 
     /**
      * Set the output (Result) dropbox location
      * @param output The string location
      */
-    void setDropBoxOutput(String output);
+    void setDropBoxOutput(final String output);
 
     /**
      * Set the webservice instance that the batch processor should interact with
      * @param employeeWebservice The webservice to interact with
      */
-    void setEmployeeWebservice(IEmployeeWebservice employeeWebservice);
+    void setEmployeeWebservice(final IEmployeeWebservice employeeWebservice);
 }

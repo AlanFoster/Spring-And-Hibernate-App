@@ -16,14 +16,28 @@ import me.alanfoster.application.controllers.core.config.RequestMappingConfig;
  * @version 1.0.0-SNAPSHOT
  */
 public enum NotificationRequestMappingConfig implements RequestMappingConfig {
+    /**
+     * The notification mapping
+     */
     Notification("/formResult");
 
+    /**
+     * The request mapping value
+     */
     private String value;
 
-    NotificationRequestMappingConfig(String value) {
+    /**
+     * Create a new request mapping config option
+     *
+     * @param value The request mapping url
+     */
+    NotificationRequestMappingConfig(final String value) {
         this.value = value;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getRequestMapping() {
         return value;

@@ -16,11 +16,21 @@ import me.alanfoster.application.controllers.core.config.ModelConfig;
  * @version 1.0.0-SNAPSHOT
  */
 public enum ReportsModelConfig implements ModelConfig {
+    /**
+     * The reports model
+     */
     Reports("reports");
-
+    /**
+     * The model name which the view resolver can make use of
+     */
     private String value;
 
-    ReportsModelConfig(String value) {
+    /**
+     * Construct a new employee model config with the given model name
+     *
+     * @param value The model name which the view resolver can make use of
+     */
+    ReportsModelConfig(final String value) {
         this.value = value;
     }
 

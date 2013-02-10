@@ -15,6 +15,17 @@ package me.alanfoster.application.controllers.core.config;
  * @version 1.0.0-SNAPSHOT
  */
 public interface RequestMappingConfig {
-    public String getRequestMapping();
-    public String getRedirectRequestMapping();
+    /**
+     * Get the request mapping, IE "search".
+     *
+     * @return The request mapping
+     */
+    String getRequestMapping();
+
+    /**
+     * Get the redirect url for the request mapping, IE "redirect:search".
+     *
+     * @return The request mapping redirect string
+     */
+    String getRedirectRequestMapping();
 }

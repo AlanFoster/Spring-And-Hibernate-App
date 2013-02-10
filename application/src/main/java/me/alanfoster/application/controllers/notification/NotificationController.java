@@ -1,13 +1,14 @@
 package me.alanfoster.application.controllers.notification;
 
-import me.alanfoster.application.controllers.notification.config.NotificationModelConfig;
+import me.alanfoster.application.controllers.notification.config
+        .NotificationModelConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * A class for handling generic form response notifications
- * IE for showing the user success/failure of forms
+ * IE for showing the user success/failure of forms.
  *
  * This class will take advantage of the POST/REDIRECT/GET pattern
  * by using FlashAttributes
@@ -18,8 +19,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @SessionAttributes
 public class NotificationController {
+    /**
+     * Shows basic form result notifications.
+     * Note, this relies on Flash attributes being provided
+     * by the original sender
+     * @return the required model to render
+     */
     @RequestMapping(value = "/formResult")
-    public String searchEmployee() {
+    public final String searchEmployee() {
         return NotificationModelConfig.Notification.getModelName();
     }
 }

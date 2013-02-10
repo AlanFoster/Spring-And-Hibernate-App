@@ -25,22 +25,36 @@ import java.beans.PropertyEditorSupport;
  */
 public class JobEditor extends PropertyEditorSupport {
     /**
-     * Basic SLF4J logger
+     * Basic SLF4J logger.
+     *
      * @See {@link http://www.slf4j.org/}
      */
     private static final Logger logger = LoggerFactory.getLogger(JobEditor.class);
 
+    /**
+     * The job service to interact with to get the required job instance.
+     */
     private IJobService jobService;
 
-    public JobEditor(IJobService jobService) {
+    /**
+     * Instantiate the JobEditor which will interact with the jobservice.
+     *
+     * @param jobService The job service to request a job mapping from
+     */
+    public JobEditor(final IJobService jobService) {
         this.jobService = jobService;
     }
 
+    /**
+     * Create a job instance from a text id
+     *
+     * @param stringJobId The job id as a string
+     */
     @Override
-    public void setAsText(String stringJobId) throws IllegalArgumentException {
+    public final void setAsText(final String stringJobId) {
         logger.info("Setting as text for jobId {}", new Object[]{stringJobId});
         Integer jobId = Integer.parseInt(stringJobId);
-        Job job = jobId == -1 ? new Job() : jobService.get(jobId);
+        Job job = (jobId == -1) ? new Job() : jobService.get(jobId);
         super.setValue(job);
     }
 }

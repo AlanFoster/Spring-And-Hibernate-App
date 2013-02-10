@@ -16,14 +16,28 @@ import me.alanfoster.application.controllers.core.config.RequestMappingConfig;
  * @version 1.0.0-SNAPSHOT
  */
 public enum HelpRequestMappingConfig implements RequestMappingConfig {
+    /**
+     * Help request mapping.
+     */
     Help("/help");
 
+    /**
+     * The request mapping value.
+     */
     private String value;
 
-    HelpRequestMappingConfig(String value) {
+    /**
+     * Create a new request mapping config option.
+     *
+     * @param value The request mapping url
+     */
+    private HelpRequestMappingConfig(final String value) {
         this.value = value;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getRequestMapping() {
         return value;
