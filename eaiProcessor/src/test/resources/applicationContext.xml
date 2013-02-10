@@ -13,7 +13,7 @@
 
 
     <!-- Application Config property placeholder -->
-    <bean id="eaiConfigTesting" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" >
+    <bean id="eaiConfigTesting" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath:eai.properties</value>
@@ -26,10 +26,10 @@
     <context:component-scan base-package="me.alanfoster"/>
 
     <!-- Import the in memory datasource, instead of the mysqlDataSourceBeans -->
-    <import resource="classpath:inMemoryDataSourceBeans.xml" />
+    <import resource="classpath:inMemoryDataSourceBeans.xml"/>
 
     <!-- Import the core hibernate files -->
-    <import resource="classpath:hibernateCoreBeans.xml" />
+    <import resource="classpath:hibernateCoreBeans.xml"/>
 
     <!--
         Create the CXF client/server ourselves for testing purposes
@@ -40,9 +40,14 @@
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
     <!-- Instantiate the jax-webservice endpoint -->
-    <jaxws:endpoint implementor="me.alanfoster.employee.webservice.EmployeeWebservice" address="http://localhost:8090/EmployeeWebservice"/>
+    <jaxws:endpoint implementor="me.alanfoster.employee.webservice.EmployeeWebservice"
+                    address="http://localhost:8090/EmployeeWebservice">
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature" />
+        </jaxws:features>
+    </jaxws:endpoint>
 
     <!-- Once we have set up all our own instances include the normal eai-context -->
-    <import resource="eai-context.xml" />
+    <import resource="eai-context.xml"/>
 
 </beans>

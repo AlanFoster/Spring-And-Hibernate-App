@@ -103,7 +103,7 @@ public class BatchProcessor implements IBatchProcessor {
 
         // If any of the employees have failed in the batch then overall we have failed
         boolean hasFailed = employeeTuple.getItemTwo().size() > 0;
-        logger.info("Successfully called employee webservice. Overall transaction success : '{}'", new Object[] { hasFailed });
+        logger.info("Successfully called employee webservice. Overall transaction success : '{}'", new Object[] { !hasFailed });
         Document response = hasFailed ? createFailureResponse(employeeTuple) : createSuccessResponse(employeeTuple);
         writeResponse(fileName, response);
     }

@@ -6,9 +6,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * The main entry poitn for kicking off the batch processor from command line.
+ * The main entry point for kicking off the batch processor from command line.
  * <br />
- * The batch processor can be called with the following command
+ * This batch processor will load files from the dropBox input folder and give
+ * the response to the dropbox output folder.
+ * <br />
+ * The batch processor can be called with the following command from the
+ * eai directory
  * <pre>
  * {@code
  *     mvn exec:java -Dexec.mainClass="me.alanfoster.employee.eai.Main"
