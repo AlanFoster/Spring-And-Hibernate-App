@@ -1,8 +1,8 @@
 package me.alanfoster.services.employee.dao;
 
 import me.alanfoster.services.core.dao.IDAO;
-import me.alanfoster.services.employee.models.impl.Job;
-import me.alanfoster.services.employee.models.impl.JobTitleCount;
+import me.alanfoster.services.employee.models.Job;
+import me.alanfoster.services.employee.models.JobTitleCount;
 
 import java.util.List;
 

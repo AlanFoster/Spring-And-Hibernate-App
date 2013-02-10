@@ -1,8 +1,7 @@
 package me.alanfoster.employee.service;
 
-import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.impl.Employee;
-import me.alanfoster.services.employee.models.impl.Job;
+import me.alanfoster.services.employee.models.Employee;
+import me.alanfoster.services.employee.models.Job;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
- * @see me.alanfoster.services.employee.models.IEmployee
+ * @see me.alanfoster.services.employee.models.Employee
  */
 public class FlatEmployee {
     private Integer id;
@@ -75,12 +74,12 @@ public class FlatEmployee {
     }
 
     /**
-     * Instance helper method that internally calls the static method getEmployeeDataTableAsIEmployee
+     * Instance helper method that internally calls the static method getEmployeeDataTableAsEmployee
      *
      * @return An IEmployee instance with equivalent data as the flat data structure
      */
-    public IEmployee getAsEmployee() {
-        return FlatEmployee.getEmployeeDataTableAsIEmployee(this);
+    public Employee getAsEmployee() {
+        return FlatEmployee.getEmployeeDataTableAsEmployee(this);
     }
 
     /**
@@ -88,8 +87,8 @@ public class FlatEmployee {
      *
      * @return An IEmployee instance with equivalent data as the flat data structure
      */
-    public static IEmployee getEmployeeDataTableAsIEmployee(FlatEmployee employeeDataTable) {
-        IEmployee employee = new Employee();
+    public static Employee getEmployeeDataTableAsEmployee(FlatEmployee employeeDataTable) {
+        Employee employee = new Employee();
         employee.setId(employeeDataTable.getId());
         employee.setFirstName(employeeDataTable.getFirstName());
         employee.setSecondName(employeeDataTable.getSecondName());
@@ -104,12 +103,12 @@ public class FlatEmployee {
     }
 
     /**
-     * Used to convert a list of flat employees into a list of IEmployee
+     * Used to convert a list of flat employees into a list of Employee
      * @param employeeDataTable The datatable to convert
      * @return The list of non-flat employees
      */
-    public static List<IEmployee> getEmployeeDataTableAsIEmployee(List<FlatEmployee> employeeDataTable) {
-        List<IEmployee> employeeList = new ArrayList<IEmployee>(employeeDataTable.size());
+    public static List<Employee> getEmployeeDataTableAsEmployee(List<FlatEmployee> employeeDataTable) {
+        List<Employee> employeeList = new ArrayList<Employee>(employeeDataTable.size());
         for(FlatEmployee flatEmployee : employeeDataTable) {
             employeeList.add(flatEmployee.getAsEmployee());
         }

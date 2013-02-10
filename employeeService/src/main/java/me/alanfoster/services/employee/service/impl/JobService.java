@@ -1,8 +1,8 @@
 package me.alanfoster.services.employee.service.impl;
 
 import me.alanfoster.services.employee.dao.IJobDAO;
-import me.alanfoster.services.employee.models.impl.Job;
-import me.alanfoster.services.employee.models.impl.JobTitleCount;
+import me.alanfoster.services.employee.models.Job;
+import me.alanfoster.services.employee.models.JobTitleCount;
 import me.alanfoster.services.employee.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

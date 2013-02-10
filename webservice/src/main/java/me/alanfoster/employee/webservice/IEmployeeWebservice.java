@@ -1,6 +1,6 @@
 package me.alanfoster.employee.webservice;
 
-import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.models.Employee;
 
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
- * @see me.alanfoster.services.employee.models.impl.Employee
+ * @see me.alanfoster.services.employee.models.Employee
  */
 @WebService(
         name = "EmployeeWebservice",

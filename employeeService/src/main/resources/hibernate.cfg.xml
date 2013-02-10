@@ -6,8 +6,8 @@
 <hibernate-configuration>
     <!-- Define all of the classes annotated with JPA (Java Persistance Annotations) -->
     <session-factory>
-        <mapping class="me.alanfoster.services.employee.models.impl.Employee"/>
-        <mapping class="me.alanfoster.services.employee.models.impl.Job"/>
-        <mapping class="me.alanfoster.services.employee.models.impl.JobTitleCount"/>
+        <mapping class="me.alanfoster.services.employee.models.Employee"/>
+        <mapping class="me.alanfoster.services.employee.models.Job"/>
+        <mapping class="me.alanfoster.services.employee.models.JobTitleCount"/>
     </session-factory>
 </hibernate-configuration>

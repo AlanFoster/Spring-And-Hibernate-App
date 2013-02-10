@@ -1,6 +1,6 @@
 package me.alanfoster.application.controllers.employee.forms;
 
-import me.alanfoster.services.employee.models.impl.Job;
+import me.alanfoster.services.employee.models.Job;
 import me.alanfoster.services.employee.service.IJobService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

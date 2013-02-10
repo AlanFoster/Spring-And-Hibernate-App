@@ -1,7 +1,7 @@
 package me.alanfoster.services.employee.service;
 
-import me.alanfoster.services.employee.models.impl.Job;
-import me.alanfoster.services.employee.models.impl.JobTitleCount;
+import me.alanfoster.services.employee.models.Job;
+import me.alanfoster.services.employee.models.JobTitleCount;
 
 import java.util.List;
 

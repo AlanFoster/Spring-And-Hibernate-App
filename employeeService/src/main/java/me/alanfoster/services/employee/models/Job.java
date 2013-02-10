@@ -1,4 +1,4 @@
-package me.alanfoster.services.employee.models.impl;
+package me.alanfoster.services.employee.models;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;

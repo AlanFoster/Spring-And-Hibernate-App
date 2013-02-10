@@ -1,8 +1,7 @@
 package me.alanfoster.services.employee.service.impl;
 
 import me.alanfoster.services.employee.dao.IEmployeeDAO;
-import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.models.Employee;
 import me.alanfoster.services.employee.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +36,7 @@ public class EmployeeService implements IEmployeeService {
      */
     @Transactional
     @Override
-    public Integer create(IEmployee employee) {
+    public Integer create(Employee employee) {
         return employeeDAO.create(employee);
     }
 
@@ -46,7 +45,7 @@ public class EmployeeService implements IEmployeeService {
      */
     @Transactional
     @Override
-    public IEmployee get(Integer key) {
+    public Employee get(Integer key) {
         return employeeDAO.get(key);
     }
 
@@ -55,7 +54,7 @@ public class EmployeeService implements IEmployeeService {
      */
     @Transactional
     @Override
-    public List<IEmployee> getAll() {
+    public List<Employee> getAll() {
         return employeeDAO.getAll();
     }
 
@@ -64,7 +63,7 @@ public class EmployeeService implements IEmployeeService {
      */
     @Transactional
     @Override
-    public void update(IEmployee employee) {
+    public void update(Employee employee) {
         employeeDAO.update(employee);
     }
 
@@ -73,7 +72,7 @@ public class EmployeeService implements IEmployeeService {
      */
     @Transactional
     @Override
-    public void delete(IEmployee employee) {
+    public void delete(Employee employee) {
         employeeDAO.delete(employee);
     }
 

@@ -5,16 +5,14 @@ import me.alanfoster.application.controllers.employee.config.EmployeeRequestMapp
 import me.alanfoster.application.controllers.employee.forms.JobEditor;
 import me.alanfoster.application.controllers.notification.config.Notification;
 import me.alanfoster.application.controllers.notification.config.NotificationRequestMappingConfig;
-import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.impl.Employee;
-import me.alanfoster.services.employee.models.impl.Job;
+import me.alanfoster.services.employee.models.Employee;
+import me.alanfoster.services.employee.models.Job;
 import me.alanfoster.services.employee.service.EmployeeSearch;
 import me.alanfoster.services.employee.service.IEmployeeService;
 import me.alanfoster.services.employee.service.IJobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import me.alanfoster.employee.webservice.IEmployeeWebservice;
@@ -158,7 +156,7 @@ public class EmployeeController {
     @RequestMapping(value = "/employees/edit/{employeeId}")
     public String editEmployee(Map<String, Object> map, @PathVariable("employeeId") Integer employeeId) {
         logger.info("Received Request for /edit/{}", new Object[]{employeeId});
-        IEmployee employee = employeeService.get(employeeId);
+        Employee employee = employeeService.get(employeeId);
         // Log this and let our presentation layer deal with this scenario
         if (employee == null) {
             logger.debug("Employee Object for employee id {} was null", new Object[]{employeeId});

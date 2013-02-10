@@ -1,7 +1,6 @@
 package me.alanfoster.employee.eai;
 
 import me.alanfoster.employee.webservice.IEmployeeWebservice;
-import me.alanfoster.services.employee.models.IEmployee;
 
 /**
  * Interface for a basic EAI (Enterprise Application Integration) pattern

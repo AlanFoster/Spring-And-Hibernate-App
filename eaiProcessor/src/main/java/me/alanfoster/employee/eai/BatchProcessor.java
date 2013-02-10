@@ -1,7 +1,7 @@
 package me.alanfoster.employee.eai;
 
 import me.alanfoster.employee.webservice.IEmployeeWebservice;
-import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.models.Employee;
 import org.apache.cxf.helpers.FileUtils;
 import org.dom4j.*;
 import org.dom4j.io.DocumentResult;

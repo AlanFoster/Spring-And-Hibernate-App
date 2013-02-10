@@ -2,8 +2,7 @@ package me.alanfoster.employee.service;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.models.Employee;
 import me.alanfoster.services.employee.service.EmployeeSearch;
 import me.alanfoster.services.employee.service.IEmployeeService;
 import org.slf4j.Logger;
@@ -40,7 +39,7 @@ public class EmployeeSearchSteps {
 
     @Then("^search employee service will return the following employees$")
     public void search_employee_service_will_return_the_following_employees(List<FlatEmployee> flatEmployees) throws Throwable {
-        List<IEmployee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsIEmployee(flatEmployees);
+        List<Employee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsEmployee(flatEmployees);
 
         // Assert the expected and returned lists are equal in the SAME order
         assertReflectionEquals(expectedEmployees, searchResults);

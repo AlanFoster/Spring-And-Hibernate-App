@@ -1,7 +1,7 @@
 package me.alanfoster.employee.eai;
 
-import me.alanfoster.services.employee.models.impl.Employee;
-import me.alanfoster.services.employee.models.impl.Job;
+import me.alanfoster.services.employee.models.Employee;
+import me.alanfoster.services.employee.models.Job;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;

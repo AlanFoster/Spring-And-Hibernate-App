@@ -1,8 +1,8 @@
 package me.alanfoster.services.employee.dao.impl;
 
 import me.alanfoster.services.employee.dao.IJobDAO;
-import me.alanfoster.services.employee.models.impl.Job;
-import me.alanfoster.services.employee.models.impl.JobTitleCount;
+import me.alanfoster.services.employee.models.Job;
+import me.alanfoster.services.employee.models.JobTitleCount;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +47,7 @@ public class HibernateJobDAO implements IJobDAO {
      */
     @Override
     public List<JobTitleCount> getJobTitleCounts() {
-        Query query = sessionFactory.getCurrentSession().createQuery("select distinct new  me.alanfoster.services.employee.models.impl.JobTitleCount(employee.job.jobTitle, count(employee)) from Employee as employee group by employee.job.jobTitle");
+        Query query = sessionFactory.getCurrentSession().createQuery("select distinct new  me.alanfoster.services.employee.models.JobTitleCount(employee.job.jobTitle, count(employee)) from Employee as employee group by employee.job.jobTitle");
         List<JobTitleCount> result = (List<JobTitleCount>) query.list();
         return result;
     }

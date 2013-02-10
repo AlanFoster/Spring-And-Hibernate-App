@@ -1,17 +1,14 @@
 package me.alanfoster.services.employee.dao.impl;
 
 import me.alanfoster.services.employee.dao.IEmployeeDAO;
-import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.models.Employee;
 import me.alanfoster.services.employee.service.*;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.text.Format;
 import java.util.List;
 
 /**
@@ -41,7 +38,7 @@ public class HibernateEmployeeDAO implements IEmployeeDAO {
      * {@inheritDoc
      */
     @Override
-    public Integer create(IEmployee employee) {
+    public Integer create(Employee employee) {
         return (Integer) sessionFactory.getCurrentSession().save(employee);
     }
 
@@ -49,15 +46,15 @@ public class HibernateEmployeeDAO implements IEmployeeDAO {
      * {@inheritDoc
      */
     @Override
-    public IEmployee get(Integer key) {
-        return (IEmployee) sessionFactory.getCurrentSession().get(Employee.class, key);
+    public Employee get(Integer key) {
+        return (Employee) sessionFactory.getCurrentSession().get(Employee.class, key);
     }
 
     /**
      * {@inheritDoc
      */
     @Override
-    public List<IEmployee> getAll() {
+    public List<Employee> getAll() {
         return sessionFactory.getCurrentSession().createQuery("from Employee").list();
     }
 
@@ -65,7 +62,7 @@ public class HibernateEmployeeDAO implements IEmployeeDAO {
      * {@inheritDoc
      */
     @Override
-    public void update(IEmployee employee) {
+    public void update(Employee employee) {
         sessionFactory.getCurrentSession().update(employee);
     }
 
@@ -73,7 +70,7 @@ public class HibernateEmployeeDAO implements IEmployeeDAO {
      * {@inheritDoc
      */
     @Override
-    public void delete(IEmployee employee) {
+    public void delete(Employee employee) {
         sessionFactory.getCurrentSession().delete(employee);
     }
 

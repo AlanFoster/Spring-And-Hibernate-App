@@ -6,8 +6,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import me.alanfoster.employee.service.FlatEmployee;
 import me.alanfoster.employee.webservice.IEmployeeWebservice;
-import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.impl.Employee;
+import me.alanfoster.services.employee.models.Employee;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
@@ -92,7 +91,7 @@ public class StepDefs {
 
     @Then("^the employee webservice will now have the following employee details$")
     public void the_employee_webservice_will_now_have_the_following_employee_details(List<FlatEmployee> flatEmployees) throws Throwable {
-        List<IEmployee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsIEmployee(flatEmployees);
+        List<Employee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsEmployee(flatEmployees);
         List<Employee> actualEmployees = employeeWebservice.getAllEmployees();
         // Assert the expected and returned lists are equal in any order
         assertReflectionEquals(expectedEmployees, actualEmployees, ReflectionComparatorMode.LENIENT_ORDER);
@@ -117,7 +116,7 @@ public class StepDefs {
 
     @Then("^the (successfulEmployees|failedEmployees) list will contain the following$")
     public void the_successfulEmployees_list_will_contain_the_following(String type, List<FlatEmployee> flatEmployees) throws Throwable {
-        List<IEmployee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsIEmployee(flatEmployees);
+        List<Employee> expectedEmployees = FlatEmployee.getEmployeeDataTableAsEmployee(flatEmployees);
         List<Employee> actualEmployees = type.equals("successfulEmployees") ? getSuccessfullEmployees() : getFailedEmployees();
 
         // Assert the expected and returned lists are equal in the exact order

@@ -1,9 +1,7 @@
 package me.alanfoster.services.employee.dao;
 
 import me.alanfoster.services.core.dao.ICrudDAO;
-import me.alanfoster.services.employee.models.IEmployee;
-import me.alanfoster.services.employee.models.impl.Employee;
-import me.alanfoster.services.employee.service.EmployeeSearch;
+import me.alanfoster.services.employee.models.Employee;
 import me.alanfoster.services.employee.service.ISearchCriteria;
 
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.List;
  * @author Alan Foster
  * @version 1.0.0-SNAPSHOT
  */
-public interface IEmployeeDAO extends ICrudDAO<IEmployee, Integer> {
+public interface IEmployeeDAO extends ICrudDAO<Employee, Integer> {
     /**
      * A generic way to find employee details
      * @param criterias The list search criteria
