@@ -14,10 +14,6 @@
         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
     ">
 
-    <import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
-
     <!-- Scan classes for annotations - In particular @Required and @Autowired -->
     <context:annotation-config/>
     <!-- Handle @Transaction annotations -->
@@ -62,7 +58,13 @@
     </bean>
 
     <!-- Import the service context -->
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />
+
     <import resource="classpath:service-context.xml" />
 
     <jaxws:client id="employeeWebserviceClient" serviceClass="me.alanfoster.employee.webservice.IEmployeeWebservice" address="http://localhost:8090/EmployeeWebservice?wsdl" />
+
+
 </beans>
