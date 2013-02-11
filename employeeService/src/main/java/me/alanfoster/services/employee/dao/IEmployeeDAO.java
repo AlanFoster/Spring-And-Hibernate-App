@@ -2,7 +2,7 @@ package me.alanfoster.services.employee.dao;
 
 import me.alanfoster.services.core.dao.ICrudDAO;
 import me.alanfoster.services.employee.models.Employee;
-import me.alanfoster.services.employee.service.ISearchCriteria;
+import me.alanfoster.services.employee.service.search.ISearchCriteria;
 
 import java.util.List;
 

@@ -2,10 +2,10 @@ package me.alanfoster.services.employee.dao.impl;
 
 import me.alanfoster.services.employee.dao.IEmployeeDAO;
 import me.alanfoster.services.employee.models.Employee;
-import me.alanfoster.services.employee.service.ISearchCriteria;
-import me.alanfoster.services.employee.service.ISearchCriteriaBetween;
-import me.alanfoster.services.employee.service.ISearchCriteriaEq;
-import me.alanfoster.services.employee.service.ISearchCriteriaLike;
+import me.alanfoster.services.employee.service.search.ISearchCriteria;
+import me.alanfoster.services.employee.service.search.ISearchCriteriaBetween;
+import me.alanfoster.services.employee.service.search.ISearchCriteriaEq;
+import me.alanfoster.services.employee.service.search.ISearchCriteriaLike;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

@@ -1,4 +1,4 @@
-package me.alanfoster.services.employee.service;
+package me.alanfoster.services.employee.service.search;
 
 /**
  * @author Alan Foster
