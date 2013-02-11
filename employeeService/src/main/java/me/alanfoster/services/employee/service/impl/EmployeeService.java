@@ -30,10 +30,11 @@ public class EmployeeService implements IEmployeeService {
      */
     private static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
 
+    /**
+     * The IEmployeeDAO instance which is autowired by spring
+     */
     @Autowired
     private IEmployeeDAO employeeDAO;
-
-
 
     /**
      * {@inheritDoc}

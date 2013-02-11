@@ -8,6 +8,19 @@ basic CRUD (Create, Read, Update, Delete) operations
 Getting Started
 ---------------
 
+#####Database#####
+
+This application works with MySql by default with a database name of 'employee' - But is configurable by changing jdbc.properties
+
+The install scripts can be found at
+
+    /employeeService/src/main/resources/sql/db-schema.sql
+
+And the rollback script can be found at
+
+    /employeeService/src/main/resources/sql/rollback.sql
+
+
 #####Installing/Building####
 
 This project uses [Maven](http://maven.apache.org/) for all of its building and dependency management
@@ -32,31 +45,17 @@ This application is also targeted to run under modern browsers - Firefox/Chrome 
 
 Please also read the dependencies markdown file when developing too :)
 
-#####Database#####
-
-After you have installed maven you will then need to set up your database;
-This application works with MySql by default with a database name of 'employee' - But is configurable by changing jdbc.properties
-
-The install scripts can be found at 
-
-    /employeeService/src/main/resources/sql/db-schema.sql
-
-And the rollback script can be found at 
-
-    /employeeService/src/main/resources/sql/rollback.sql
-	
-	
 Hosting the Webservice
 ----------------------
 
-Running the webservice within jetty using cxf is extremely easy.
+Running the webservice within jetty is extremely easy.
 
 Open up a command terminal from the root directory and execute the following commands
 
     cd hostedWebservice
     mvn jetty:run
 
-You should see the following appear
+You should eventually see the following appear
 
 	[INFO] Started Jetty Server
 	[INFO] Starting scanner at interval of 1 seconds.
