@@ -42,7 +42,7 @@ public class Employee {
     @NotEmpty
     private String firstName;
     /**
-     * THe employee's second name.
+     * The employee's second name.
      */
     @Column(name = "secondName")
     @NotEmpty
