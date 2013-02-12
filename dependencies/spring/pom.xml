@@ -21,6 +21,7 @@
     <properties>
         <!-- Dependency Versions -->
         <spring.version>3.2.0.RELEASE</spring.version>
+        <aspectjweaver.version>1.7.1</aspectjweaver.version>
     </properties>
 
     <!-- Define all of the common spring dependencies for this application -->
@@ -45,6 +46,13 @@
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver.version}</version>
+        </dependency>
+
     </dependencies>
 
 </project>

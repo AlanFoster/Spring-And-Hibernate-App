@@ -85,8 +85,44 @@ To run the main web application you can do so with the following commands
 
 After deployment is successful you can visit the application at [http://localhost:8080/](http://localhost:8080)
 
-Debugging
----------
+Tracking Issues
+---------------
+
+#####Logs####
+
+This application makes use of the SLF4J framework; So it's business as usual when wanting to change the config levels
+
+Extra :: This application *also* makes use of Spring's AOP to add additional logging (at debug level)
+
+This will output some of the more important information for logging, such as method name, arguments, log time,
+and any exceptions
+
+Example spring bean config used :
+
+```xml
+    <!-- Use Spring AOP to bind logging to all of our services classes -->
+    <bean id="customizableTraceInterceptor" class="org.springframework.aop.interceptor.CustomizableTraceInterceptor">
+        <property name="enterMessage" value="$[targetClassShortName] :: Entering $[methodName]($[arguments])"/>
+        <property name="exitMessage" value="$[targetClassShortName] :: Leaving $[methodName](): $[returnValue] :: Invocation Time $[invocationTime] ms"/>
+        <property name="exceptionMessage" value="$[targetClassShortName] :: Exception thrown for $[methodName] with the following exception $[exception]" />
+    </bean>
+
+    <aop:config>
+        <!-- Pointcut with any method defined in the services package -->
+        <aop:advisor advice-ref="customizableTraceInterceptor" pointcut="execution(public * me.alanfoster.services..*.*(..))"/>
+    </aop:config>
+
+```
+
+This will output something similar to the following when the logging levels are changed - it's very useful to have!
+
+
+    [                          main] CustomizableTraceInterceptor   DEBUG EmployeeService :: Entering create(Employee{id=1, firstName='John', secondName='Smyth', job=Job{jobId=1, jobTitle='HR'}, deskId=1})
+    ....
+    [                          main] CustomizableTraceInterceptor   DEBUG EmployeeService :: Leaving create(): 1 :: Invocation Time 24 ms
+
+
+#####Debugging####
 
 In order to take full advantage of your IDE you can start the jetty instance in debug mode using the following
 
