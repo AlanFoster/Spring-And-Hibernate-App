@@ -11,7 +11,7 @@
     <script type="text/javascript" src="/resources/js/vendor/bootstrap.min.js"></script>
     <script type="text/javascript" src="/resources/js/vendor/jquery-ui-1.10.0.custom.min.js"></script>
     <script type="text/javascript" src="/resources/js/vendor/json.min.js"></script>
-    <script src="/resources/js/main.js"></script>
+    <script type="text/javascript" src="/resources/js/main.js"></script>
 </head>
 <body>
 

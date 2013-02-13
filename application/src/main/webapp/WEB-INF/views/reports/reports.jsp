@@ -18,6 +18,7 @@
             </div>
         </div>
         <div class="tab-pane" id="employeeHierarchy">
+            <div class="alert">Note - Not properly implemented, just an example of how a tree may look when hooked up</div>
             <%-- Not properly implemented, just an example of a tree --%>
             <div id="employeeHierarchyTree"></div>
         </div>

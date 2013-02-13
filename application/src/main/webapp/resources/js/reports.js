@@ -204,8 +204,10 @@
             .attr("class", "node")
             .attr("transform", function (d) {
                 return "translate(" + d.x + "," + d.y + ")";
-            });
-
+            })
+            .on("click", function(d) {
+                alert("Show Data For :: " + labelFunc(d))
+            })
 
         nodeGroup.append("svg:circle")
             .attr("class", "node")

@@ -3,6 +3,25 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 
+<script type="text/javascript" src="/resources/js/employeeDetail.js"></script>
+
+<%-- Modal for deleting an employee which will show when the delete button is clicked --%>
+<div id="deleteEmployeeModel" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Delete Employee</h3>
+    </div>
+    <div class="modal-body">
+        <p>You are about to delete the following employee, this procedure is irreversible.</p>
+        <p>Do you want to proceed?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" id="confirmDelete">Yes</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
+    </div>
+</div>
+
+
 <%-- This one JSP page represents the 'employee detail' object detail page.
      This template should be reused as appropiate for the CRUD operations --%>
 <h2><tiles:getAsString name="page.title"/></h2>
@@ -27,13 +46,15 @@
                     <div class="control-group">
                         <form:label path="firstName" cssClass="control-label">First Name</form:label>
                         <div class="controls">
-                            <form:input path="firstName" placeholder="First Name"/> <form:errors path="firstName" cssClass="help-inline"/>
+                            <form:input path="firstName" placeholder="First Name"/> <form:errors path="firstName"
+                                                                                                 cssClass="help-inline"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <form:label path="secondName" cssClass="control-label">Second Name</form:label>
                         <div class="controls">
-                            <form:input path="secondName" placeHolder="Second Name"/> <form:errors path="secondName" cssClass="help-inline"/>
+                            <form:input path="secondName" placeHolder="Second Name"/> <form:errors path="secondName"
+                                                                                                   cssClass="help-inline"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -51,13 +72,14 @@
                     <div class="control-group">
                         <form:label path="deskId" cssClass="control-label">Desk Id</form:label>
                         <div class="controls">
-                            <form:input path="deskId" placeholder="Desk Id"/> <form:errors path="deskId" cssClass="help-inline"/>
+                            <form:input path="deskId" placeholder="Desk Id"/> <form:errors path="deskId"
+                                                                                           cssClass="help-inline"/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <div class="controls">
-                            <%-- Show the 'Add Employee' button if this is a new employee, otherwise show the update/delete buttons --%>
+                                <%-- Show the 'Add Employee' button if this is a new employee, otherwise show the update/delete buttons --%>
                             <c:choose>
                                 <c:when test="${empty employee.id}">
                                     <button type="submit" name="save" class="btn btn-primary">Add Employee</button>
@@ -68,7 +90,7 @@
                                         automatically through the id 'confirmDelete'
                                          - this is so users without javascript still make use of the system --%>
                                     <a href="/employees/delete/${employee.id}" class="btn btn-danger"
-                                       id="confirmDelete">Delete</a>
+                                       id="confirmEmployeeDelete">Delete</a>
                                 </c:otherwise>
                             </c:choose>
                         </div>
