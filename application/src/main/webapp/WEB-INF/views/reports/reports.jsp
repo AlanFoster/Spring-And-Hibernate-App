@@ -5,7 +5,7 @@
 <div class="tabbable tabs-left">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#jobCategories" data-toggle="tab">Job Categories</a></li>
-        <li><a href="#totalEmployees" data-toggle="tab">Total Employees</a></li>
+        <li><a href="#employeeHierarchy" data-toggle="tab">Employee Hierarchy</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="jobCategories">
@@ -17,8 +17,10 @@
                 <div id="jobCategoriesReport"></div>
             </div>
         </div>
-        <div class="tab-pane" id="totalEmployees">
-            <p>TODO if I have time.</p>
+        <div class="tab-pane" id="employeeHierarchy">
+            <%-- Not properly implemented, just an example of a tree --%>
+            <div id="employeeHierarchyTree"></div>
         </div>
     </div>
 </div>
+

@@ -1,6 +1,6 @@
 /* Increase the container size, otherwise graphs get cut off */
 .tab-content {
-    height: 500px;
+    overflow: auto;
 }
 /* Setting specific arc information */
 .arcLabel {
@@ -25,4 +25,26 @@
 label {
     display: inline-block;
     width: 5em;
+}
+
+/* Tree */
+.node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}
+
+.node circle:hover {
+    fill: #ccc;
+    cursor: help;
+}
+
+.node {
+    font: 10px sans-serif;
+}
+
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1.5px;
 }
