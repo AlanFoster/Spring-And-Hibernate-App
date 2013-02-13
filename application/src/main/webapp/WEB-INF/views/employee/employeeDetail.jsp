@@ -3,6 +3,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 
+<%--
+    This could be moved to the tiles.xml definitions
+    But I found development to be faster if it's here as there wasn't a need for redeploys
+--%>
 <script type="text/javascript" src="/resources/js/employeeDetail.js"></script>
 
 <%-- Modal for deleting an employee which will show when the delete button is clicked --%>
@@ -20,7 +24,6 @@
         <button class="btn" data-dismiss="modal" aria-hidden="true">No</button>
     </div>
 </div>
-
 
 <%-- This one JSP page represents the 'employee detail' object detail page.
      This template should be reused as appropiate for the CRUD operations --%>

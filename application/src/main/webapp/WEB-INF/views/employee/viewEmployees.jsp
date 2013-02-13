@@ -3,26 +3,15 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 
-
+<%--
+    This could be moved to the tiles.xml definitions
+    But I found development to be faster if it's here as there wasn't a need for redeploys
+--%>
 <link rel="stylesheet" href="/resources/css/bootstrap/DT_bootstrap.css"/>
 <script type="text/javascript" src="/resources/js/vendor/jquery.dataTables.js"></script>
 <script type="text/javascript" src="/resources/js/vendor/DT_bootstrap.js"></script>
-
-<script>
-    $(function () {
-        $('#searchResults').dataTable({
-            "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
-            "sPaginationType": "bootstrap",
-            "oLanguage": {
-                "sLengthMenu": "_MENU_"
-            },
-            // Disable sorting for the edit column, as it doesn't make sense
-            "aoColumnDefs" : [
-                { "bSortable" : false, 'aTargets' : ["edit"]}
-            ]
-        });
-    });
-</script>
+<script type="text/javascript" src="/resources/js/vendor/DT_bootstrap.js"></script>
+<script type="text/javascript" src="/resources/js/search.js"></script>
 
 <div>
     <div class="tabbable">

@@ -5,3 +5,12 @@ body {
 #mainContainer {
     min-height: 500px;
 }
+
+
+.imageResource {
+    border: 2px solid #eee;
+}
+
+.centered {
+    text-align: center;
+}

@@ -145,7 +145,8 @@
             size = options.size,
             fontSize = options.fontSize,
             nodeRadius = options.fontSize,
-            childrenKey = options.childrenKey;
+            childrenKey = options.childrenKey,
+            nodeOnClick = options.nodeOnClick;
 
         /**
          * A function to work out the widest length label in a tree
@@ -205,9 +206,7 @@
             .attr("transform", function (d) {
                 return "translate(" + d.x + "," + d.y + ")";
             })
-            .on("click", function(d) {
-                alert("Show Data For :: " + labelFunc(d))
-            })
+            .on("click", nodeOnClick)
 
         nodeGroup.append("svg:circle")
             .attr("class", "node")
@@ -272,16 +271,23 @@ $(function () {
 
     EmployeeApp.getEmployeeHierarchy(function (treeData) {
         // Create the options for the tree
+        var labelFunc = function (data) {
+            return data.firstName + " " + data.secondName;
+        }
         var options = {
-            labelFunc: function (data) {
-                return data.firstName + " " + data.secondName;
-            },
+            labelFunc: labelFunc,
             size: {width: 700, height: 700},
             fontSize: 6,
             nodeRadius: 10,
-            childrenKey: "subordinates"
+            childrenKey: "subordinates",
+            nodeOnClick: function (data) {
+                alert("Show data for : " +"\n\t"
+                    + labelFunc(data) + "\n\t" +
+                    data.job.jobTitle)
+            }
         }
 
+        // Create the tree from the options + data
         EmployeeApp.createTree("#employeeHierarchyTree", treeData, options);
     });
 
