@@ -5,8 +5,17 @@ package me.alanfoster.services.employee.service.search;
  * @version 1.0.0-SNAPSHOT
  */
 public class SearchCriteriaBetween implements ISearchCriteriaBetween {
+    /**
+     * the min value that the field can be.
+     */
     private Integer min;
+    /**
+     * the max value that the field can be.
+     */
     private Integer max;
+    /**
+     * The field name that should match the criteria.
+     */
     private String fieldName;
 
     public SearchCriteriaBetween(String fieldName, Integer min, Integer max) {

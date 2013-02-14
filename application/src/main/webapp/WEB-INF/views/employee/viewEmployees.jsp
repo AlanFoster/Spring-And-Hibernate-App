@@ -23,18 +23,25 @@
             <div class="tab-pane" id="basicSearch">
             </div>
             <div class="tab-pane active" id="advancedSearch">
-
                 <form id="advancedForm" method="post" class="form-horizontal">
+                    <div class="control-group">
+                        <span class="control-label"
+                              title="You can also specify ranges using 'min-max', IE '1-5' will bring back all records between 1 and 5"><i
+                                class="icon-question-sign"></i> Employee Id</span>
+                        <div class="controls">
+                            <input name="employeeId" placeHolder="Employee Id" />
+                        </div>
+                    </div>
                     <div class="control-group">
                         <span class="control-label">First Name</span>
                         <div class="controls">
-                            <input id="firstName" placeHolder="First Name" /> <span class="help-inline"><em>Remember you can use '%' as a wild card!</em></span>
+                            <input type="text" name="firstName" placeHolder="First Name" /> <span class="help-inline"><em>Remember you can use '%' as a wild card!</em></span>
                         </div>
                     </div>
                     <div class="control-group">
                         <span class="control-label">Second Name</span>
                         <div class="controls">
-                            <input id="secondName" placeHolder="Second Name" />
+                            <input name="secondName" placeHolder="Second Name" />
                         </div>
                     </div>
                     <div class="control-group">
@@ -42,7 +49,7 @@
                               title="You can also specify ranges using 'min-max', IE '1-5' will bring back all records between 1 and 5"><i
                                 class="icon-question-sign"></i> Desk Id</span>
                         <div class="controls">
-                            <input id="deskId" placeHolder="Desk Id" />
+                            <input name="deskId" placeHolder="Desk Id" />
                         </div>
                     </div>
                     <div class="control-group">
@@ -66,7 +73,7 @@
         <div class="alert">Sorry. There are no employees which matched your requirement</div>
     </c:when>
     <c:otherwise>
-        <table id="searchResults" class="table table-striped table-hover">
+        <table id="searchResults" class="table table-striped table-hover hidden">
             <thead>
             <tr>
                 <th>#</th>

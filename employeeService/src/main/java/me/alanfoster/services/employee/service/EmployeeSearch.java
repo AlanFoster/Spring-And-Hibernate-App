@@ -11,10 +11,15 @@ import org.hibernate.validator.constraints.Range;
  */
 public class EmployeeSearch {
     /**
-     * The unique employee id.
+     * The minimum employee id.
      */
     @Range(min = 1)
-    private Integer id;
+    private Integer minEmployeeId;
+    /**
+     * The maximum employee id.
+     */
+    @Range(min = 1)
+    private Integer maxEmployeeId;
     /**
      * The employee's first name.
      */
@@ -127,10 +132,11 @@ public class EmployeeSearch {
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         // Auto generated
         return "EmployeeSearch{" +
-                "id=" + id +
+                "minEmployeeId=" + minEmployeeId +
+                ", maxEmployeeId=" + maxEmployeeId +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", minDeskId=" + minDeskId +

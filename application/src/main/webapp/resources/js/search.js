@@ -65,23 +65,17 @@ $(function () {
         };
 
         var getFieldBetween = function(fieldName) {
-            alert(JSON.stringify(fieldArray));
-
             var field = getField(fieldName);
             var value = field.value;
             // Capture either "\d*" or "\d+-\d+" ignoring whitespace
-            var match = /^\s*(\d*)$|^\s*(\d+)\s*-\s*(\d+)\s*$/.test(value);
+            var match = /(?:^\s*(\d*)$)|(?:^\s*(\d+)\s*-\s*(\d+)\s*$)/.test(value);
             // If we don't have a match, return
             if(!match) {
                 return;
             }
             // Set up a new betweenRange object, and optionally set the max
             // value if the input was in the format "min-max"
-            var betweenRange = {};
-            between.min = RegExp.$1;
-            if(RegExp.$2) {
-                between.max = RegExp.$2;
-            }
+            var betweenRange = !RegExp.$2 ? {"min": RegExp.$1} : {"min": RegExp.$2, "max": RegExp.$3};
             return betweenRange;
         }
 
@@ -90,6 +84,13 @@ $(function () {
             "firstName": getFieldWithExactMatch("firstName", exactMatch),
             "secondName": getFieldWithExactMatch("secondName", exactMatch)
         };
+
+        // Grab the employee id min and max values
+        var employeeIdBetween = getFieldBetween("employeeId");
+        if(employeeIdBetween) {
+            request.minEmployeeId = employeeIdBetween.min;
+            request.maxEmployeeId = employeeIdBetween.max;
+        }
 
         // Grab the desk id min and max values
         var deskIdBetween = getFieldBetween("deskId");
@@ -114,6 +115,8 @@ $(function () {
 
             // Clear te filter
             searchDataTable.fnFilter("");
+
+            $("#searchResults").show();
         });
     }
 
@@ -123,6 +126,8 @@ $(function () {
 
     // If the user refreshes the fields will need to be filtered
     filterTable();
+
+
 
 });
 
