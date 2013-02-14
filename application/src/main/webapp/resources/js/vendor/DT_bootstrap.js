@@ -30,7 +30,6 @@ $.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
     };
 };
 
-
 /* Bootstrap style pagination control */
 $.extend( $.fn.dataTableExt.oPagination, {
     "bootstrap": {
@@ -55,6 +54,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
         },
 
         "fnUpdate": function ( oSettings, fnDraw ) {
+
             var iListLength = 5;
             var oPaging = oSettings.oInstance.fnPagingInfo();
             var an = oSettings.aanFeatures.p;
@@ -74,6 +74,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
                 iStart = oPaging.iPage - iHalf + 1;
                 iEnd = iStart + iListLength - 1;
             }
+
 
             for ( i=0, ien=an.length ; i<ien ; i++ ) {
                 // Remove the middle elements

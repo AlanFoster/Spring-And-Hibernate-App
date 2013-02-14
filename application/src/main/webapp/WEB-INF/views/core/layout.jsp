@@ -5,12 +5,15 @@
 <head>
     <title><tiles:getAsString name="website.title"/> <tiles:getAsString name="website.version"/></title>
     <link rel="stylesheet" href="/resources/css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/resources/css/bootstrap/bootstrapSwitch.css"/>
     <link rel="stylesheet" href="/resources/css/ui-lightness/jquery-ui-1.10.0.custom.min.css"/>
     <link rel="stylesheet" href="/resources/css/main.css"/>
+
     <script type="text/javascript" src="/resources/js/vendor/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/resources/js/vendor/json.min.js"></script>
     <script type="text/javascript" src="/resources/js/vendor/bootstrap.min.js"></script>
     <script type="text/javascript" src="/resources/js/vendor/jquery-ui-1.10.0.custom.min.js"></script>
-    <script type="text/javascript" src="/resources/js/vendor/json.min.js"></script>
+    <script type="text/javascript" src="/resources/js/vendor/bootstrapSwitch.js"></script>
     <script type="text/javascript" src="/resources/js/main.js"></script>
 </head>
 <body>

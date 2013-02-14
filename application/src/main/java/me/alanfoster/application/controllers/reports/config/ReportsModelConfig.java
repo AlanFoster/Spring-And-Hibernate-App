@@ -30,7 +30,7 @@ public enum ReportsModelConfig implements ModelConfig {
      *
      * @param value The model name which the view resolver can make use of
      */
-    ReportsModelConfig(final String value) {
+    private ReportsModelConfig(final String value) {
         this.value = value;
     }
 

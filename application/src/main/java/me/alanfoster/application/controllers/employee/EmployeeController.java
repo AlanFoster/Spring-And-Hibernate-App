@@ -17,12 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,35 +109,23 @@ public class EmployeeController {
     }
 
     /**
-     * The post page for earching for an employee.
+     * The post page for searching for an employee, presumably to be used via
+     * XHR.
      *
      * @param employeeSearchCriteria The criteria to search for
-     * @param result                 The binding result for form validation
-     * @param map                    The map to bind model attributes to
-     * @return the required model to render
+     * @return the list of employees, as JSON, that match the search request
      */
     @RequestMapping(value = "/employees/search", method = RequestMethod.POST)
-    public final String searchEmployeePost(
-            @ModelAttribute("employeeSearchCriteria")
-            @Valid final EmployeeSearch employeeSearchCriteria,
-            final BindingResult result, final Map<String, Object> map) {
-        logger.info(
-                "Received Post Request for /search. Binding result has errors : '{}'",
-                new Object[]{result.hasErrors()});
+    @ResponseBody
+    public final List<Employee> searchEmployeePost(@RequestBody final EmployeeSearch employeeSearchCriteria) {
+        logger.info("Received XHR request for searchEmployee");
 
-        // If the form has errors, log it log it and don't retrieve the new
-        // employees
-        if (result.hasErrors()) {
-            logger.info("Form for add employee had errors - {}",
-                    new Object[]{result.getAllErrors()});
-        } else {
-            // Otherwise, since there are no errors search for the new employees
-            map.put("employees", employeeService.search(employeeSearchCriteria));
-        }
+        List<Employee> employees = employeeService.search(employeeSearchCriteria);
+        logger.info("Received employees from employee service {}", new Object[]{employees});
 
-        // Return the search view again (Regardless of errors or success)
-        return EmployeeModelConfig.Search.getModelName();
+        return employees;
     }
+
 
     /*********************************************************************
      * Create Methods
@@ -159,7 +142,7 @@ public class EmployeeController {
     public final String addEmployeePost(
             @Valid @ModelAttribute("employee") final Employee employee,
             final BindingResult result) {
-        logger.info("Received post request for //employees/add");
+        logger.info("Received post request for /employees/add");
 
         // If the form has errors, log it, and redirect back to the previous
         // page

@@ -20,32 +20,42 @@
             <li><a href="#advancedSearch" data-toggle="tab">Advanced Search</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" id="basicSearch">
+            <div class="tab-pane" id="basicSearch">
             </div>
-            <div class="tab-pane" id="advancedSearch">
+            <div class="tab-pane active" id="advancedSearch">
 
-                <form:form id="advancedForm" modelAttribute="employeeSearchCriteria" method="post"
-                           cssClass="form-horizontal">
+                <form id="advancedForm" method="post" class="form-horizontal">
                     <div class="control-group">
-                        <form:label path="firstName" cssClass="control-label">First Name</form:label>
+                        <span class="control-label">First Name</span>
                         <div class="controls">
-                            <form:input path="firstName"/> <form:errors path="firstName" cssClass="help-inline"/>
+                            <input id="firstName" placeHolder="First Name" /> <span class="help-inline"><em>Remember you can use '%' as a wild card!</em></span>
                         </div>
                     </div>
                     <div class="control-group">
-                        <form:label path="secondName" cssClass="control-label">Second Name</form:label>
+                        <span class="control-label">Second Name</span>
                         <div class="controls">
-                            <form:input path="secondName"/> <span class="help-inline"><em>Remember you can use '%' as a
-                            wild card!</em></span> <form:errors path="secondName" cssClass="help-inline"/>
+                            <input id="secondName" placeHolder="Second Name" />
                         </div>
                     </div>
-
                     <div class="control-group">
+                        <span class="control-label"
+                              title="You can also specify ranges using 'min-max', IE '1-5' will bring back all records between 1 and 5"><i
+                                class="icon-question-sign"></i> Desk Id</span>
                         <div class="controls">
-                            <button type="submit" name="search" class="btn btn-primary">Search</button>
+                            <input id="deskId" placeHolder="Desk Id" />
                         </div>
                     </div>
-                </form:form>
+                    <div class="control-group">
+                        <span class="control-label"
+                                    title="When 'OFF' this will add an implicit wildcard before and after search terms"><i
+                                class="icon-question-sign"></i> Exact Match</span>
+                        <div class="controls">
+                            <div id="exactMatchSwitch" class="switch">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
