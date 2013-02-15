@@ -1,6 +1,6 @@
 $(function () {
     // Create a new dataTable from the DOM Table
-    searchDataTable = $('#searchResults').dataTable({
+    var searchDataTable = $('#searchResults').dataTable({
         "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
@@ -79,25 +79,25 @@ $(function () {
             return betweenRange;
         }
 
-
         var request = {
             "firstName": getFieldWithExactMatch("firstName", exactMatch),
             "secondName": getFieldWithExactMatch("secondName", exactMatch)
         };
 
-        // Grab the employee id min and max values
-        var employeeIdBetween = getFieldBetween("employeeId");
-        if(employeeIdBetween) {
-            request.minEmployeeId = employeeIdBetween.min;
-            request.maxEmployeeId = employeeIdBetween.max;
-        }
+        // Can be refactored into a helper if required...
+            // Grab the employee id min and max values
+            var employeeIdBetween = getFieldBetween("employeeId");
+            if(employeeIdBetween) {
+                request.minEmployeeId = employeeIdBetween.min;
+                request.maxEmployeeId = employeeIdBetween.max;
+            }
 
-        // Grab the desk id min and max values
-        var deskIdBetween = getFieldBetween("deskId");
-        if(deskIdBetween) {
-            request.minDeskId = deskIdBetween.min;
-            request.maxDeskId = deskIdBetween.max;
-        }
+            // Grab the desk id min and max values
+            var deskIdBetween = getFieldBetween("deskId");
+            if(deskIdBetween) {
+                request.minDeskId = deskIdBetween.min;
+                request.maxDeskId = deskIdBetween.max;
+            }
 
         return request;
     };
@@ -113,7 +113,7 @@ $(function () {
                 return employee.id;
             });
 
-            // Clear te filter
+            // Clear the filter
             searchDataTable.fnFilter("");
 
             $("#searchResults").show();
@@ -126,8 +126,5 @@ $(function () {
 
     // If the user refreshes the fields will need to be filtered
     filterTable();
-
-
-
 });
 
