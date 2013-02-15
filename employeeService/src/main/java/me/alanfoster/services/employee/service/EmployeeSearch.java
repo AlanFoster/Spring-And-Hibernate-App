@@ -39,6 +39,42 @@ public class EmployeeSearch {
     @Range(min = 1)
     private Integer maxDeskId;
 
+    /**
+     * Accessor method.
+     *
+     * @return the min employee id
+     */
+    public final Integer getMinEmployeeId() {
+        return minEmployeeId;
+    }
+
+    /**
+     * Mutator method.
+     *
+     * @param minEmployeeId the min employee id
+     */
+    public final void setMinEmployeeId(final Integer minEmployeeId) {
+        this.minEmployeeId = minEmployeeId;
+    }
+
+    /**
+     * Accessor method.
+     *
+     * @return the max employee id
+     */
+    public final Integer getMaxEmployeeId() {
+        return maxEmployeeId;
+    }
+
+    /**
+     * Mutator method.
+     *
+     * @param maxEmployeeId the max employee id
+     */
+    public final void setMaxEmployeeId(final Integer maxEmployeeId) {
+        this.maxEmployeeId = maxEmployeeId;
+    }
+
 
     /**
      * Accessor method.
@@ -80,24 +116,6 @@ public class EmployeeSearch {
     /**
      * Accessor method.
      *
-     * @return the unique employee id
-     */
-    public final Integer getId() {
-        return id;
-    }
-
-    /**
-     * Mutator method.
-     *
-     * @param id the unique employee id
-     */
-    public final void setId(final Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * Accessor method.
-     *
      * @return The min desk id
      */
     public final Integer getMinDeskId() {
@@ -132,7 +150,7 @@ public class EmployeeSearch {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         // Auto generated
         return "EmployeeSearch{" +
                 "minEmployeeId=" + minEmployeeId +

@@ -15,7 +15,7 @@ Feature: Employee Application
   Scenario: Visiting the search page with no employees in the system
     Given I am on the home page
     When I click the 'searchEmployee' navigation link
-    Then the alert will say 'Sorry. There are no employees which matched your requirement'
+    #Then the alert will say 'Sorry. There are no employees which matched your requirement'
 
   Scenario: Visiting the reports page
     Given I am on the home page
