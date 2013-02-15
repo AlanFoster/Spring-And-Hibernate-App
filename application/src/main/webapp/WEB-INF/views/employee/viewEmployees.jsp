@@ -20,9 +20,9 @@
             <li><a href="#advancedSearch" data-toggle="tab">Advanced Search</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane" id="basicSearch">
+            <div class="tab-pane active" id="basicSearch">
             </div>
-            <div class="tab-pane active" id="advancedSearch">
+            <div class="tab-pane" id="advancedSearch">
                 <form id="advancedForm" method="post" class="form-horizontal">
                     <div class="control-group">
                         <span class="control-label"
